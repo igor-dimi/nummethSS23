@@ -4,7 +4,7 @@ author: Igor Dimitrov
 execute:
   execute_notebooks: force
 latex:
-  latex_documents
+  latex_documents:
     targetname: numSS23notes.tex
 
 bibtex_bibfiles:
