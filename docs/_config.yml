@@ -1,0 +1,31 @@
+title: Introduction to Numerical Methods SS 23 Lecture Notes
+author: Igor Dimitrov
+
+execute:
+  execute_notebooks: force
+latex:
+  latex_documents
+    targetname: numSS23notes.tex
+
+bibtex_bibfiles:
+  - references.bib
+
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+    latex_elements:
+      papersize: 'a4paper'
+
+only_build_toc_files: true
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - linkify
+    - substitution
+    - colon_fence
+    - strikethrough
+    - deflist
+    - tasklist
+    - html_image
