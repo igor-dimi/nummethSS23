@@ -17,6 +17,9 @@ sphinx:
       papersize: 'a4paper'
 
 only_build_toc_files: true
+exclude_patterns: [
+  # text/progtut/hello.ipynb
+]
 
 parse:
   myst_enable_extensions:
