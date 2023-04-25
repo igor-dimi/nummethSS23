@@ -5,3 +5,8 @@ parts:
     numbered: True
     chapters:
       - file: text/progtut/intro 
+      - file: text/progtut/hello
+  - caption: Numerical Methods
+    numbered: True
+    chapters:
+      - file: text/num/intro
