@@ -6,6 +6,7 @@ parts:
     chapters:
       - file: text/progtut/intro 
       - file: text/progtut/hello
+      - file: text/progtut/variables
   - caption: Numerical Methods
     numbered: True
     chapters:

@@ -18,7 +18,8 @@ sphinx:
 
 only_build_toc_files: true
 exclude_patterns: [
-  # text/progtut/hello.ipynb
+  text/progtut/hello.pdf,
+  text/draft.qmd
 ]
 
 parse:

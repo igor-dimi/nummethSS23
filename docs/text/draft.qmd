@@ -1,0 +1,56 @@
+# Variables
+
+# Variables
+
+In nature there is rich variety of different kinds of objects. This suggests the **chaos** aspect of nature. Chaos generetes variety. If everything was perfectly ordered, nothing would be.
+
+But among that sheer variety, there are many objects that are similar to each other, exhibiting some kind of a pattern. This suggets the **order** aspect of nature. Order is predictability and allows the formation of complex structures. For if chaos was all that there was, nothing would be.  
+
+Given various objects exhibiting the same pattern, we can distill the pattern by abstracting away from the aspects that differentiate the objects. The **domain** or a **class** defined by the pattern is the collection of different possible forms that an ojbect can take, while still satisfying the pattern. These different forms are also called **values**.
+
+Thus, an object exhibiting a pattern or satisfying a condition/description is said to belong to a **class** or a **domain** defined by that pattern or condition.
+
+For a given domain $D$, an object $x$ belonging to the domain is said to be of **type** $D$. Mathematically this is typically written as 
+
+$$
+x \in D \quad \text{(Set theoretical notation)}
+$$
+
+or equivalently as
+
+$$
+x : D \quad \text{(Type theoretical notation)}
+$$
+
+A domain can be finite, countably infinite, or uncountanbly infinite depending on the nature of the pattern associated with the domain. Moreover, depending on the pattern and the values the objects can take, the domain is equipped with a structure specified by some special values, relationships among values, and rules of transformations from given values to other values. It suffices to describe the relationships and transformations in unary or in binary form. 
+
+In mathematics, relationships are called **relations** and tansformtions are called **operations**. A domain along with its special elements, relations and operations is called a **mathematical structure**. 
+
+An example of a mathematical structure is the domain of integeres $\mathbb{Z}$ along with the special elements $0$ and $1$, the usual order relation $<$ and the usual arithmetic operations $+, \times$. The mathematical structure is succintly denoted as:
+
+$$
+\langle \mathbb{Z}, 0, 1, +, \times \rangle
+$$
+
+Where
+$$
+\begin{align*}
+& \text{Special elemements: } \, 0, 1 \in \mathbb{Z} \\
+
+& \text{Binary operations: } \,+, \times:\mathbb{Z}\times\mathbb{Z}\rightarrow\mathbb{Z} \\
+& \text{Binary relation:} \,< \subseteq \mathbb{Z}\times\mathbb{Z}
+\end{align*}
+$$
+
+
+Furthermore, the structure of the domain fixes certain **laws**, that these relations and operations, combined with the special values satisfy. Some of those laws are regarded as basic, and are required for the mathemtical structure. These basic laws are called **axioms** .
+
+In our case the basic laws are the **linearity** and **totality** of $<$, the usual laws of **commutativity**, **distrubitivity** and **associativity** of $+$ and $\times$, and further laws for **inverse** and **null** elements $0$ and $1$.
+
+Further laws can be discovered by virtue of mathematical exploration. The formal derivation of a discovered law from the basic axioms using mathematical logic is said to be the **proof** of the law. Such a law is called a **theorem**. The collection of such derived laws, together with the basic axioms from which they were formally derived is said to be the **theory** of the mathematical structure.  
+
+Therefore the mathematical structures directly realized by computers are not $\langle\mathbb{Z}, 0, 1, +, \times$ and $\langle\mathbb{R}, 0, 1, +, \times\rangle$ but rather their finite approximations 
+$\langle\tilde{\mathbb{Z}}, 0, 1, \oplus, \otimes\rangle$ and $\langle\mathbb{F}, 0, 1, \oplus, \otimes\rangle$, that do always satisfy the axioms. See link for further details on $\mathbb{F}$.
+
+
+
