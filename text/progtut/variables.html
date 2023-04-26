@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3. Variables &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>3. Variables Introduction &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/variables';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4. Introduction" href="../num/intro.html" />
+    <link rel="next" title="3.1. Basic Data Tytpes in C++" href="datatypes.html" />
     <link rel="prev" title="2. Hello World" href="hello.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -155,7 +155,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hello.html">2. Hello World</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Variables</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">3. Variables Introduction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">3.1. Basic Data Tytpes in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="declarations.html">3.2. Variable Declarations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statements.html">3.3. Statements and Expressions</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -294,7 +299,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Variables</h1>
+    <h1>Variables Introduction</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -308,8 +313,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="variables">
-<h1><span class="section-number">3. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="variables-introduction">
+<h1><span class="section-number">3. </span>Variables Introduction<a class="headerlink" href="#variables-introduction" title="Permalink to this headline">#</a></h1>
 <p>A <strong>domain</strong> is a collection or a range of possible values exhibiting a pattern. Objects belonging to the same domain are said to be of the same <strong>type</strong>. If an object <span class="math notranslate nohighlight">\(x\)</span> belongs to a domain <span class="math notranslate nohighlight">\(D\)</span> this is written mathematically as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -325,7 +330,6 @@ x : D \quad \text{(Type theoretical notation)}
 </pre></div>
 </div>
 <p>This is called the <strong>declaration</strong> of <strong>variable</strong> x of the <strong>data type</strong> D.</p>
-<p>A concrete example:</p>
 <p>A domain can be finite, countably infinite, or uncountanbly infinite, and its values exhibit a <strong>structure</strong> determined by pattern associated with the domain.</p>
 <p>A <strong>mathematical structure</strong> is a domain equipped with distinguished <strong>special elements</strong>, <strong>relations</strong> and <strong>operations</strong>. Relations and operations are usually binary.</p>
 <p>An example of a mathematical structure is the domain of integeres <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> along with the special elements <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, the usual order relation <span class="math notranslate nohighlight">\(&lt;\)</span> and the usual arithmetic operations <span class="math notranslate nohighlight">\(+, \times\)</span>. It is succintly denoted as <span class="math notranslate nohighlight">\(\langle \mathbb{Z}, 0, 1, +, \times \rangle\)</span>, where</p>
@@ -340,11 +344,13 @@ x : D \quad \text{(Type theoretical notation)}
 <p>A <strong>theory</strong> is a collection of axioms and theorems derived thereof.</p>
 <p>The usual axioms of <span class="math notranslate nohighlight">\(\langle \mathbb{Z}, 0, 1, +, \times \rangle\)</span> are the <strong>linearity</strong> and <strong>totality</strong> of <span class="math notranslate nohighlight">\(&lt;\)</span>, the usual laws of <strong>commutativity</strong>, <strong>distrubitivity</strong> and <strong>associativity</strong> of <span class="math notranslate nohighlight">\(+\)</span> and <span class="math notranslate nohighlight">\(\times\)</span>, and laws for <strong>inverse</strong> and <strong>null</strong> elements <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> is an exmaple of a <strong>countably infinite</strong> domain.</p>
-<p>The fundamental functions of digital computers is to perform numerical calculations on values coming from mathematical domains like <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> or <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, realizing their operations. But computers are finite machines, and physical components (the arithmetic and logic unit) performing the operations are only capable of directly operating on finitely many distinct representations of objects.</p>
+<p>One of the fundamental functions of digital computers is to perform numerical calculations on values coming from mathematical domains like <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> or <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, realizing their operations. But computers are finite machines, and physical components (the arithmetic and logic unit) performing the operations are only capable of directly operating on finitely many distinct representations of objects.</p>
 <p>Therefore the mathematical structures directly realized by computers are not <span class="math notranslate nohighlight">\(\langle\mathbb{Z}, 0, 1, +, \times\)</span> and <span class="math notranslate nohighlight">\(\langle\mathbb{R}, 0, 1, +, \times\rangle\)</span> but rather their finite approximations
 <span class="math notranslate nohighlight">\(\langle\tilde{\mathbb{Z}}, 0, 1, \oplus, \otimes\rangle\)</span> and <span class="math notranslate nohighlight">\(\langle\mathbb{F}, 0, 1, \oplus, \otimes\rangle\)</span>, where the basic axioms are not always satisfied. See link for further details on <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>.</p>
 <p><strong>basic(atomic) data types</strong> of a programming langauge are the types directly provided by the language, as opposed to the data types defined by the programmer using the mechanisms of the langauge.</p>
 <p>Some high-level programming langauges provide basic numerical data types that correspond to the ideal mathematical types <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>. But C++ provides only low level basic data types that are directly represented by the computer and directly operated on by the ALU. This data types are <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code> and <code class="docutils literal notranslate"><span class="pre">double</span></code>  correspong to <span class="math notranslate nohighlight">\(\tilde{\mathbb{Z}}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>, respectively.</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -388,11 +394,11 @@ x : D \quad \text{(Type theoretical notation)}
       </div>
     </a>
     <a class="right-next"
-       href="../num/intro.html"
+       href="datatypes.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Introduction</p>
+        <p class="prev-next-title"><span class="section-number">3.1. </span>Basic Data Tytpes in C++</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
