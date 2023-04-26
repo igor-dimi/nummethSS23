@@ -1,0 +1,15 @@
+\selectlanguage *{english}
+\contentsline {part}{I\hspace {1em}Programming Tutorial}{3}{part.1}%
+\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Hello World}{7}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Variables Introduction}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Basic Data Tytpes in C++}{9}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Variable Declarations}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Statements and Expressions}{10}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Statements}{10}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Expressions}{11}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Assignment}{11}{subsection.3.3.3}%
+\contentsline {subsubsection}{Side Effects}{11}{subsubsection*.3}%
+\contentsline {part}{II\hspace {1em}Numerical Methods}{13}{part.2}%
+\contentsline {chapter}{\numberline {4}Introduction}{15}{chapter.4}%
+\contentsline {chapter}{Index}{17}{section*.4}%

@@ -11,6 +11,14 @@ parts:
           - file: text/progtut/datatypes
           - file: text/progtut/declarations
           - file: text/progtut/statements
+          - file: text/progtut/blocks
+          - file: text/progtut/arithmetic
+      - file: text/progtut/arrays
+      - file: text/progtut/io
+      - file: text/progtut/controlflow
+        sections:
+          - file: text/progtut/if
+          - file: text/progtut/while
   - caption: Numerical Methods
     numbered: True
     chapters:
