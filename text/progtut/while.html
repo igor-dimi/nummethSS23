@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/while';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -295,7 +297,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -311,6 +315,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-more-comprehensive-example-pendulum">6.2.1. A More Comprehensive Example: Pendulum</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -333,7 +345,7 @@ document.write(`
 </pre></div>
 </div>
 <p>Upon exiting the loop the nagation of the while condition holds.</p>
-<p>example:</p>
+<p>Simple example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -353,6 +365,151 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="a-more-comprehensive-example-pendulum">
+<h2><span class="section-number">6.2.1. </span>A More Comprehensive Example: Pendulum<a class="headerlink" href="#a-more-comprehensive-example-pendulum" title="Permalink to this headline">#</a></h2>
+<p>Let’s consider a simple 2D pendulum:</p>
+<aside class="margin sidebar">
+<p class="sidebar-title">Simple Pendulum</p>
+<p><img alt="Simple Pendulum" src="../../_images/pendulum.excalidraw.png" /></p>
+</aside>
+<p>The equations of motions for this ideal model can be easily shown to be:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+&amp;\ddot{\theta} = -\frac{g}{l}\sin(\theta) \quad 
+&amp;&amp;\text{(Mechanics of motion)} \\
+\Leftrightarrow \quad &amp;\ddot{\theta} + \frac{g}{l}\sin(\theta) = 0 &amp;&amp; \\
+\Leftrightarrow \quad &amp;\ddot{\theta} + \frac{g}{l}\theta = 0 
+&amp;&amp; (\sin{\theta}\approx\theta \text{ for small } \theta)
+\end{align*}\]</div>
+<p>Solving this differential equation with initial conditions <span class="math notranslate nohighlight">\(\theta(0) = \theta_{0}\)</span>, and <span class="math notranslate nohighlight">\(\dot{\theta}(0) = 0\)</span> we arrive at the solution:</p>
+<div class="math notranslate nohighlight">
+\[
+\theta(t) = \theta_{0}\cos(\sqrt{\frac{g}{l}t})
+\]</div>
+<p>Following program computes this formula for each time value</p>
+<div class="math notranslate nohighlight">
+\[
+t_{i} = i\Delta t, \quad 0 \leq t_{i} \leq T, \quad i \in \mathbb{N_{0}}
+\]</div>
+<p>and outputs <span class="math notranslate nohighlight">\(t\)</span> and corresponding <span class="math notranslate nohighlight">\(\theta(t)\)</span> values seperated by blankspace in a new line to the standard output.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="mf">1.34</span><span class="p">);</span><span class="w"> </span><span class="c1">//Length of the pendulum chord in meters</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">phi0</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span><span class="w"> </span><span class="c1">//Amplitude i.e. the initial angle in radians</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">dt</span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span><span class="w"> </span><span class="c1">//Time-step in seconds</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">T</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">//End-time in seconds</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"> </span><span class="c1">//Initial time value</span>
+
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">T</span><span class="p">){</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">9.81</span><span class="o">/</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">t</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0.2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05 0.198173
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1 0.192724
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.15 0.183753
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2 0.171424
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.25 0.155963
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3 0.137651
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.35 0.116824
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4 0.0938622
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.45 0.069185
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5 0.0432435
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.55 0.0165118
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6 -0.0105217
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.65 -0.0373629
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7 -0.0635213
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.75 -0.0885189
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8 -0.111899
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.85 -0.133234
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9 -0.152134
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.95 -0.168255
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Full program text</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="mf">1.34</span><span class="p">);</span><span class="w"> </span><span class="c1">//Length of the pendulum chord in meters</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">phi0</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span><span class="w"> </span><span class="c1">//Amplitude i.e. the initial angle in radians</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">dt</span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span><span class="w"> </span><span class="c1">//Time-step in seconds</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">T</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">//End-time in seconds</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"> </span><span class="c1">//Initial time value</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">T</span><span class="p">){</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span>
+<span class="w">                </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">9.81</span><span class="o">/</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="w">                </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">t</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We can put this program in a file <code class="docutils literal notranslate"><span class="pre">pendulum.cc</span></code> and compile it the usual way.
+The program pendulum can be used to generate the plot of <span class="math notranslate nohighlight">\(\theta\)</span> vs <span class="math notranslate nohighlight">\(t\)</span> with <code class="docutils literal notranslate"><span class="pre">gnuplot</span></code> using linux i/o redirection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./pendulum<span class="w"> </span>&gt;pend.dat
+$<span class="w"> </span>gnuplot
+gnuplot&gt;<span class="w"> </span>plot<span class="w"> </span><span class="s2">&quot;pend.dat&quot;</span>with<span class="w"> </span>lines<span class="w"> </span>
+</pre></div>
+</div>
+<p>We obtain the following plot for <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">5.0</span></code>:</p>
+<p><img alt="pendulum data for T = 5.0" src="../../_images/pend.data.png" /></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -413,6 +570,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-more-comprehensive-example-pendulum">6.2.1. A More Comprehensive Example: Pendulum</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
