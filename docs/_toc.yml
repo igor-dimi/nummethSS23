@@ -7,6 +7,10 @@ parts:
       - file: text/progtut/intro 
       - file: text/progtut/hello
       - file: text/progtut/variables
+        sections:
+          - file: text/progtut/datatypes
+          - file: text/progtut/declarations
+          - file: text/progtut/statements
   - caption: Numerical Methods
     numbered: True
     chapters:
