@@ -4,6 +4,7 @@
 
 Some high-level programming langauges provide basic numerical data types that correspond to the ideal mathematical types $\mathbb{R}$ and $\mathbb{Z}$. But C++ provides only low level basic data types that are directly represented by the computer and directly operated on by the ALU. This data types are `int`, `float` and `double`  correspong to $\tilde{\mathbb{Z}}$ and $\mathbb{F}$, respectively. 
 
+
 | Type           | Range                    | Implements       | Represents         |
 | :------------- | :----------------------- | :--------------- | :----------------- |
 | `int`          | \[-2^31^, 2^31^-1\]      | IEEE int         | $\mathbb{Z}$       |
@@ -13,4 +14,5 @@ Some high-level programming langauges provide basic numerical data types that co
 | `char`         | ASCII characters         | ASCII characters | letters and others |
 | `string`       | strings of ASCII         | -                | -                  |
 
+Table: List of Basic Data Types in C++
 
