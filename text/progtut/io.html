@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.3. Statements and Expressions &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>5. Input and Output &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -60,11 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/statements';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/io';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.4. Blocks and Scope" href="blocks.html" />
-    <link rel="prev" title="3.2. Variable Declarations" href="declarations.html" />
+    <link rel="next" title="6. Flow of Control" href="controlflow.html" />
+    <link rel="prev" title="4. Arrays" href="arrays.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -153,16 +153,16 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hello.html">2. Hello World</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="variables.html">3. Variables</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="variables.html">3. Variables</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="datatypes.html">3.1. Basic Data Tytpes in C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="declarations.html">3.2. Variable Declarations</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Statements and Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statements.html">3.3. Statements and Expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blocks.html">3.4. Blocks and Scope</a></li>
 <li class="toctree-l2"><a class="reference internal" href="arithmetic.html">3.5. Arithmetic Expressions and Operators</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="arrays.html">4. Arrays</a></li>
-<li class="toctree-l1"><a class="reference internal" href="io.html">5. Input and Output</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Input and Output</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">6. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="if.html">6.1. If-Statement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="while.html">6.2. While Loops</a></li>
@@ -226,7 +226,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/text/progtut/statements.ipynb" target="_blank"
+      <li><a href="../../_sources/text/progtut/io.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -295,9 +295,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -308,24 +306,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Statements and Expressions</h1>
+    <h1>Input and Output</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statements">3.3.1. Statements</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expressions">3.3.2. Expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">3.3.3. Assignment</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#side-effects">3.3.3.1. Side Effects</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -335,75 +320,21 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="statements-and-expressions">
-<h1><span class="section-number">3.3. </span>Statements and Expressions<a class="headerlink" href="#statements-and-expressions" title="Permalink to this headline">#</a></h1>
-<section id="statements">
-<h2><span class="section-number">3.3.1. </span>Statements<a class="headerlink" href="#statements" title="Permalink to this headline">#</a></h2>
-<p>An object of a certain type can take different values during its existense. This transformation of values is called <strong>change of state</strong> of the object.</p>
-<p>Computers can change the sate of an object residing in memory. This is called an <strong>action</strong>. The <strong>instructions</strong> to peform actions in a given programming language are called <strong>statements</strong>.</p>
-<p>The change of variables state caused by a statement is said to be the <strong>effect</strong> of the statement.</p>
-</section>
-<section id="expressions">
-<h2><span class="section-number">3.3.2. </span>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
-<p><strong>Expressions</strong>  do not transform the state of the variables, but denote <strong>values</strong>.</p>
-<p>Expressions are formed according to the rules of some formal notation (like the language of arithemtic)</p>
-<p>Some expressions: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">(3</span> <span class="pre">/</span> <span class="pre">6)</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">(y</span> <span class="pre">%</span> <span class="pre">10)</span></code></p>
-<p>Thus:</p>
-<ul class="simple">
-<li><p>expressions <strong>denote values</strong>,</p></li>
-<li><p>statements <strong>have effects</strong></p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Understanding this dichotomy between statements and expessions is fundamental.</p>
-</div>
-</section>
-<section id="assignment">
-<h2><span class="section-number">3.3.3. </span>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">#</a></h2>
-<p>The most basic statement is the <strong>assignment</strong>. It has the <strong>effect</strong> of updating the value of the variable to the value denoted by the <strong>expression</strong> on the right-hand side of the assignment operator. In C++:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="input-and-output">
+<h1><span class="section-number">5. </span>Input and Output<a class="headerlink" href="#input-and-output" title="Permalink to this headline">#</a></h1>
+<p>C++ uses streams for I/O, found in <code class="docutils literal notranslate"><span class="pre">&lt;iostream&gt;</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">//declare &amp; initialize x</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">//declare y and assign the value denoted by the expression &quot;x&quot; to y. </span>
-
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 1 
 </pre></div>
 </div>
 </div>
 </div>
-<p>The expression on the right hand side of the assignment can contain the variable being updated. Expression is evaluated before assignment:</p>
+<p><code class="docutils literal notranslate"><span class="pre">std::cout</span> <span class="pre">&lt;&lt;</span> <span class="pre">variable;</span></code> is used for output:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">//assign the value denoted by (y * 3) + x to y. </span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<section id="side-effects">
-<h3><span class="section-number">3.3.3.1. </span>Side Effects<a class="headerlink" href="#side-effects" title="Permalink to this headline">#</a></h3>
-<p>In some programming languages like Pascal the world of statements and the world of expressions are completely distinct. A given syntactical entity is either a statement or an expression.</p>
-<p>But in C/C++ a syntactical entity can be both a statement (have an effect) and an expression (denote a value).
-The action that such an expression performs is called the <strong>side effect</strong> of the expression.</p>
-<p><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">j--</span></code> is both a statement and an expression. Its effect is to assign to the variable <code class="docutils literal notranslate"><span class="pre">j</span></code> the value of the expression <code class="docutils literal notranslate"><span class="pre">j</span> <span class="pre">-</span> <span class="pre">1</span></code>. I.e. it is equivalent to <code class="docutils literal notranslate"><span class="pre">j</span> <span class="pre">=</span> <span class="pre">j</span> <span class="pre">-</span> <span class="pre">1</span></code>. As an expression it denotes the value <code class="docutils literal notranslate"><span class="pre">j</span></code> before assignment.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">j</span><span class="o">--</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">//side effect: decrement j. </span>
-<span class="n">std</span><span class="o">::</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">var</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -411,29 +342,16 @@ The action that such an expression performs is called the <strong>side effect</s
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
-</pre></div>
 </div>
 </div>
-</div>
-<p>Having expressions with side effects is academically less clean, but has practical benefits as it allows shorter programming constructs and succinct <strong>idioms</strong> like:</p>
+<p><code class="docutils literal notranslate"><span class="pre">std::cin</span> <span class="pre">&gt;&gt;</span> <span class="pre">variable</span></code> for input:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">--</span><span class="p">){</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"> </span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9 8 7 6 5 4 3 2 1 0 
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">var</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -468,20 +386,20 @@ The action that such an expression performs is called the <strong>side effect</s
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="declarations.html"
+       href="arrays.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.2. </span>Variable Declarations</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Arrays</p>
       </div>
     </a>
     <a class="right-next"
-       href="blocks.html"
+       href="controlflow.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.4. </span>Blocks and Scope</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Flow of Control</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -494,25 +412,6 @@ The action that such an expression performs is called the <strong>side effect</s
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statements">3.3.1. Statements</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expressions">3.3.2. Expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">3.3.3. Assignment</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#side-effects">3.3.3.1. Side Effects</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

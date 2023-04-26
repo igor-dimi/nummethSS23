@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3. Variables Introduction &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>3. Variables &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -155,16 +155,25 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hello.html">2. Hello World</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">3. Variables Introduction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">3. Variables</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="datatypes.html">3.1. Basic Data Tytpes in C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="declarations.html">3.2. Variable Declarations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="statements.html">3.3. Statements and Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blocks.html">3.4. Blocks and Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">3.5. Arithmetic Expressions and Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="arrays.html">4. Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">5. Input and Output</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">6. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="if.html">6.1. If-Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="while.html">6.2. While Loops</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">4. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">7. Introduction</a></li>
 </ul>
 
     </div>
@@ -299,7 +308,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Variables Introduction</h1>
+    <h1>Variables</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -313,9 +322,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="variables-introduction">
-<h1><span class="section-number">3. </span>Variables Introduction<a class="headerlink" href="#variables-introduction" title="Permalink to this headline">#</a></h1>
-<p>A <strong>domain</strong> is a collection or a range of possible values exhibiting a pattern. Objects belonging to the same domain are said to be of the same <strong>type</strong>. If an object <span class="math notranslate nohighlight">\(x\)</span> belongs to a domain <span class="math notranslate nohighlight">\(D\)</span> this is written mathematically as:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="variables">
+<h1><span class="section-number">3. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h1>
+<p>A <strong>domain</strong> is a collection or a range of possible values exhibiting a pattern. Objects belonging to the same domain have the same <strong>type</strong>. If an object <span class="math notranslate nohighlight">\(x\)</span> belongs to a domain <span class="math notranslate nohighlight">\(D\)</span> this is written mathematically as:</p>
 <div class="math notranslate nohighlight">
 \[
 x \in D \quad \text{(Set theoretical notation)}
@@ -325,22 +334,22 @@ x \in D \quad \text{(Set theoretical notation)}
 \[
 x : D \quad \text{(Type theoretical notation)}
 \]</div>
-<p>In many programming languages, and specifically in C++ this is expressed as</p>
+<p>In C++:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="n">x</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This is called the <strong>declaration</strong> of <strong>variable</strong> x of the <strong>data type</strong> D.</p>
-<p>A domain can be finite, countably infinite, or uncountanbly infinite.</p>
+<p>A (mathematical) domain can be finite, countably infinite, or uncountanbly infinite.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A <strong>mathematical structure</strong> is a domain equipped with distinguished <strong>special elements</strong>, <strong>relations</strong> and <strong>operations</strong>. Relations and operations are usually binary.</p>
-<p>An example of a mathematical structure is the domain of integeres <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> along with the special elements <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, order relation <span class="math notranslate nohighlight">\(&lt;\)</span>, arithmetic operations <span class="math notranslate nohighlight">\(+, \times\)</span>.</p>
-</div>
+<p><strong>Example</strong>: Domain of integeres <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> along with the special elements <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, order relation <span class="math notranslate nohighlight">\(&lt;\)</span>, arithmetic operations <span class="math notranslate nohighlight">\(+, \times\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> <strong>countably infinite</strong>.</p>
-<p>One of the functions of digital computers is to perform numerical calculations. But computers are finite machines, and physical components (the arithmetic and logic unit) performing the operations are only capable of directly operating on finitely many distinct representations of objects.</p>
-<p>Therefore the mathematical structures directly realized by computers are not <span class="math notranslate nohighlight">\(\langle\mathbb{Z}, 0, 1, +, \times\)</span> and <span class="math notranslate nohighlight">\(\langle\mathbb{R}, 0, 1, +, \times\rangle\)</span> but rather their finite approximations
-<span class="math notranslate nohighlight">\(\langle\tilde{\mathbb{Z}}, 0, 1, \oplus, \otimes\rangle\)</span> and <span class="math notranslate nohighlight">\(\langle\mathbb{F}, 0, 1, \oplus, \otimes\rangle\)</span>, where the basic axioms are not always satisfied. See link for further details on <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>.</p>
-<div class="toctree-wrapper compound">
+</div>
+<p>computers are finite, and physical components (the arithmetic and logic unit) performing the operations are capable of holding finitely many distinct representations of objects.</p>
+<p>Therefore the mathematical structures realized by computer hardware are not <span class="math notranslate nohighlight">\(\langle\mathbb{Z}, 0, 1, +, \times\)</span> and <span class="math notranslate nohighlight">\(\langle\mathbb{R}, 0, 1, +, \times\rangle\)</span> but their finite approximations
+<span class="math notranslate nohighlight">\(\langle\tilde{\mathbb{Z}}, 0, 1, \oplus, \otimes\rangle\)</span> and <span class="math notranslate nohighlight">\(\langle\mathbb{F}, 0, 1, \oplus, \otimes\rangle\)</span>, where the basic axioms are not always satisfied.</p>
+<div class="toctree-wrapper compound" id="index-0">
 </div>
 </section>
 

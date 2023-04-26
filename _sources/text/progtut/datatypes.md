@@ -16,3 +16,5 @@ Some high-level programming langauges provide basic numerical data types that co
 
 Table: List of Basic Data Types in C++
 
+```{index} basic data type
+```
