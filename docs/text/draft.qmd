@@ -22,3 +22,30 @@ Following program computer this solution for the times
 $$
 t_{i} = i\Delta t, \quad 0 \leq t_{i} \leq T, \quad i \in \mathbb{N_{0}}
 $$
+
+$$
+\begin{align*}
+\dot{\phi} &= u \quad &&u(0) = u_{0} \\
+\dot{u} &= -\frac{g}{f}\sin{\phi} \quad
+&&\phi(0) = \phi_{0} 
+\end{align*}
+$$
+
+With the time step $\Delta t$ we can express this differential equation as:
+
+$$
+\begin{align*}
+\phi_{n+1} &= \phi_{n} + \Delta t u_{n} \\
+u_{n+1} &= u_{n} - \Delta t(\frac{g}{l}\sin{\phi_{n}}) \\
+\end{align*}
+$$
+
+
+In math we have the concept of a function; a mapping from one domain to another:
+
+$$
+f:U \rightarrow V
+$$
+
+
+For example let $f:\mathbb{R}\rightarrow\mathbb{R}$, $x:\mapsto x^2$

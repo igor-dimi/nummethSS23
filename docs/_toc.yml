@@ -19,6 +19,9 @@ parts:
         sections:
           - file: text/progtut/if
           - file: text/progtut/while
+          - file: text/progtut/for
+          - file: text/progtut/pendulum
+      - file: text/progtut/functions
   - caption: Numerical Methods
     numbered: True
     chapters:
