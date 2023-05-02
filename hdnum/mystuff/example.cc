@@ -7,4 +7,6 @@ int main ()
 {
   hdnum::Vector<float> a(10,3.14); // Feld mit 10 init. Elementen
   a[3] = 1.0;              // Zugriff auf Element 3
+  std::cout << a[9] << std::endl;
+
 }

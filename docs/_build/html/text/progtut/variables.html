@@ -172,7 +172,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pendulum.html">6.4. Numerical Solution of the Pendulum Problem</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">7. Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="functions.html">7. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">7.1. Templates</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -327,7 +330,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="variables">
 <h1><span class="section-number">3. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h1>
-<p>A <strong>domain</strong> is a collection or a range of possible values exhibiting a pattern. Objects belonging to the same domain have the same <strong>type</strong>. If an object <span class="math notranslate nohighlight">\(x\)</span> belongs to a domain <span class="math notranslate nohighlight">\(D\)</span> this is written mathematically as:</p>
+<p>A <strong>domain</strong> is a range of possible values exhibiting some uniform pattern. Objects belonging to the same domain have the same <strong>type</strong>. An object <span class="math notranslate nohighlight">\(x\)</span> belonging to a domain <span class="math notranslate nohighlight">\(D\)</span> this is written mathematically as:</p>
 <div class="math notranslate nohighlight">
 \[
 x \in D \quad \text{(Set theoretical notation)}
@@ -337,7 +340,7 @@ x \in D \quad \text{(Set theoretical notation)}
 \[
 x : D \quad \text{(Type theoretical notation)}
 \]</div>
-<p>In C++:</p>
+<p>In C++ we have:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="n">x</span><span class="p">;</span>
 </pre></div>
 </div>

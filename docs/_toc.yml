@@ -22,6 +22,8 @@ parts:
           - file: text/progtut/for
           - file: text/progtut/pendulum
       - file: text/progtut/functions
+        sections: 
+          - file: text/progtut/templates
   - caption: Numerical Methods
     numbered: True
     chapters:
