@@ -170,7 +170,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pendulum.html">6.4. Numerical Solution of the Pendulum Problem</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">7. Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="functions.html">7. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">7.1. Templates</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -298,7 +301,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -314,6 +319,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cling-config">2.1. Cling Config</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -328,8 +341,8 @@ document.write(`
 <p>Libraries are included with the <code class="docutils literal notranslate"><span class="pre">#include</span></code> directive.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;iostream&gt;</span></code>: standard library for standard input/output (keyboard and screen)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;</span></code>: library for dynamic arrays, i.e. arrays whose size changes during run-time. Implemented as amortized arrays (rather than linked lists, contrary to what one would naively assume).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;hdnum.hh&quot;</span></code>: header file to include the custoim <code class="docutils literal notranslate"><span class="pre">hdnum</span></code> library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;</span></code>: container library for dynamic arrays, i.e. arrays whose size changes during run-time. Implemented as amortized arrays (rather than linked lists, contrary to what one would naively assume).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;hdnum.hh&quot;</span></code>: header file to include the custom <code class="docutils literal notranslate"><span class="pre">hdnum</span></code> library.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -381,7 +394,48 @@ document.write(`
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">-I../../</span></code> is the include option indicating where the header files are located. In this case the headers are located in a folder <strong>three levels above</strong> the folder where <code class="docutils literal notranslate"><span class="pre">hello.cc</span></code> is located and is being compiled.</p>
 <p>To run the compiled program enter <code class="docutils literal notranslate"><span class="pre">./hello</span></code> at the CLI</p>
-<span class="target" id="index-0"></span></section>
+<section id="cling-config">
+<span id="index-0"></span><h2><span class="section-number">2.1. </span>Cling Config<a class="headerlink" href="#cling-config" title="Permalink to this headline">#</a></h2>
+<p>execute following code in a cell at the beginning of the notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma cling add_include_path(&quot;/home/igor/Documents/uni/ss23/nummethSS23/hdnum/&quot;)</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;complex&gt;</span>
+
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/densematrix.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/exceptions.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/lr.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/newton.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/ode.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/opcounter.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/pde.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/precision.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/qr.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/rungekutta.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/sgrid.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/timer.hh&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;src/vector.hh&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;hey</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hey
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -441,6 +495,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cling-config">2.1. Cling Config</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

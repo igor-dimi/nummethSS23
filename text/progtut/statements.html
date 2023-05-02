@@ -170,7 +170,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pendulum.html">6.4. Numerical Solution of the Pendulum Problem</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">7. Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="functions.html">7. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">7.1. Templates</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -340,20 +343,23 @@ document.write(`
 <h1><span class="section-number">3.3. </span>Statements and Expressions<a class="headerlink" href="#statements-and-expressions" title="Permalink to this headline">#</a></h1>
 <section id="statements">
 <h2><span class="section-number">3.3.1. </span>Statements<a class="headerlink" href="#statements" title="Permalink to this headline">#</a></h2>
-<p>An object of a certain type can take different values during its existense. This transformation of values is called <strong>change of state</strong> of the object.</p>
+<p>An object <a class="footnote-reference brackets" href="#id2" id="id1">1</a> of a certain type can take different values during its existense. This transformation of values is called <strong>change of state</strong> of the object.</p>
 <p>Computers can change the sate of an object residing in memory. This is called an <strong>action</strong>. The <strong>instructions</strong> to peform actions in a given programming language are called <strong>statements</strong>.</p>
-<p>The change of variables state caused by a statement is said to be the <strong>effect</strong> of the statement.</p>
+<p>The change of a variable’s state as specified by a statement is said to be the <strong>effect</strong> of the statement.</p>
 </section>
 <section id="expressions">
 <h2><span class="section-number">3.3.2. </span>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
-<p><strong>Expressions</strong>  do not transform the state of the variables, but denote <strong>values</strong>.</p>
+<p><strong>Expressions</strong> on the other hand,  do <strong>not</strong> transform the state of the variables, but merely denote <strong>values</strong>.</p>
 <p>Expressions are formed according to the rules of some formal notation (like the language of arithemtic)</p>
 <p>Some expressions: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">(3</span> <span class="pre">/</span> <span class="pre">6)</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">(y</span> <span class="pre">%</span> <span class="pre">10)</span></code></p>
 <p>Thus:</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
 <ul class="simple">
 <li><p>expressions <strong>denote values</strong>,</p></li>
 <li><p>statements <strong>have effects</strong></p></li>
 </ul>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Understanding this dichotomy between statements and expessions is fundamental.</p>
@@ -361,7 +367,11 @@ document.write(`
 </section>
 <section id="assignment">
 <h2><span class="section-number">3.3.3. </span>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">#</a></h2>
-<p>The most basic statement is the <strong>assignment</strong>. It has the <strong>effect</strong> of updating the value of the variable to the value denoted by the <strong>expression</strong> on the right-hand side of the assignment operator. In C++:</p>
+<p>The most basic statement is the <strong>assignment</strong>. Its has the basic form:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Its <strong>effect</strong> is to update the value of the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> on the left hand side of <code class="docutils literal notranslate"><span class="pre">=</span></code> to the <strong>value</strong> denoted by the <strong>expression</strong> <code class="docutils literal notranslate"><span class="pre">E</span></code> on the right-hand side of the assignment operator. In C++:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -399,6 +409,16 @@ document.write(`
 <p>In some programming languages like Pascal the world of statements and the world of expressions are completely distinct. A given syntactical entity is either a statement or an expression.</p>
 <p>But in C/C++ a syntactical entity can be both a statement (have an effect) and an expression (denote a value).
 The action that such an expression performs is called the <strong>side effect</strong> of the expression.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<p><img alt="" src="../../_images/expression.excalidraw.png" /></p>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<p><img alt="" src="../../_images/expression_cpp.excalidraw.png" /></p>
+</div>
+</div>
+</div>
 <p><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">j--</span></code> is both a statement and an expression. Its effect is to assign to the variable <code class="docutils literal notranslate"><span class="pre">j</span></code> the value of the expression <code class="docutils literal notranslate"><span class="pre">j</span> <span class="pre">-</span> <span class="pre">1</span></code>. I.e. it is equivalent to <code class="docutils literal notranslate"><span class="pre">j</span> <span class="pre">=</span> <span class="pre">j</span> <span class="pre">-</span> <span class="pre">1</span></code>. As an expression it denotes the value <code class="docutils literal notranslate"><span class="pre">j</span></code> before assignment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -418,7 +438,7 @@ The action that such an expression performs is called the <strong>side effect</s
 </div>
 </div>
 </div>
-<p>Having expressions with side effects is academically less clean, but has practical benefits as it allows shorter programming constructs and succinct <strong>idioms</strong> like:</p>
+<p>Having expressions with side effects is academically less clean, but has practical benefits as it allows shorter programming constructs and succinct <strong>idioms</strong> by using statements as expressions, like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
@@ -434,6 +454,12 @@ The action that such an expression performs is called the <strong>side effect</s
 </div>
 </div>
 </div>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Here we use the word “object” not in the object-oriented sense, but in it most general sense; simply standing for any concrete sequence of bits (corresponding to some variable of a certain type) residing in memory.</p>
+</dd>
+</dl>
 </section>
 </section>
 
