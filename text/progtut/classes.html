@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>8.4. Numerical Solution of the Pendulum Problem &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>11. Classes &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -60,13 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/pendulum';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/classes';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="9. Functions" href="functions.html" />
-    <link rel="prev" title="8.3. For Loops" href="for.html" />
+    <link rel="next" title="12. Introduction" href="../num/intro.html" />
+    <link rel="prev" title="10. Templates" href="templates.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -180,16 +178,16 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="arrays.html">6. Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="io.html">7. Input and Output</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="controlflow.html">8. Flow of Control</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">8. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="if.html">8.1. If-Statement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="while.html">8.2. While Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="for.html">8.3. For Loops</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">8.4. Numerical Solution of the Pendulum Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum.html">8.4. Numerical Solution of the Pendulum Problem</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templates.html">10. Templates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classes.html">11. Classes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Classes</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -248,7 +246,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/text/progtut/pendulum.ipynb" target="_blank"
+      <li><a href="../../_sources/text/progtut/classes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -328,7 +326,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Numerical Solution of the Pendulum Problem</h1>
+    <h1>Classes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -342,113 +340,135 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="numerical-solution-of-the-pendulum-problem">
-<h1><span class="section-number">8.4. </span>Numerical Solution of the Pendulum Problem<a class="headerlink" href="#numerical-solution-of-the-pendulum-problem" title="Permalink to this headline">#</a></h1>
-<p>We can solve the differential equation numerically, without resorting
-to the <span class="math notranslate nohighlight">\(\sin\theta \approx \theta\)</span> approximation using the Euler method to rewrite the sytem as a first-order differential equation:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\dot{\phi} &amp;= u \quad &amp;&amp;u(0) = u_{0} \\
-\dot{u} &amp;= -\frac{g}{f}\sin{\phi} \quad 
-&amp;&amp;\phi(0) = \phi_{0} 
-\end{align*}\]</div>
-<p>With the time step <span class="math notranslate nohighlight">\(\Delta t\)</span> we can express this differential equation as:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\phi_{n+1} &amp;= \phi_{n} + \Delta t u_{n} \\
-u_{n+1} &amp;= u_{n} - \Delta t(\frac{g}{l}\sin{\phi_{n}}) \\
-\end{align*}\]</div>
-<p>Coding this difference scheme as a C++ we obtain:</p>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="classes">
+<h1><span class="section-number">11. </span>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">#</a></h1>
+<p>Roughly speaking a <strong>class</strong> is an <strong>extensible</strong> program-code-template
+for creating <strong>objects</strong>, providing initial values for for state <strong>member variables</strong> and implementations of behavior <strong>member functions</strong> or <strong>methods</strong>.</p>
+<p>Class may refer to following distinct but closerly interrelated contructs that
+are usually conflated in practice:</p>
+<ul class="simple">
+<li><p><strong>template</strong>: the code text that defines the class</p></li>
+<li><p><strong>type</strong>: the type of the object generated by instantiating an <strong>instance</strong> of the class</p></li>
+<li><p><strong>constructor</strong>: the subroutine that creates objects belonging to the class</p></li>
+</ul>
+<p>consider a definition of a class in some pseudo-language:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Class</span> <span class="n">A</span><span class="p">{</span>
+    <span class="n">B</span> <span class="n">x</span>
+    <span class="n">C</span> <span class="n">y</span>
+
+    <span class="n">D</span> <span class="n">f</span><span class="p">();</span>
+    <span class="n">E</span> <span class="n">g</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above code is the template.</p>
+<p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">a</span> <span class="pre">=</span> <span class="pre">A(c,</span> <span class="pre">e)</span></code>. The first <code class="docutils literal notranslate"><span class="pre">A</span></code> is the <strong>type</strong> declaration that the variable <code class="docutils literal notranslate"><span class="pre">a</span></code> is of type <code class="docutils literal notranslate"><span class="pre">A</span></code>. Second <code class="docutils literal notranslate"><span class="pre">A</span></code> is the <strong>constructor</strong> that initializes <code class="docutils literal notranslate"><span class="pre">a</span></code> with the values <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">e</span></code>.</p>
+<p>As an example for a class definition in C++ let’s define a simple vector class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
-<span class="kt">double</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="mf">1.34</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">phi</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w"> </span><span class="c1">//note that the initial phi can be large</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">u</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">dt</span><span class="p">(</span><span class="mf">1E-4</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">T</span><span class="p">(</span><span class="mf">0.003</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
-
-<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="p">){</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">phiprev</span><span class="p">(</span><span class="n">phi</span><span class="p">);</span>
-<span class="w">    </span><span class="n">phi</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
-<span class="w">    </span><span class="n">u</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">9.81</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">phiprev</span><span class="p">);</span>
-<span class="w">    </span><span class="n">t</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 3
-0.0001 3
-0.0002 3
-0.0003 3
-0.0004 3
-0.0005 3
-0.0006 3
-0.0007 3
-0.0008 3
-0.0009 3
-0.001 3
-0.0011 3
-0.0012 3
-0.0013 3
-0.0014 3
-0.0015 3
-0.0016 3
-0.0017 3
-0.0018 3
-0.0019 3
-0.002 3
-0.0021 3
-0.0022 3
-0.0023 3
-0.0024 3
-0.0025 3
-0.0026 3
-0.0027 3
-0.0028 3
-0.0029 3
-0.003 3
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<p>Full program text with <code class="docutils literal notranslate"><span class="pre">T</span></code> initialized with <code class="docutils literal notranslate"><span class="pre">10</span></code> instead of small value as above:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
-
-<span class="kt">double</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="mf">1.34</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">phi</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w"> </span><span class="c1">//note that the initial phi can be large</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">u</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">dt</span><span class="p">(</span><span class="mf">1E-4</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">T</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Vector3d</span>
 <span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="p">){</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">phiprev</span><span class="p">(</span><span class="n">phi</span><span class="p">);</span>
-<span class="w">        </span><span class="n">phi</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
-<span class="w">        </span><span class="n">u</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">9.81</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">phiprev</span><span class="p">);</span>
-<span class="w">        </span><span class="n">t</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">getX</span><span class="p">()</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">getY</span><span class="p">()</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">getZ</span><span class="p">()</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">getNorm</span><span class="p">()</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">dot</span><span class="p">(</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">u</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">getZ</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>we obtain following plot by plotting the data produced by this program:</p>
-<p><img alt="pendulum euler" src="../../_images/pend2.png" /></p>
+</div>
+</div>
+<p>Let’s initialize the class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
+
+<span class="k">auto</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="o">&gt;</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">};</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">          </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum_it</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">//sum == s(i)</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">//sum == s(i + 1)</span>
+<span class="w">        </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="p">;</span><span class="c1">// sum == s(i)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// i == n, sum == s(n)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sum_it</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="n">check</span><span class="p">;</span>
+<span class="n">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sum_it</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -483,20 +503,20 @@ u_{n+1} &amp;= u_{n} - \Delta t(\frac{g}{l}\sin{\phi_{n}}) \\
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="for.html"
+       href="templates.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">8.3. </span>For Loops</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Templates</p>
       </div>
     </a>
     <a class="right-next"
-       href="functions.html"
+       href="../num/intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Functions</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Introduction</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

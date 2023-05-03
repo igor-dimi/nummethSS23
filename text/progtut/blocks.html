@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.4. Blocks and Scope &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>5.4. Blocks and Scope &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -63,8 +63,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/blocks';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.5. Arithmetic Expressions and Operators" href="arithmetic.html" />
-    <link rel="prev" title="3.3. Statements and Expressions" href="statements.html" />
+    <link rel="next" title="5.5. Expressions and Operators" href="arithmetic.html" />
+    <link rel="prev" title="5.3. Statements and Expressions" href="statements.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -152,32 +152,46 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming Tutorial</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hello.html">2. Hello World</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="variables.html">3. Variables</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="datatypes.html">3.1. Basic Data Tytpes in C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="declarations.html">3.2. Variable Declarations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="statements.html">3.3. Statements and Expressions</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.4. Blocks and Scope</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">3.5. Arithmetic Expressions and Operators</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="unix.html">2. Unix</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="filesystem.html">2.1. Filesystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html">2.2. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unixstreams.html">2.3. I/O Streams</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="arrays.html">4. Arrays</a></li>
-<li class="toctree-l1"><a class="reference internal" href="io.html">5. Input and Output</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">6. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="if.html">6.1. If-Statement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="while.html">6.2. While Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="for.html">6.3. For Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pendulum.html">6.4. Numerical Solution of the Pendulum Problem</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="gitstart.html">3.1. Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitbasic.html">3.2. Fundamental Git Commands and Terms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="functions.html">7. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="templates.html">7.1. Templates</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hello.html">4. Hello World</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="clingconfig.html">4.1. Cing Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespaces.html">4.2. Name Collisions and Namespaces</a></li>
 </ul>
 </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="variables.html">5. Variables</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">5.1. Basic Data Tytpes in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="declarations.html">5.2. Variable Declarations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statements.html">5.3. Statements and Expressions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.4. Blocks and Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">5.5. Expressions and Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="arrays.html">6. Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">7. Input and Output</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">8. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="if.html">8.1. If-Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="while.html">8.2. While Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for.html">8.3. For Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum.html">8.4. Numerical Solution of the Pendulum Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">10. Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">11. Classes</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">8. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">12. Introduction</a></li>
 </ul>
 
     </div>
@@ -324,9 +338,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block">3.4.1. Block</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">3.4.2. Scope</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-scope-and-actual-scope">3.4.2.1. Potential Scope and Actual Scope</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block">5.4.1. Block</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">5.4.2. Scope</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-scope-and-actual-scope">5.4.2.1. Potential Scope and Actual Scope</a></li>
 </ul>
 </li>
 </ul>
@@ -341,9 +355,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="blocks-and-scope">
-<h1><span class="section-number">3.4. </span>Blocks and Scope<a class="headerlink" href="#blocks-and-scope" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">5.4. </span>Blocks and Scope<a class="headerlink" href="#blocks-and-scope" title="Permalink to this headline">#</a></h1>
 <section id="block">
-<h2><span class="section-number">3.4.1. </span>Block<a class="headerlink" href="#block" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.4.1. </span>Block<a class="headerlink" href="#block" title="Permalink to this headline">#</a></h2>
 <p>Blocks are compound sequences of statements treated as a unit.
 Blocks can be nested. Blocks are used to <strong>structure</strong> a program.</p>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
@@ -375,10 +389,10 @@ Blocks can be nested. Blocks are used to <strong>structure</strong> a program.</
 </div>
 </section>
 <section id="scope">
-<h2><span class="section-number">3.4.2. </span>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.4.2. </span>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">#</a></h2>
 <p>Scope is the portion of the code where a variable name is visible.</p>
 <section id="potential-scope-and-actual-scope">
-<h3><span class="section-number">3.4.2.1. </span>Potential Scope and Actual Scope<a class="headerlink" href="#potential-scope-and-actual-scope" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.4.2.1. </span>Potential Scope and Actual Scope<a class="headerlink" href="#potential-scope-and-actual-scope" title="Permalink to this headline">#</a></h3>
 <p><strong>Potential scope</strong> of a name declared in a block begins at the point of declaration and ends at the end of the block. Thus scopes are delimited by blocks.</p>
 <p><strong>Actual scope</strong> is the same as the potential scope, but if an identical name is declared in a <strong>nested block</strong> than the potential scope of the name in hte nested block is exluded from the actual scope of the name in the enclosing block.</p>
 <div class="admonition note">
@@ -416,16 +430,13 @@ Blocks can be nested. Blocks are used to <strong>structure</strong> a program.</
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>43
+42
+43
 </pre></div>
 </div>
 </div>
 </div>
+<p>The scope of a variable defines its <strong>lifetime</strong>. The variable ceases to exist after the program exist the scope where the variable is visible.</p>
 </section>
 </section>
 </section>
@@ -467,7 +478,7 @@ Blocks can be nested. Blocks are used to <strong>structure</strong> a program.</
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.3. </span>Statements and Expressions</p>
+        <p class="prev-next-title"><span class="section-number">5.3. </span>Statements and Expressions</p>
       </div>
     </a>
     <a class="right-next"
@@ -475,7 +486,7 @@ Blocks can be nested. Blocks are used to <strong>structure</strong> a program.</
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.5. </span>Arithmetic Expressions and Operators</p>
+        <p class="prev-next-title"><span class="section-number">5.5. </span>Expressions and Operators</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -497,9 +508,9 @@ Blocks can be nested. Blocks are used to <strong>structure</strong> a program.</
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block">3.4.1. Block</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">3.4.2. Scope</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-scope-and-actual-scope">3.4.2.1. Potential Scope and Actual Scope</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block">5.4.1. Block</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">5.4.2. Scope</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-scope-and-actual-scope">5.4.2.1. Potential Scope and Actual Scope</a></li>
 </ul>
 </li>
 </ul>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Arrays &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>6. Arrays &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/arrays';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5. Input and Output" href="io.html" />
-    <link rel="prev" title="3.5. Arithmetic Expressions and Operators" href="arithmetic.html" />
+    <link rel="next" title="7. Input and Output" href="io.html" />
+    <link rel="prev" title="5.5. Expressions and Operators" href="arithmetic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -154,32 +154,46 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming Tutorial</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hello.html">2. Hello World</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="variables.html">3. Variables</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="datatypes.html">3.1. Basic Data Tytpes in C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="declarations.html">3.2. Variable Declarations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="statements.html">3.3. Statements and Expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blocks.html">3.4. Blocks and Scope</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">3.5. Arithmetic Expressions and Operators</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="unix.html">2. Unix</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="filesystem.html">2.1. Filesystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html">2.2. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unixstreams.html">2.3. I/O Streams</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Arrays</a></li>
-<li class="toctree-l1"><a class="reference internal" href="io.html">5. Input and Output</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">6. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="if.html">6.1. If-Statement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="while.html">6.2. While Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="for.html">6.3. For Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pendulum.html">6.4. Numerical Solution of the Pendulum Problem</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="gitstart.html">3.1. Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitbasic.html">3.2. Fundamental Git Commands and Terms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="functions.html">7. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="templates.html">7.1. Templates</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hello.html">4. Hello World</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="clingconfig.html">4.1. Cing Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespaces.html">4.2. Name Collisions and Namespaces</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="variables.html">5. Variables</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">5.1. Basic Data Tytpes in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="declarations.html">5.2. Variable Declarations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statements.html">5.3. Statements and Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blocks.html">5.4. Blocks and Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">5.5. Expressions and Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">7. Input and Output</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">8. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="if.html">8.1. If-Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="while.html">8.2. While Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for.html">8.3. For Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum.html">8.4. Numerical Solution of the Pendulum Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">10. Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">11. Classes</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">8. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">12. Introduction</a></li>
 </ul>
 
     </div>
@@ -329,7 +343,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="arrays">
-<h1><span class="section-number">4. </span>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">6. </span>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">#</a></h1>
 <p>Array is a structured data type which is a collection of component variables of the <strong>same type</strong>. For a domain <span class="math notranslate nohighlight">\(D\)</span>,  <span class="math notranslate nohighlight">\(D^{N}\)</span> is called data type of “<span class="math notranslate nohighlight">\(D\)</span> arrays of length N”. If <span class="math notranslate nohighlight">\(x\in D^N\)</span>, then <span class="math notranslate nohighlight">\(x\)</span> is called a <span class="math notranslate nohighlight">\(D\)</span> array of length <span class="math notranslate nohighlight">\(N\)</span>.</p>
 <p>To declare a <span class="math notranslate nohighlight">\(D\)</span> array x of length <span class="math notranslate nohighlight">\(N\)</span> in C++ we type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="n">x</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
@@ -449,7 +463,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.5. </span>Arithmetic Expressions and Operators</p>
+        <p class="prev-next-title"><span class="section-number">5.5. </span>Expressions and Operators</p>
       </div>
     </a>
     <a class="right-next"
@@ -457,7 +471,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Input and Output</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Input and Output</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

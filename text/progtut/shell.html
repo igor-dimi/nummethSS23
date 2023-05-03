@@ -1,0 +1,961 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.2. Shell &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/shell';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.3. I/O Streams" href="unixstreams.html" />
+    <link rel="prev" title="2.1. Filesystem" href="filesystem.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to Numerical Methods SS 23 Lecture Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Numerical Methods Lecture Notes
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming Tutorial</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="unix.html">2. Unix</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filesystem.html">2.1. Filesystem</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unixstreams.html">2.3. I/O Streams</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="gitstart.html">3.1. Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitbasic.html">3.2. Fundamental Git Commands and Terms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hello.html">4. Hello World</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="clingconfig.html">4.1. Cing Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespaces.html">4.2. Name Collisions and Namespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="variables.html">5. Variables</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">5.1. Basic Data Tytpes in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="declarations.html">5.2. Variable Declarations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statements.html">5.3. Statements and Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blocks.html">5.4. Blocks and Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">5.5. Expressions and Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="arrays.html">6. Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">7. Input and Output</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">8. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="if.html">8.1. If-Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="while.html">8.2. While Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for.html">8.3. For Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum.html">8.4. Numerical Solution of the Pendulum Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">10. Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">11. Classes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">12. Introduction</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/text/progtut/shell.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Shell</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commands">2.2.1. Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-command-syntax">2.2.1.1. General command syntax:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-basic-commands">2.2.1.2. Some basic commands:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="shell">
+<h1><span class="section-number">2.2. </span>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">#</a></h1>
+<section id="commands">
+<h2><span class="section-number">2.2.1. </span>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">#</a></h2>
+<section id="general-command-syntax">
+<h3><span class="section-number">2.2.1.1. </span>General command syntax:<a class="headerlink" href="#general-command-syntax" title="Permalink to this headline">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cmd<span class="w"> </span>-sv<span class="w"> </span>--opt1<span class="w"> </span>--opt2<span class="w"> </span>arg1<span class="w"> </span>arg2<span class="w"> </span>
+</pre></div>
+</div>
+<p>The behaviour of a command can be changed by providing it <strong>options</strong>.
+Options are provided either beginning with a dash <code class="docutils literal notranslate"><span class="pre">-</span></code> or double dash <code class="docutils literal notranslate"><span class="pre">--</span></code>. Single-dash is followed by short options names consisting of a single letter. Short options can be combined by directly combining the letters: <code class="docutils literal notranslate"><span class="pre">-sv</span></code> above stands for <code class="docutils literal notranslate"><span class="pre">-s</span></code> and <code class="docutils literal notranslate"><span class="pre">-v</span></code>.</p>
+</section>
+<section id="some-basic-commands">
+<h3><span class="section-number">2.2.1.2. </span>Some basic commands:<a class="headerlink" href="#some-basic-commands" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> outputs the full path of the current working directory:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">exit</span></code> closes the current shell</p>
+<p><code class="docutils literal notranslate"><span class="pre">echo</span></code> prints out its argumetns to standard ouput:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>hey<span class="w"> </span>there
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hey there
+</pre></div>
+</div>
+</div>
+</div>
+<p>If a command is used wrongly, it usually prints a short message help message to the standard output:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># rm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The option <code class="docutils literal notranslate"><span class="pre">--help</span></code> usually prints a succint help message to the standart output</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>--help
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage: rm [OPTION]... [FILE]...
+Remove (unlink) the FILE(s).
+
+  -f, --force           ignore nonexistent files and arguments, never prompt
+  -i                    prompt before every removal
+  -I                    prompt once before removing more than three files, or
+                          when removing recursively; less intrusive than -i,
+                          while still giving protection against most mistakes
+      --interactive[=WHEN]  prompt according to WHEN: never, once (-I), or
+                          always (-i); without WHEN, prompt always
+      --one-file-system  when removing a hierarchy recursively, skip any
+                          directory that is on a file system different from
+                          that of the corresponding command line argument
+      --no-preserve-root  do not treat &#39;/&#39; specially
+      --preserve-root[=all]  do not remove &#39;/&#39; (default);
+                              with &#39;all&#39;, reject any command line argument
+                              on a separate device from its parent
+  -r, -R, --recursive   remove directories and their contents recursively
+  -d, --dir             remove empty directories
+  -v, --verbose         explain what is being done
+      --help        display this help and exit
+      --version     output version information and exit
+
+By default, rm does not remove directories.  Use the --recursive (-r or -R)
+option to remove each listed directory, too, along with all of its contents.
+
+To remove a file whose name starts with a &#39;-&#39;, for example &#39;-foo&#39;,
+use one of these commands:
+  rm -- -foo
+
+  rm ./-foo
+
+Note that if you use rm to remove a file, it might be possible to recover
+some of its contents, given sufficient expertise and/or time.  For greater
+assurance that the contents are truly unrecoverable, consider using shred(1).
+
+GNU coreutils online help: &lt;https://www.gnu.org/software/coreutils/&gt;
+Full documentation &lt;https://www.gnu.org/software/coreutils/rm&gt;
+or available locally via: info &#39;(coreutils) rm invocation&#39;
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>More comprehensive help can be optained with the <code class="docutils literal notranslate"><span class="pre">man</span></code> command, that opens the manual entry of a command within the <strong>man pages</strong></p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>rm
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RM(1)                            User Commands                           RM(1)
+
+NNAAMMEE
+       rm - remove files or directories
+
+SSYYNNOOPPSSIISS
+       rrmm [_O_P_T_I_O_N]... [_F_I_L_E]...
+
+DDEESSCCRRIIPPTTIIOONN
+       This  manual  page  documents  the  GNU version of rrmm.  rrmm removes each
+       specified file.  By default, it does not remove directories.
+
+       If the _-_I or _-_-_i_n_t_e_r_a_c_t_i_v_e_=_o_n_c_e option is given,  and  there  are  more
+       than  three  files  or  the  _-_r,  _-_R, or _-_-_r_e_c_u_r_s_i_v_e are given, then rrmm
+       prompts the user for whether to proceed with the entire operation.   If
+       the response is not affirmative, the entire command is aborted.
+
+       Otherwise,  if  a file is unwritable, standard input is a terminal, and
+       the _-_f or _-_-_f_o_r_c_e option is not given, or the _-_i  or  _-_-_i_n_t_e_r_a_c_t_i_v_e_=_a_l_‐
+       _w_a_y_s  option  is  given,  rrmm prompts the user for whether to remove the
+       file.  If the response is not affirmative, the file is skipped.
+
+OOPPTTIIOONNSS
+       Remove (unlink) the FILE(s).
+
+       --ff, ----ffoorrccee
+              ignore nonexistent files and arguments, never prompt
+
+       --ii     prompt before every removal
+
+       --II     prompt once before removing more than three files, or  when  re‐
+              moving  recursively;  less intrusive than --ii, while still giving
+              protection against most mistakes
+
+       ----iinntteerraaccttiivvee[=_W_H_E_N]
+              prompt according to WHEN: never,  once  (--II),  or  always  (--ii);
+              without WHEN, prompt always
+
+       ----oonnee--ffiillee--ssyysstteemm
+              when  removing  a hierarchy recursively, skip any directory that
+              is on a file system different from  that  of  the  corresponding
+              command line argument
+
+       ----nnoo--pprreesseerrvvee--rroooott
+              do not treat &#39;/&#39; specially
+
+       ----pprreesseerrvvee--rroooott[=_a_l_l]
+              do not remove &#39;/&#39; (default); with &#39;all&#39;, reject any command line
+              argument on a separate device from its parent
+
+       --rr, --RR, ----rreeccuurrssiivvee
+              remove directories and their contents recursively
+
+       --dd, ----ddiirr
+              remove empty directories
+
+       --vv, ----vveerrbboossee
+              explain what is being done
+
+       ----hheellpp display this help and exit
+
+       ----vveerrssiioonn
+              output version information and exit
+
+       By default, rm does not remove directories.  Use the ----rreeccuurrssiivvee (--rr or
+       --RR)  option to remove each listed directory, too, along with all of its
+       contents.
+
+       To remove a file whose name starts with a &#39;-&#39;, for example &#39;-foo&#39;,  use
+       one of these commands:
+
+              rm ---- --ffoooo
+
+              rm ./-foo
+
+       Note  that  if you use rm to remove a file, it might be possible to re‐
+       cover some of its contents, given  sufficient  expertise  and/or  time.
+       For  greater  assurance that the contents are truly unrecoverable, con‐
+       sider using sshhrreedd(1).
+
+AAUUTTHHOORR
+       Written by Paul Rubin, David MacKenzie, Richard M.  Stallman,  and  Jim
+       Meyering.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       GNU coreutils online help: &lt;https://www.gnu.org/software/coreutils/&gt;
+       Report any translation bugs to &lt;https://translationproject.org/team/&gt;
+
+CCOOPPYYRRIIGGHHTT
+       Copyright  ©  2023  Free Software Foundation, Inc.  License GPLv3+: GNU
+       GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.
+       This is free software: you are free  to  change  and  redistribute  it.
+       There is NO WARRANTY, to the extent permitted by law.
+
+SSEEEE AALLSSOO
+       uunnlliinnkk(1), uunnlliinnkk(2), cchhaattttrr(1), sshhrreedd(1)
+
+       Full documentation &lt;https://www.gnu.org/software/coreutils/rm&gt;
+       or available locally via: info &#39;(coreutils) rm invocation&#39;
+
+GNU coreutils 9.2                 April 2023                             RM(1)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span></code> to change directories:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../../imgs
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span></code> stands for directory one level above</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> previous directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code> this directory</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+<span class="nb">cd</span><span class="w"> </span>..
+<span class="nb">pwd</span>
+<span class="nb">cd</span><span class="w"> </span>-
+<span class="nb">pwd</span>
+<span class="nb">cd</span><span class="w"> </span>.
+<span class="nb">pwd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+/home/igor/Documents/uni/ss23/nummethSS23/docs
+/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code> to list files in the directory.</p></li>
+<li><p>show files beginning with <code class="docutils literal notranslate"><span class="pre">.</span></code> with <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code> accepts a path as argument</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> shows additional infomration. <code class="docutils literal notranslate"><span class="pre">-l</span></code> stands for <strong>long</strong>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deltas2.excalidraw.png         gitsnapshots.excalidraw.png
+expression_cpp.excalidraw.png  pend2.png
+expression.excalidraw.png      pend.data.png
+funct.excalidraw.png           pendulum.excalidraw.png
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 368
+-rw-r--r-- 1 igor igor 90137  3. Mai 17:59 deltas2.excalidraw.png
+-rw-r--r-- 1 igor igor 22263  3. Mai 17:47 expression_cpp.excalidraw.png
+-rw-r--r-- 1 igor igor 15359  3. Mai 17:48 expression.excalidraw.png
+-rw-r--r-- 1 igor igor 15990 28. Apr 12:51 funct.excalidraw.png
+-rw-r--r-- 1 igor igor 88981  3. Mai 17:48 gitsnapshots.excalidraw.png
+-rw-r--r-- 1 igor igor 44084 28. Apr 12:10 pend2.png
+-rw-r--r-- 1 igor igor 50463 26. Apr 18:25 pend.data.png
+-rw-r--r-- 1 igor igor 34042 26. Apr 16:54 pendulum.excalidraw.png
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>~/Documents
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 01.html
+ 2022-09-25.pdf
+ 2022-09-26.md
+ 2022-09-26.pdf
+ 220817_0001E7094BA6933C1EED87C1DC4BB8978778.pdf
+ 220902_ZTBM005056A262E41EDD8ADB804F91C5DD3E.pdf
+ article-spotter-software-description.pdf
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">bobo-yt</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Green">bookmarks_6_18_22.html</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">Books</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">hamster-exports</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">haskell-trial</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">hello_files</span>
+ hello.html
+ hello.pdf
+ hello.qmd
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">IDB</span>
+ igor.diary
+ igor.diary.~previousversion~
+ IgorDimitrov_G429055818_Sepa_lastschriftMandat.pdf
+ index.html
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">jupbookexamples</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">jupyter-notebooks</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">learning</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">learning_bash</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">learning-haskell</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">learning_prog</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">learning_sage</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">learn_prog_cpp</span>
+ MasonicInfluenceOnBrainTransformation.doc
+ Mathematics.md
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">MATLAB</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">mindforger-repository</span>
+ ML,-AI---Data-Sci-Learning-Resources.html
+&#39;ML, AI &amp; Data Sci Learning Resources.md&#39;
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">newdir</span>
+&#39;New Document.rnote&#39;
+<span class=" -Color -Color-Bold -Color-Bold-Blue">&#39;Notable - Export (5950)&#39;</span>
+<span class=" -Color -Color-Bold -Color-Bold-Blue">&#39;Notable - Export (DB2C)&#39;</span>
+<span class=" -Color -Color-Bold -Color-Bold-Blue">&#39;Notable - Export (E58D)&#39;</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">notes</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">Notes</span>
+ number-systems.pdf
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">obsidian-home</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">pascal-programs</span>
+ Personal_Home.pdf
+ pockettube_subscriptions_list_2022-09-29-16_18.csv
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">portfolio</span>
+&#39;pyrex-auflaufform-2er-set-mit-deckel (1).jpg&#39;
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">quantecon-mini-example</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">quarto-trial</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">quick</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">rnote</span>
+ Rplots.pdf
+ sample.yaml
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">SimpleDiary</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">some_folder</span>
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">some_programs</span>
+ some.tex
+ sqltrial02.pdf
+ sqltrial.pdf
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">starting-vscode</span>
+ Systematic_Programming_an_Introduction.bibtex
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">TheNoteBook</span>
+ The_UNIX_System.bibtex
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">TmForever</span>
+ trial.html
+ trial.md
+ <span class=" -Color -Color-Bold -Color-Bold-Blue">uni</span>
+<span class=" -Color -Color-Bold -Color-Bold-Blue">&#39;Untitled Folder&#39;</span>
+<span class=" -Color -Color-Bold -Color-Bold-Blue">&#39;Wolfram Mathematica&#39;</span>
+<span class=" -Color -Color-Bold -Color-Bold-Blue">&#39;Zettlr Tutorial&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testdir
+<span class="nb">pwd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testdir
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cp</span></code> to copy files</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>hey<span class="w"> </span>&gt;file.txt
+ls
+cp<span class="w"> </span>file.txt<span class="w"> </span>copy.txt
+cat<span class="w"> </span>file.txt<span class="w"> </span>copy.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A  B  C  file.txt
+hey
+hey
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code> creates directories</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>subdir
+mv<span class="w"> </span>copy.txt<span class="w"> </span>subdir
+ls<span class="w"> </span>subdir
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>copy.txt
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span></code> remove directory and all of its contents with the <strong>recursive</strong> option <code class="docutils literal notranslate"><span class="pre">-r</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-r<span class="w"> </span>subdir
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A  B  C  file.txt
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>search</strong> files for a pattern with <code class="docutils literal notranslate"><span class="pre">grep</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>hey<span class="w"> </span>file.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">hey</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "bash"
+        },
+        kernelOptions: {
+            name: "bash",
+            path: "./text/progtut"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'bash'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="filesystem.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.1. </span>Filesystem</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="unixstreams.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>I/O Streams</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commands">2.2.1. Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-command-syntax">2.2.1.1. General command syntax:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-basic-commands">2.2.1.2. Some basic commands:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Igor Dimitrov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
