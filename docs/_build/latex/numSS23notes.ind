@@ -6,7 +6,41 @@
 \let\spxextra\sphinxstyleindexextra
 
 
+  \lettergroup{B}
+  \item \spxentry{basic data type}, \hyperpage{26}
+  \item \spxentry{Branch}, \spxpagem{\hyperpage{15}}
+
+  \indexspace
+
+  \lettergroup{C}
+  \item \spxentry{Commit}, \spxpagem{\hyperpage{15}}
+
+  \indexspace
+
+  \lettergroup{D}
+  \item \spxentry{domain}
+    \subitem \spxentry{variable}, \hyperpage{25}
+
+  \indexspace
+
   \lettergroup{I}
-  \item \spxentry{index include}, \hyperpage{8}
+  \item \spxentry{index include}, \hyperpage{22}
+
+  \indexspace
+
+  \lettergroup{R}
+  \item \spxentry{Repository}, \spxpagem{\hyperpage{15}}
+
+  \indexspace
+
+  \lettergroup{T}
+  \item \spxentry{Tag}, \spxpagem{\hyperpage{15}}
+
+  \indexspace
+
+  \lettergroup{V}
+  \item \spxentry{variable}
+    \subitem \spxentry{declaration}, \hyperpage{26}
+    \subitem \spxentry{domain}, \hyperpage{25}
 
 \end{sphinxtheindex}

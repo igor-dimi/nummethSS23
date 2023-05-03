@@ -85,7 +85,7 @@
         
 
 \title{Introduction to Numerical Methods SS 23 Lecture Notes}
-\date{Apr 26, 2023}
+\date{May 03, 2023}
 \release{}
 \author{Igor Dimitrov}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -128,13 +128,1205 @@ hedgedoc \sphinxhref{https://hedgedoc.mathphys.info}{link}
 \sphinxAtStartPar
 git repo for hdNUM \sphinxhref{https://parcomp-git.iwr.uni-heidelberg.de/Teaching/hdnum.git}{likn}
 
+\item {} 
+\sphinxAtStartPar
+c++ reference \sphinxhref{https://en.cppreference.com}{cppreference.com}
+
 \end{itemize}
+
+\sphinxstepscope
+
+
+\chapter{Unix}
+\label{\detokenize{text/progtut/unix:unix}}\label{\detokenize{text/progtut/unix::doc}}
+\sphinxAtStartPar
+Unix was initially released in 1969. Many Unix\sphinxhyphen{}based operating systems emerged:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Free\sphinxhyphen{}}, \sphinxstylestrong{Net\sphinxhyphen{}}, and \sphinxstylestrong{OpenBSD} based on UC Berkeley’s version of Unix.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{macOS}, partially based on FreeBSD and NetBSD
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{iOS}, based on macOS
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{illumos/OpenIndiana}, based on Solaris and System V
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Linux (1991)}, stricly speaking not a Unix, but compatible at most
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Android}, a strongly modified Linux developed by Google.
+
+\item {} 
+\sphinxAtStartPar
+many various \sphinxstylestrong{embedded systems}
+
+\end{itemize}
+
+\sphinxAtStartPar
+Some facts:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+95\% of 500 fastest computers run Unix
+
+\item {} 
+\sphinxAtStartPar
+Most web servers run Unix
+
+\item {} 
+\sphinxAtStartPar
+Most scientific communities use Unix/Linux.
+
+\end{itemize}
+
+\sphinxAtStartPar
+Most software installed under Linux is open source, i.e. it’s source code is
+free to insepct and learn from.
+
+\sphinxstepscope
+
+
+\section{Filesystem}
+\label{\detokenize{text/progtut/filesystem:filesystem}}\label{\detokenize{text/progtut/filesystem::doc}}
+\sphinxAtStartPar
+Each use has a \sphinxstylestrong{home directory}, usually under \sphinxcode{\sphinxupquote{/home/<username>}}.
+Users don’t have write priviliges outside of their home directory.
+The administrator is called \sphinxstylestrong{root} in unix and can write everywhere.
+Each program has a \sphinxstylestrong{working directory}. File access is always relative to this working directory. Working directory can be switched.
+
+\sphinxAtStartPar
+Linux provides usual GUI for interacting with the system but the \sphinxstylestrong{shell} still has advantages:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+automating repetitive tasks
+
+\item {} 
+\sphinxAtStartPar
+many taks can be done faster than with GUI
+
+\item {} 
+\sphinxAtStartPar
+many Unix programs don’t have a GUI.
+
+\end{itemize}
+
+\sphinxstepscope
+
+
+\section{Shell}
+\label{\detokenize{text/progtut/shell:shell}}\label{\detokenize{text/progtut/shell::doc}}
+
+\subsection{Commands}
+\label{\detokenize{text/progtut/shell:commands}}
+
+\subsubsection{General command syntax:}
+\label{\detokenize{text/progtut/shell:general-command-syntax}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{}\PYG{+w}{ }cmd\PYG{+w}{ }\PYGZhy{}sv\PYG{+w}{ }\PYGZhy{}\PYGZhy{}opt1\PYG{+w}{ }\PYGZhy{}\PYGZhy{}opt2\PYG{+w}{ }arg1\PYG{+w}{ }arg2\PYG{+w}{ }
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+The behaviour of a command can be changed by providing it \sphinxstylestrong{options}.
+Options are provided either beginning with a dash \sphinxcode{\sphinxupquote{\sphinxhyphen{}}} or double dash \sphinxcode{\sphinxupquote{\sphinxhyphen{}\sphinxhyphen{}}}. Single\sphinxhyphen{}dash is followed by short options names consisting of a single letter. Short options can be combined by directly combining the letters: \sphinxcode{\sphinxupquote{\sphinxhyphen{}sv}} above stands for \sphinxcode{\sphinxupquote{\sphinxhyphen{}s}} and \sphinxcode{\sphinxupquote{\sphinxhyphen{}v}}.
+
+
+\subsubsection{Some basic commands:}
+\label{\detokenize{text/progtut/shell:some-basic-commands}}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{pwd}} outputs the full path of the current working directory:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{pwd}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{exit}} closes the current shell
+
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{echo}} prints out its argumetns to standard ouput:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{echo}\PYG{+w}{ }hey\PYG{+w}{ }there
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+hey there
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+If a command is used wrongly, it usually prints a short message help message to the standard output:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} rm}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+The option \sphinxcode{\sphinxupquote{\sphinxhyphen{}\sphinxhyphen{}help}} usually prints a succint help message to the standart output
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+rm\PYG{+w}{ }\PYGZhy{}\PYGZhy{}help
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+More comprehensive help can be optained with the \sphinxcode{\sphinxupquote{man}} command, that opens the manual entry of a command within the \sphinxstylestrong{man pages}
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+man\PYG{+w}{ }rm
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{cd}} to change directories:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }../../imgs
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{pwd}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{..}} stands for directory one level above
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{\sphinxhyphen{}}} previous directory
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{.}} this directory
+
+\end{itemize}
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{pwd}
+\PYG{n+nb}{cd}\PYG{+w}{ }..
+\PYG{n+nb}{pwd}
+\PYG{n+nb}{cd}\PYG{+w}{ }\PYGZhy{}
+\PYG{n+nb}{pwd}
+\PYG{n+nb}{cd}\PYG{+w}{ }.
+\PYG{n+nb}{pwd}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+/home/igor/Documents/uni/ss23/nummethSS23/docs
+/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+/home/igor/Documents/uni/ss23/nummethSS23/docs/imgs
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{ls}} to list files in the directory.
+
+\item {} 
+\sphinxAtStartPar
+show files beginning with \sphinxcode{\sphinxupquote{.}} with \sphinxcode{\sphinxupquote{ls \sphinxhyphen{}l}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{ls}} accepts a path as argument
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{ls \sphinxhyphen{}l}} shows additional infomration. \sphinxcode{\sphinxupquote{\sphinxhyphen{}l}} stands for \sphinxstylestrong{long}.
+
+\end{itemize}
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+deltas2.excalidraw.png         gitsnapshots.excalidraw.png
+expression\PYGZus{}cpp.excalidraw.png  pend2.png
+expression.excalidraw.png      pend.data.png
+funct.excalidraw.png           pendulum.excalidraw.png
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls\PYG{+w}{ }\PYGZhy{}l
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+total 368
+\PYGZhy{}rw\PYGZhy{}r\PYGZhy{}\PYGZhy{}r\PYGZhy{}\PYGZhy{} 1 igor igor 90137  3. Mai 17:59 deltas2.excalidraw.png
+\PYGZhy{}rw\PYGZhy{}r\PYGZhy{}\PYGZhy{}r\PYGZhy{}\PYGZhy{} 1 igor igor 22263  3. Mai 17:47 expression\PYGZus{}cpp.excalidraw.png
+\PYGZhy{}rw\PYGZhy{}r\PYGZhy{}\PYGZhy{}r\PYGZhy{}\PYGZhy{} 1 igor igor 15359  3. Mai 17:48 expression.excalidraw.png
+\PYGZhy{}rw\PYGZhy{}r\PYGZhy{}\PYGZhy{}r\PYGZhy{}\PYGZhy{} 1 igor igor 15990 28. Apr 12:51 funct.excalidraw.png
+\PYGZhy{}rw\PYGZhy{}r\PYGZhy{}\PYGZhy{}r\PYGZhy{}\PYGZhy{} 1 igor igor 88981  3. Mai 17:48 gitsnapshots.excalidraw.png
+\PYGZhy{}rw\PYGZhy{}r\PYGZhy{}\PYGZhy{}r\PYGZhy{}\PYGZhy{} 1 igor igor 44084 28. Apr 12:10 pend2.png
+\PYGZhy{}rw\PYGZhy{}r\PYGZhy{}\PYGZhy{}r\PYGZhy{}\PYGZhy{} 1 igor igor 50463 26. Apr 18:25 pend.data.png
+\PYGZhy{}rw\PYGZhy{}r\PYGZhy{}\PYGZhy{}r\PYGZhy{}\PYGZhy{} 1 igor igor 34042 26. Apr 16:54 pendulum.excalidraw.png
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_scroll-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls\PYG{+w}{ }\PYGZti{}/Documents
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ 01.html
+ 2022\PYGZhy{}09\PYGZhy{}25.pdf
+ 2022\PYGZhy{}09\PYGZhy{}26.md
+ 2022\PYGZhy{}09\PYGZhy{}26.pdf
+ 220817\PYGZus{}0001E7094BA6933C1EED87C1DC4BB8978778.pdf
+ 220902\PYGZus{}ZTBM005056A262E41EDD8ADB804F91C5DD3E.pdf
+ article\PYGZhy{}spotter\PYGZhy{}software\PYGZhy{}description.pdf
+ \PYG{Color+ColorBold+ColorBoldBlue}{bobo\PYGZhy{}yt}
+ \PYG{Color+ColorBold+ColorBoldGreen}{bookmarks\PYGZus{}6\PYGZus{}18\PYGZus{}22.html}
+ \PYG{Color+ColorBold+ColorBoldBlue}{Books}
+ \PYG{Color+ColorBold+ColorBoldBlue}{hamster\PYGZhy{}exports}
+ \PYG{Color+ColorBold+ColorBoldBlue}{haskell\PYGZhy{}trial}
+ \PYG{Color+ColorBold+ColorBoldBlue}{hello\PYGZus{}files}
+ hello.html
+ hello.pdf
+ hello.qmd
+ \PYG{Color+ColorBold+ColorBoldBlue}{IDB}
+ igor.diary
+ igor.diary.\PYGZti{}previousversion\PYGZti{}
+ IgorDimitrov\PYGZus{}G429055818\PYGZus{}Sepa\PYGZus{}lastschriftMandat.pdf
+ index.html
+ \PYG{Color+ColorBold+ColorBoldBlue}{jupbookexamples}
+ \PYG{Color+ColorBold+ColorBoldBlue}{jupyter\PYGZhy{}notebooks}
+ \PYG{Color+ColorBold+ColorBoldBlue}{learning}
+ \PYG{Color+ColorBold+ColorBoldBlue}{learning\PYGZus{}bash}
+ \PYG{Color+ColorBold+ColorBoldBlue}{learning\PYGZhy{}haskell}
+ \PYG{Color+ColorBold+ColorBoldBlue}{learning\PYGZus{}prog}
+ \PYG{Color+ColorBold+ColorBoldBlue}{learning\PYGZus{}sage}
+ \PYG{Color+ColorBold+ColorBoldBlue}{learn\PYGZus{}prog\PYGZus{}cpp}
+ MasonicInfluenceOnBrainTransformation.doc
+ Mathematics.md
+ \PYG{Color+ColorBold+ColorBoldBlue}{MATLAB}
+ \PYG{Color+ColorBold+ColorBoldBlue}{mindforger\PYGZhy{}repository}
+ ML,\PYGZhy{}AI\PYGZhy{}\PYGZhy{}\PYGZhy{}Data\PYGZhy{}Sci\PYGZhy{}Learning\PYGZhy{}Resources.html
+\PYGZsq{}ML, AI \PYGZam{} Data Sci Learning Resources.md\PYGZsq{}
+ \PYG{Color+ColorBold+ColorBoldBlue}{newdir}
+\PYGZsq{}New Document.rnote\PYGZsq{}
+\PYG{Color+ColorBold+ColorBoldBlue}{\PYGZsq{}Notable \PYGZhy{} Export (5950)\PYGZsq{}}
+\PYG{Color+ColorBold+ColorBoldBlue}{\PYGZsq{}Notable \PYGZhy{} Export (DB2C)\PYGZsq{}}
+\PYG{Color+ColorBold+ColorBoldBlue}{\PYGZsq{}Notable \PYGZhy{} Export (E58D)\PYGZsq{}}
+ \PYG{Color+ColorBold+ColorBoldBlue}{notes}
+ \PYG{Color+ColorBold+ColorBoldBlue}{Notes}
+ number\PYGZhy{}systems.pdf
+ \PYG{Color+ColorBold+ColorBoldBlue}{obsidian\PYGZhy{}home}
+ \PYG{Color+ColorBold+ColorBoldBlue}{pascal\PYGZhy{}programs}
+ Personal\PYGZus{}Home.pdf
+ pockettube\PYGZus{}subscriptions\PYGZus{}list\PYGZus{}2022\PYGZhy{}09\PYGZhy{}29\PYGZhy{}16\PYGZus{}18.csv
+ \PYG{Color+ColorBold+ColorBoldBlue}{portfolio}
+\PYGZsq{}pyrex\PYGZhy{}auflaufform\PYGZhy{}2er\PYGZhy{}set\PYGZhy{}mit\PYGZhy{}deckel (1).jpg\PYGZsq{}
+ \PYG{Color+ColorBold+ColorBoldBlue}{quantecon\PYGZhy{}mini\PYGZhy{}example}
+ \PYG{Color+ColorBold+ColorBoldBlue}{quarto\PYGZhy{}trial}
+ \PYG{Color+ColorBold+ColorBoldBlue}{quick}
+ \PYG{Color+ColorBold+ColorBoldBlue}{rnote}
+ Rplots.pdf
+ sample.yaml
+ \PYG{Color+ColorBold+ColorBoldBlue}{SimpleDiary}
+ \PYG{Color+ColorBold+ColorBoldBlue}{some\PYGZus{}folder}
+ \PYG{Color+ColorBold+ColorBoldBlue}{some\PYGZus{}programs}
+ some.tex
+ sqltrial02.pdf
+ sqltrial.pdf
+ \PYG{Color+ColorBold+ColorBoldBlue}{starting\PYGZhy{}vscode}
+ Systematic\PYGZus{}Programming\PYGZus{}an\PYGZus{}Introduction.bibtex
+ \PYG{Color+ColorBold+ColorBoldBlue}{TheNoteBook}
+ The\PYGZus{}UNIX\PYGZus{}System.bibtex
+ \PYG{Color+ColorBold+ColorBoldBlue}{TmForever}
+ trial.html
+ trial.md
+ \PYG{Color+ColorBold+ColorBoldBlue}{uni}
+\PYG{Color+ColorBold+ColorBoldBlue}{\PYGZsq{}Untitled Folder\PYGZsq{}}
+\PYG{Color+ColorBold+ColorBoldBlue}{\PYGZsq{}Wolfram Mathematica\PYGZsq{}}
+\PYG{Color+ColorBold+ColorBoldBlue}{\PYGZsq{}Zettlr Tutorial\PYGZsq{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testdir
+\PYG{n+nb}{pwd}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testdir
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{cp}} to copy files
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{echo}\PYG{+w}{ }hey\PYG{+w}{ }\PYGZgt{}file.txt
+ls
+cp\PYG{+w}{ }file.txt\PYG{+w}{ }copy.txt
+cat\PYG{+w}{ }file.txt\PYG{+w}{ }copy.txt
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+A  B  C  file.txt
+hey
+hey
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{mkdir}} creates directories
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+mkdir\PYG{+w}{ }subdir
+mv\PYG{+w}{ }copy.txt\PYG{+w}{ }subdir
+ls\PYG{+w}{ }subdir
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+copy.txt
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{rm \sphinxhyphen{}r}} remove directory and all of its contents with the \sphinxstylestrong{recursive} option \sphinxcode{\sphinxupquote{\sphinxhyphen{}r}}:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+rm\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }subdir
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+A  B  C  file.txt
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxstylestrong{search} files for a pattern with \sphinxcode{\sphinxupquote{grep}}
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+grep\PYG{+w}{ }hey\PYG{+w}{ }file.txt
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{Color+ColorBold+ColorBoldRed}{hey}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxstepscope
+
+
+\section{I/O Streams}
+\label{\detokenize{text/progtut/unixstreams:i-o-streams}}\label{\detokenize{text/progtut/unixstreams::doc}}
+\sphinxAtStartPar
+Unix programs commpunicate with the system with \sphinxstylestrong{I/O Streams}. Streams are unidirectional, they can be either written to, or they can be read from.
+
+\sphinxAtStartPar
+Every program has three open streams when its starts executing:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{stdin}: The standard input reads user input from the console and is connected to the \sphinxstylestrong{file descriptor 0}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{stdout}: Normal results of a program are outputed to the standard output. Standard output is connected to the \sphinxstylestrong{file descriptor 1}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{stderr}: Diagnostic messages and errors are output to the standard error, which is connected to the \sphinxstylestrong{file descriptor 2}.
+
+\end{itemize}
+
+
+\subsection{Redirection of I/O Streams}
+\label{\detokenize{text/progtut/unixstreams:redirection-of-i-o-streams}}
+\sphinxAtStartPar
+Redireaction of I/O streams is one of the most powerful  concepts in Unix.
+Be default the standard streams are connected to the terminal but sometimes it is sensible to redirect the stream to files:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-input}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Let’s create a file “A” with the content “hey”
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{echo}\PYG{+w}{ }hey\PYG{+w}{ }\PYGZgt{}A
+cat\PYG{+w}{ }A
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+hey
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+The direcctory now contains a single file “A”
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+A
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+we can redirect the output of \sphinxcode{\sphinxupquote{ls}} to another file called ‘B’
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls\PYG{+w}{ }\PYGZgt{}B
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+let’s see the contents of the folder now;
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+A  B
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+and the contents of the file B:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+cat\PYG{+w}{ }B
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+A
+B
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+maybe somewhat unexpectedly for the novice, the file B contains its own name. The reason is that during the rediraction step we typed the command:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls\PYG{+w}{ }\PYGZgt{}B
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Before \sphinxcode{\sphinxupquote{ls}} is executed by the shell, the shell processes the whole line, and therefore creates the file B due to the \sphinxcode{\sphinxupquote{>B}} part of the command. Thus before \sphinxcode{\sphinxupquote{ls}} is executed B is already contained in the directory, therefore its own name along with A is written to it.
+
+\sphinxAtStartPar
+Redirecting \sphinxstylestrong{stdin} is achieved with \sphinxcode{\sphinxupquote{<}}. Thus redirecting input to come from the file “B”, effectively reading it is done the following way:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+cat\PYG{+w}{ }\PYGZlt{}B
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+A
+B
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxstylestrong{stderr} is redirected via \sphinxcode{\sphinxupquote{2>}}. To output the standard error message to a file named “C” we do:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls\PYG{+w}{ }nonexistent\PYG{+w}{ }\PYG{l+m}{2}\PYGZgt{}\PYG{+w}{ }C
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+A  B  C
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+cat\PYG{+w}{ }C
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ls: cannot access \PYGZsq{}nonexistent\PYGZsq{}: No such file or directory
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxstepscope
+
+
+\chapter{Version Control with Git}
+\label{\detokenize{text/progtut/versioncontrol:version-control-with-git}}\label{\detokenize{text/progtut/versioncontrol::doc}}
+\sphinxAtStartPar
+Instead of saving different versions of files under different names, version control can be elegantly achieved with dedicated version control systems like \sphinxstylestrong{git}.
+
+\sphinxAtStartPar
+Git is a \sphinxstylestrong{distributed version control} system, that allows to track changes of any set of files, compare different versions, create branches for different development versions, and to coordinate collaborative manipulation of the files, among other capabilities.
+
+\sphinxAtStartPar
+It was originally developed by \sphinxstylestrong{Linus Torvalds} in 2005, to be used for the development of the Linux kernel.
+
+\sphinxAtStartPar
+Since git is a \sphinxstylestrong{distributed version control system} as opposed to a \sphinxstylestrong{clint\sphinxhyphen{}server version control system}, every Git directory on every computer is a full\sphinxhyphen{}fledged \sphinxstylestrong{repository} with complete history and full version\sphinxhyphen{}tracking capabilities, independent of network access or a central server.
+\begin{description}
+\item[{Repository\index{Repository@\spxentry{Repository}|spxpagem}\phantomsection\label{\detokenize{text/progtut/versioncontrol:term-Repository}}}] \leavevmode
+\sphinxAtStartPar
+Database with all the information and data that git uses to carry out the version control. Saved under \sphinxcode{\sphinxupquote{.git}} folder at the root of the project folder
+
+\item[{Commit\index{Commit@\spxentry{Commit}|spxpagem}\phantomsection\label{\detokenize{text/progtut/versioncontrol:term-Commit}}}] \leavevmode
+\sphinxAtStartPar
+A global snapshot of all tracked files, a long with a commit message that describes what has been changed. Commit is a fundamental versioning command; user executes it, when he wants to record the current version of the files.
+
+\item[{Branch \index{Branch@\spxentry{Branch}|spxpagem}\phantomsection\label{\detokenize{text/progtut/versioncontrol:term-Branch}}}] \leavevmode
+\sphinxAtStartPar
+A self\sphinxhyphen{}contaied sequence of commits, accessible under a branch name, that are parallel to the main development/version branch. A branch represents a prallel development version
+
+\item[{Tag\index{Tag@\spxentry{Tag}|spxpagem}\phantomsection\label{\detokenize{text/progtut/versioncontrol:term-Tag}}}] \leavevmode
+\sphinxAtStartPar
+A permanenet name for a commit \sphinxhyphen{} e.g. a release name.
+
+\end{description}
+
+\sphinxstepscope
+
+
+\section{Getting Started}
+\label{\detokenize{text/progtut/gitstart:getting-started}}\label{\detokenize{text/progtut/gitstart::doc}}
+
+\subsection{Some Core Asepcts of Git}
+\label{\detokenize{text/progtut/gitstart:some-core-asepcts-of-git}}
+
+\subsubsection{Snapshots vs Deltas}
+\label{\detokenize{text/progtut/gitstart:snapshots-vs-deltas}}
+\sphinxAtStartPar
+Most other version control systems save differences with delats \sphinxhyphen{} file based relative changes.
+Git on the other hand saves complete snaphot of the whole filesystem, but to save space unchnaged files aren’t saved again, but rather links to the previous unchanged version.
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{deltas2.excalidraw}.png}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{gitsnapshots.excalidraw}.png}
+
+
+\subsubsection{Most Operations are Local}
+\label{\detokenize{text/progtut/gitstart:most-operations-are-local}}
+\sphinxAtStartPar
+most operations like
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+browsing history
+
+\item {} 
+\sphinxAtStartPar
+viewing changes between versions of files (diffs)
+
+\item {} 
+\sphinxAtStartPar
+commiting
+
+\item {} 
+\sphinxAtStartPar
+checking out a branch
+
+\item {} 
+\sphinxAtStartPar
+…
+
+\end{itemize}
+
+\sphinxAtStartPar
+are all local and therefore very fast.
+
+
+\subsubsection{Checksumming}
+\label{\detokenize{text/progtut/gitstart:checksumming}}
+\sphinxAtStartPar
+All files stored by git are checksummed. Since this functionality is built\sphinxhyphen{}in on lowest level of git, it is usually impossible to lose information.
+The checksumming mechanism is \sphinxstylestrong{SHA\sphinxhyphen{}1 hash} \sphinxhyphen{} a 40 character string calculated based on files or a directories contents.
+Entities are stored as checksum strings in git database, not by their file names.
+Git also generally only adds data, therefore it is usually impossible to lose information, enables free experimenation with the source code.
+
+\sphinxAtStartPar
+To querry the \sphinxstylestrong{state} of the different files in your repository use \sphinxcode{\sphinxupquote{git status}}
+
+\sphinxstepscope
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-input}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+
+\section{Fundamental Git Commands and Terms}
+\label{\detokenize{text/progtut/gitbasic:fundamental-git-commands-and-terms}}\label{\detokenize{text/progtut/gitbasic::doc}}
+\sphinxAtStartPar
+One of the most fundamental notions to any VCS, and not just git, is the \sphinxstylestrong{working directory/tree}. It is the collection of concrete version of folders and files that are currently checked out and are being edited.
+\begin{description}
+\item[{Working Directory}] \leavevmode
+\sphinxAtStartPar
+The collection of files and folders, that are at a specific version, that are currently checked\sphinxhyphen{}out and being editted/processed by the user.
+
+\end{description}
+
+\sphinxAtStartPar
+Another component of the VCS’s is the \sphinxstylestrong{database}. After files and folders have been eddited and modified, and the programmer wants to save that as a new \sphinxstylestrong{version}, the programmer \sphinxstylestrong{commits} this current version to the VCS database. Different VCS have different approaches in storing these changes, e.g. deltas, snaphots.
+
+\sphinxAtStartPar
+The VCS uses the databases to create versions of the folders and files that were commited by the programmer. Populating the working directory with a certain version is called \sphinxstylestrong{checking out} that version.
+
+\sphinxAtStartPar
+Thus basically in usual VSC there are two “areas”, the working directory and the database.
+
+\sphinxAtStartPar
+But git adds a \sphinxstylestrong{third area} called the \sphinxstylestrong{staging area} or \sphinxstylestrong{index}. After programmer edits and modifies files, the programmer must add files explicitely to the index, in order that these files get commited in the next commit. The \sphinxstylestrong{unstaged} files, even if modified will \sphinxstylestrong{not} be commited.
+\begin{description}
+\item[{Index / Staging Area}] \leavevmode
+\sphinxAtStartPar
+The collection of files that are marked to be \sphinxstylestrong{committed} in the next commit
+
+\item[{Unstaged / Modified files}] \leavevmode
+\sphinxAtStartPar
+Files that are modified but are not explicitely added to the index.
+
+\end{description}
+
+\sphinxAtStartPar
+The ability to explicitly decide what will be committed in the next commit gives the programmer more flexibility, e.g. some modified files might be ommitted from the current commit, and be commited on some other commit.
+
+\sphinxAtStartPar
+Let’s demonstrate these concepts, by first initialize a repository with \sphinxcode{\sphinxupquote{git init}}.
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }init
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+This creates a subdirecctory named \sphinxcode{\sphinxupquote{.git}}, which is essentially a database containing all files necessary for git to carry out version control.
+
+\sphinxAtStartPar
+Currently the directory is empty. Let’s add some files to the directory:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}I am A\PYGZdq{}}\PYG{+w}{ }\PYGZgt{}A
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}I am B\PYGZdq{}}\PYG{+w}{ }\PYGZgt{}B
+ls
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+A  B
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Although these files are in the directory, git doesn’t track them, i.e. they haven’t been added to the .git database yet. Such files are called \sphinxstylestrong{untracked}
+\begin{description}
+\item[{Untracked}] \leavevmode
+\sphinxAtStartPar
+Files that are not in the \sphinxcode{\sphinxupquote{.git}} database, i.e. files that git doesn’t track.
+
+\end{description}
+
+\sphinxAtStartPar
+Let’s verify that these files are indeed untracked with the \sphinxcode{\sphinxupquote{git status}} command:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }status
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+As suggested by the help message, we can add these files to the database with \sphinxcode{\sphinxupquote{git add <filename>}}:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }add\PYG{+w}{ }A\PYG{+w}{ }B
+git\PYG{+w}{ }status
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Now these files are tracked, but more specifically they are \sphinxstylestrong{staged}. When untracked files are first added to the DB they are also staged.
+\begin{description}
+\item[{Staged}] \leavevmode
+\sphinxAtStartPar
+staged files are files that will be commited on the next commit
+
+\end{description}
+
+\sphinxAtStartPar
+Let’s execute our first commit with the \sphinxcode{\sphinxupquote{git commit \sphinxhyphen{}m <message>}} command
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }commit\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}first commit\PYGZsq{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+and check the status
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }status
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Note the \sphinxstylestrong{working tree clean} message output. The working tree is clean when there are no unstaged modified files.
+
+\sphinxAtStartPar
+Let’s modify files and not yet stage them:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}adding new lines to A\PYGZdq{}}\PYG{+w}{ }\PYGZgt{}\PYGZgt{}A
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Check the status:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }status
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Let’s modify B and add it to the staging area. (But not add A yet):
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}adding a new line to B\PYGZdq{}}\PYG{+w}{ }\PYGZgt{}\PYGZgt{}B
+git\PYG{+w}{ }add\PYG{+w}{ }B
+git\PYG{+w}{ }status
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+We have added the modified B file to the staging area with the \sphinxcode{\sphinxupquote{git add <filename>}} command. A is modified but still not have been added to the staging area/index and will not go in the next commit.
+
+\sphinxAtStartPar
+Now let’s perform this commit, that will record the new version of B:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }commit\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}changing B\PYGZdq{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Now the status command shows:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }status
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+We can use the short version of the command with \sphinxcode{\sphinxupquote{git status \sphinxhyphen{}s}}
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }status\PYG{+w}{ }\PYGZhy{}s
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+ \PYG{Color+ColorRed}{M} A
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+
+\subsection{Tracke}
+\label{\detokenize{text/progtut/gitbasic:tracke}}
+
+\subsection{The Three main States}
+\label{\detokenize{text/progtut/gitbasic:the-three-main-states}}
+\sphinxAtStartPar
+One of the most fundamental concepts to understand git is the three main states that a tracked file can be in:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+**Mo
+
+\end{enumerate}
 
 \sphinxstepscope
 
 
 \chapter{Hello World}
 \label{\detokenize{text/progtut/hello:hello-world}}\label{\detokenize{text/progtut/hello::doc}}
+\sphinxAtStartPar
+C++ is suitable both as a high\sphinxhyphen{}level application and software developed language, as well as as low\sphinxhyphen{}level systems programming language.
+
+\sphinxAtStartPar
+Various programming paradigms are supported, including:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+imperative,
+
+\item {} 
+\sphinxAtStartPar
+object oriented
+
+\item {} 
+\sphinxAtStartPar
+generic
+
+\end{itemize}
+
+\sphinxAtStartPar
+Goals of the language are efficiency, performance and fexibility.
+Applied in various fields ranging from embedded controllers to super computers.
+Allows direct access to hardware resources.
+
+\sphinxAtStartPar
+some additional mottos of the language:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+zero\sphinxhyphen{}cost abstractions
+
+\item {} 
+\sphinxAtStartPar
+pay only for what you see
+
+\end{itemize}
+
 \sphinxAtStartPar
 Libraries are included with the \sphinxcode{\sphinxupquote{\#include}} directive.
 \begin{itemize}
@@ -144,11 +1336,11 @@ Libraries are included with the \sphinxcode{\sphinxupquote{\#include}} directive
 
 \item {} 
 \sphinxAtStartPar
-\sphinxcode{\sphinxupquote{<vector>}}: library for dynamic arrays, i.e. arrays whose size changes during run\sphinxhyphen{}time. Implemented as amortized arrays (rather than linked lists, contrary to what one would naively assume).
+\sphinxcode{\sphinxupquote{<vector>}}: container library for dynamic arrays, i.e. arrays whose size changes during run\sphinxhyphen{}time. Implemented as amortized arrays (rather than linked lists, contrary to what one would naively assume).
 
 \item {} 
 \sphinxAtStartPar
-\sphinxcode{\sphinxupquote{"hdnum.hh"}}: header file to include the custoim \sphinxcode{\sphinxupquote{hdnum}} library.
+\sphinxcode{\sphinxupquote{"hdnum.hh"}}: header file to include the custom \sphinxcode{\sphinxupquote{hdnum}} library.
 
 \end{itemize}
 
@@ -186,10 +1378,33 @@ and print out some messages to standard outpout:
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 hello
+1 + 1 = 2
 \end{sphinxVerbatim}
 
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-1 + 1 = 2
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{print}\PYG{p}{(}\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{msg}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{msg}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{greeting}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{hello, world}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{print}\PYG{p}{(}\PYG{n}{greeting}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+hello, world
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -229,10 +1444,133 @@ To run the compiled program enter \sphinxcode{\sphinxupquote{./hello}} at the CL
 \sphinxstepscope
 
 
-\chapter{Variables Introduction}
-\label{\detokenize{text/progtut/variables:variables-introduction}}\label{\detokenize{text/progtut/variables::doc}}
+\section{Cing Config}
+\label{\detokenize{text/progtut/clingconfig:cing-config}}\label{\detokenize{text/progtut/clingconfig::doc}}
 \sphinxAtStartPar
-A \sphinxstylestrong{domain} is a collection or a range of possible values exhibiting a pattern. Objects belonging to the same domain have the same \sphinxstylestrong{type}. If an object \(x\) belongs to a domain \(D\) this is written mathematically as:
+To include the \sphinxcode{\sphinxupquote{hdnum}} library in the jupyter notebook cling environment, following must be executed at the beginning of a notebook:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{pragma cling add\PYGZus{}include\PYGZus{}path(\PYGZdq{}}\PYG{c+cp}{/}\PYG{c+cp}{home}\PYG{c+cp}{/}\PYG{c+cp}{igor}\PYG{c+cp}{/}\PYG{c+cp}{Documents}\PYG{c+cp}{/}\PYG{c+cp}{uni}\PYG{c+cp}{/}\PYG{c+cp}{ss23}\PYG{c+cp}{/}\PYG{c+cp}{nummethSS23}\PYG{c+cp}{/}\PYG{c+cp}{hdnum}\PYG{c+cp}{/}\PYG{c+cp}{\PYGZdq{})}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}complex\PYGZgt{}}
+
+
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/densematrix.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/exceptions.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/lr.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/newton.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/ode.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/opcounter.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/pde.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/precision.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/qr.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/rungekutta.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/sgrid.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/timer.hh\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}src/vector.hh\PYGZdq{}}
+\end{sphinxVerbatim}
+
+\sphinxstepscope
+
+
+\section{Name Collisions and Namespaces}
+\label{\detokenize{text/progtut/namespaces:name-collisions-and-namespaces}}\label{\detokenize{text/progtut/namespaces::doc}}
+\sphinxAtStartPar
+Assume Alice and Bob have written libraries, \sphinxcode{\sphinxupquote{alice.hh}} and \sphinxcode{\sphinxupquote{bob.hh}} respectively, that both contain the function  \sphinxcode{\sphinxupquote{greeting()}}. Following will generete a compiler error, due to compiler not knowing which \sphinxcode{\sphinxupquote{greeting()}} function to accept
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}alice.hh\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}bob.hh\PYGZgt{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{o}{*}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{greeting}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//compiler error!}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+This problem is reffered to as \sphinxstylestrong{name collision} and is resolved by using \sphinxstylestrong{namespaces} the following way:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}alice \PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}bob\PYGZgt{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{o}{*}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{alice}\PYG{o}{:}\PYG{o}{:}\PYG{n}{greeting}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{bob}\PYG{o}{:}\PYG{o}{:}\PYG{n}{greeting}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+i.e. with the syntax \sphinxcode{\sphinxupquote{libraryname::libraryentity}}.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+namespaces can be nested:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{library}\PYG{o}{:}\PYG{o}{:}\PYG{n}{sublibrary}\PYG{o}{:}\PYG{o}{:}\PYG{n}{function}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+\end{sphinxadmonition}
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+C++ delivers a \sphinxstylestrong{standard library} as a part of the compiler. Standard library is accessed with the namespace \sphinxcode{\sphinxupquote{std}}:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{hey}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\end{sphinxVerbatim}
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+Namespaces can be declared manually in source code as well:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-input}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{namespace}\PYG{+w}{ }\PYG{n+nn}{bob}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{greeting}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{hey}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{c+c1}{// end namespace bob}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{bob}\PYG{o}{:}\PYG{o}{:}\PYG{n}{greeting}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+hey
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxstepscope
+
+
+\chapter{Variables}
+\label{\detokenize{text/progtut/variables:variables}}\label{\detokenize{text/progtut/variables::doc}}
+\sphinxAtStartPar
+A \sphinxstylestrong{domain} is a range of possible values exhibiting some uniform pattern. Objects belonging to the same domain have the same \sphinxstylestrong{type}. An object \(x\) belonging to a domain \(D\) this is written mathematically as:
 \begin{equation*}
 \begin{split}
 x \in D \quad \text{(Set theoretical notation)}
@@ -246,7 +1584,7 @@ x : D \quad \text{(Type theoretical notation)}
 \end{split}
 \end{equation*}
 \sphinxAtStartPar
-In C++:
+In C++ we have:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{D} \PYG{n}{x}\PYG{p}{;}
@@ -276,6 +1614,7 @@ computers are finite, and physical components (the arithmetic and logic unit) pe
 Therefore the mathematical structures realized by computer hardware are not \(\langle\mathbb{Z}, 0, 1, +, \times\) and \(\langle\mathbb{R}, 0, 1, +, \times\rangle\) but their finite approximations
 \(\langle\tilde{\mathbb{Z}}, 0, 1, \oplus, \otimes\rangle\) and \(\langle\mathbb{F}, 0, 1, \oplus, \otimes\rangle\), where the basic axioms are not always satisfied.
 
+\index{variable@\spxentry{variable}!domain@\spxentry{domain}}\index{domain@\spxentry{domain}!variable@\spxentry{variable}}\ignorespaces 
 \sphinxstepscope
 
 
@@ -285,7 +1624,7 @@ Therefore the mathematical structures realized by computer hardware are not \(\l
 \sphinxstylestrong{basic(atomic) data types} of a programming langauge are the types directly provided by the language, as opposed to the data types defined by the programmer using the mechanisms of the langauge.
 
 \sphinxAtStartPar
-Some high\sphinxhyphen{}level programming langauges provide basic numerical data types that correspond to the ideal mathematical types \(\mathbb{R}\) and \(\mathbb{Z}\). But C++ provides only low level basic data types that are directly represented by the computer and directly operated on by the ALU. This data types are \sphinxcode{\sphinxupquote{int}}, \sphinxcode{\sphinxupquote{float}} and \sphinxcode{\sphinxupquote{double}}  correspong to \(\tilde{\mathbb{Z}}\) and \(\mathbb{F}\), respectively.
+Some high\sphinxhyphen{}level programming langauges provide basic numerical data types that correspond to the ideal mathematical types \(\mathbb{R}\) and \(\mathbb{Z}\). But C++ provides only low level basic data types that are directly represented by the computer and directly operated on by the ALU. This data types are \sphinxcode{\sphinxupquote{int}}, \sphinxcode{\sphinxupquote{float}} and \sphinxcode{\sphinxupquote{double}}  correspong to \(\tilde{\mathbb{Z}}\) and \(\mathbb{F}\), and operated on by the floating point unit and integer unit, respectively.
 
 
 \begin{savenotes}\sphinxattablestart
@@ -391,6 +1730,7 @@ strings of ASCII
 \sphinxAtStartPar
 Table: List of Basic Data Types in C++
 
+\index{basic data type@\spxentry{basic data type}}\ignorespaces 
 \sphinxstepscope
 
 
@@ -463,6 +1803,7 @@ full program text:
 \PYG{p}{\PYGZcb{}}
 \end{sphinxVerbatim}
 
+\index{variable@\spxentry{variable}!declaration@\spxentry{declaration}}\ignorespaces 
 \sphinxstepscope
 
 
@@ -472,19 +1813,23 @@ full program text:
 \subsection{Statements}
 \label{\detokenize{text/progtut/statements:statements}}
 \sphinxAtStartPar
-An object of a certain type can take different values during its existense. This transformation of values is called \sphinxstylestrong{change of state} of the object.
+An object %
+\begin{footnote}[1]\sphinxAtStartFootnote
+Here we use the word “object” not in the object\sphinxhyphen{}oriented sense, but in it most general sense; simply standing for any concrete sequence of bits (corresponding to some variable of a certain type) residing in memory.
+%
+\end{footnote} of a certain type can take different values during its existense. This transformation of values is called \sphinxstylestrong{change of state} of the object.
 
 \sphinxAtStartPar
 Computers can change the sate of an object residing in memory. This is called an \sphinxstylestrong{action}. The \sphinxstylestrong{instructions} to peform actions in a given programming language are called \sphinxstylestrong{statements}.
 
 \sphinxAtStartPar
-The change of variables state caused by a statement is said to be the \sphinxstylestrong{effect} of the statement.
+The change of a variable’s state as specified by a statement is said to be the \sphinxstylestrong{effect} of the statement.
 
 
 \subsection{Expressions}
 \label{\detokenize{text/progtut/statements:expressions}}
 \sphinxAtStartPar
-\sphinxstylestrong{Expressions}  do not transform the state of the variables, but denote \sphinxstylestrong{values}.
+\sphinxstylestrong{Expressions} on the other hand,  do \sphinxstylestrong{not} transform the state of the variables, but merely denote \sphinxstylestrong{values}.
 
 \sphinxAtStartPar
 Expressions are formed according to the rules of some formal notation (like the language of arithemtic)
@@ -494,7 +1839,8 @@ Some expressions: \sphinxcode{\sphinxupquote{1 \sphinxhyphen{} (3 / 6)}}, \sphin
 
 \sphinxAtStartPar
 Thus:
-\begin{itemize}
+
+\begin{sphinxadmonition}{attention}{Attention:}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 expressions \sphinxstylestrong{denote values},
@@ -504,6 +1850,7 @@ expressions \sphinxstylestrong{denote values},
 statements \sphinxstylestrong{have effects}
 
 \end{itemize}
+\end{sphinxadmonition}
 
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxAtStartPar
@@ -514,7 +1861,14 @@ Understanding this dichotomy between statements and expessions is fundamental.
 \subsection{Assignment}
 \label{\detokenize{text/progtut/statements:assignment}}
 \sphinxAtStartPar
-The most basic statement is the \sphinxstylestrong{assignment}. It has the \sphinxstylestrong{effect} of updating the value of the variable to the value denoted by the \sphinxstylestrong{expression} on the right\sphinxhyphen{}hand side of the assignment operator. In C++:
+The most basic statement is the \sphinxstylestrong{assignment}. Its has the basic form:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{E}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Its \sphinxstylestrong{effect} is to update the value of the variable \sphinxcode{\sphinxupquote{x}} on the left hand side of \sphinxcode{\sphinxupquote{=}} to the \sphinxstylestrong{value} denoted by the \sphinxstylestrong{expression} \sphinxcode{\sphinxupquote{E}} on the right\sphinxhyphen{}hand side of the assignment operator. In C++:
 
 \begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
 
@@ -562,17 +1916,37 @@ The expression on the right hand side of the assignment can contain the variable
 
 \end{sphinxuseclass}
 
-\subsubsection{Side Effects}
+\subsection{Side Effects}
 \label{\detokenize{text/progtut/statements:side-effects}}
 \sphinxAtStartPar
 In some programming languages like Pascal the world of statements and the world of expressions are completely distinct. A given syntactical entity is either a statement or an expression.
 
 \sphinxAtStartPar
 But in C/C++ a syntactical entity can be both a statement (have an effect) and an expression (denote a value).
-
-\sphinxAtStartPar
 The action that such an expression performs is called the \sphinxstylestrong{side effect} of the expression.
 
+\begin{sphinxuseclass}{sd-container-fluid}
+\begin{sphinxuseclass}{sd-sphinx-override}
+\begin{sphinxuseclass}{sd-mb-4}
+\begin{sphinxuseclass}{sd-row}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\sphinxAtStartPar
+\sphinxincludegraphics{{expression.excalidraw}.png}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\sphinxAtStartPar
+\sphinxincludegraphics{{expression_cpp.excalidraw}.png}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
 \sphinxAtStartPar
 \sphinxstylestrong{Example}: \sphinxcode{\sphinxupquote{j\sphinxhyphen{}\sphinxhyphen{}}} is both a statement and an expression. Its effect is to assign to the variable \sphinxcode{\sphinxupquote{j}} the value of the expression \sphinxcode{\sphinxupquote{j \sphinxhyphen{} 1}}. I.e. it is equivalent to \sphinxcode{\sphinxupquote{j = j \sphinxhyphen{} 1}}. As an expression it denotes the value \sphinxcode{\sphinxupquote{j}} before assignment.
 
@@ -592,9 +1966,6 @@ The action that such an expression performs is called the \sphinxstylestrong{sid
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 10
-\end{sphinxVerbatim}
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
 9
 \end{sphinxVerbatim}
 
@@ -602,7 +1973,7 @@ The action that such an expression performs is called the \sphinxstylestrong{sid
 
 \end{sphinxuseclass}
 \sphinxAtStartPar
-Havinhg expression with side effects is academically less clean, but it practical benefits as it allows shorter programming constructs and succinct idioms like:
+Having expressions with side effects is academically less clean, but has practical benefits as it allows shorter programming constructs and succinct \sphinxstylestrong{idioms} by using statements as expressions, like:
 
 \begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
 
@@ -620,6 +1991,1760 @@ Havinhg expression with side effects is academically less clean, but it practica
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 9 8 7 6 5 4 3 2 1 0 
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+
+\bigskip\hrule\bigskip
+
+
+\sphinxstepscope
+
+
+\section{Blocks and Scope}
+\label{\detokenize{text/progtut/blocks:blocks-and-scope}}\label{\detokenize{text/progtut/blocks::doc}}
+
+\subsection{Block}
+\label{\detokenize{text/progtut/blocks:block}}
+\sphinxAtStartPar
+Blocks are compound sequences of statements treated as a unit.
+Blocks can be nested. Blocks are used to \sphinxstylestrong{structure} a program.
+
+\begin{sphinxuseclass}{sd-container-fluid}
+\begin{sphinxuseclass}{sd-sphinx-override}
+\begin{sphinxuseclass}{sd-mb-4}
+\begin{sphinxuseclass}{sd-row}
+\begin{sphinxuseclass}{sd-g-5}
+\begin{sphinxuseclass}{sd-g-xs-5}
+\begin{sphinxuseclass}{sd-g-sm-5}
+\begin{sphinxuseclass}{sd-g-md-5}
+\begin{sphinxuseclass}{sd-g-lg-5}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\begin{sphinxuseclass}{sd-border-1}
+\sphinxAtStartPar
+\sphinxstyleemphasis{A block}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{x}\PYG{p}{(}\PYG{l+m+mf}{3.14}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\begin{sphinxuseclass}{sd-border-1}
+\sphinxAtStartPar
+\sphinxstyleemphasis{A nested block}:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{x}\PYG{p}{(}\PYG{l+m+mf}{3.14}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{c+c1}{// y is invisible here}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+
+\subsection{Scope}
+\label{\detokenize{text/progtut/blocks:scope}}
+\sphinxAtStartPar
+Scope is the portion of the code where a variable name is visible.
+
+
+\subsubsection{Potential Scope and Actual Scope}
+\label{\detokenize{text/progtut/blocks:potential-scope-and-actual-scope}}
+\sphinxAtStartPar
+\sphinxstylestrong{Potential scope} of a name declared in a block begins at the point of declaration and ends at the end of the block. Thus scopes are delimited by blocks.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Actual scope} is the same as the potential scope, but if an identical name is declared in a \sphinxstylestrong{nested block} than the potential scope of the name in hte nested block is exluded from the actual scope of the name in the enclosing block.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+There is a recursive aspect to the definition, but stated simply declarations in the nested block overwrite declarations in enclosing blocks
+\end{sphinxadmonition}
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-input}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//scope of outer it begins}
+\PYG{o}{+}\PYG{o}{+}\PYG{n}{i}\PYG{p}{;}\PYG{+w}{ }
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{42}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{//j  std::cout \PYGZlt{}\PYGZlt{} j \PYGZlt{}\PYGZlt{} std::endl; //this would be an error, because is invisible in this scope}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+1
+42
+43
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+The scope of a variable defines its \sphinxstylestrong{lifetime}. The variable ceases to exist after the program exist the scope where the variable is visible.
+
+\sphinxstepscope
+
+
+\section{Expressions and Operators}
+\label{\detokenize{text/progtut/arithmetic:expressions-and-operators}}\label{\detokenize{text/progtut/arithmetic::doc}}
+
+\subsection{Arithmetic}
+\label{\detokenize{text/progtut/arithmetic:arithmetic}}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{;}\PYG{+w}{  }
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{;}
+
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+
+
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}\PYG{+w}{ }
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+6 2 8
+12
+4
+3
+9
+54
+9
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+or equivalently and more succintly:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{*}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{/}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+9 6
+15
+90
+15
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+more complex and arbitrarily long expresson can be formed, whre precedence of operations follow the usual mathematical rules:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{a}\PYG{o}{/}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+15 6  2
+\PYGZhy{}1
+2
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+
+\subsection{Boolean}
+\label{\detokenize{text/progtut/arithmetic:boolean}}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{3}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+true
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+true
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+false
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+true
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+true
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+false
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+true
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{not}\PYG{+w}{ }\PYG{n+nb}{false}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+true
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{not}\PYG{+w}{ }\PYG{n+nb}{true}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+false
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+As with number airthmetic arbitarily complex boolean expressions can be formed:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{p}{(}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{|}\PYG{o}{|}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{not}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{+w}{ }\PYG{o}{|}\PYG{o}{|}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{+w}{ }\PYG{n}{and}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{+w}{ }\PYG{n}{or}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+false
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Note that for
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{conjuction} both \sphinxcode{\sphinxupquote{and}} and \sphinxcode{\sphinxupquote{\&\&}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{disjunction} both \sphinxcode{\sphinxupquote{or}} and \sphinxcode{\sphinxupquote{||}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{negation} both \sphinxcode{\sphinxupquote{!}} or \sphinxcode{\sphinxupquote{not}}
+
+\end{itemize}
+
+\sphinxAtStartPar
+can be used, and the usual precedence rules of negation over conjuction over disjunction hold.
+
+
+\subsection{String}
+\label{\detokenize{text/progtut/arithmetic:string}}
+\sphinxAtStartPar
+The library \sphinxcode{\sphinxupquote{<string>}} provides the basic data type \sphinxcode{\sphinxupquote{string}}, to represent sequences of characters and operations thereon.
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{msg1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Hey}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{msg2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{there}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{msg1}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{msg2}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Hey
+there
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Strings can be combined with \sphinxcode{\sphinxupquote{+}}
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{msg}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{msg1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{msg2}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{msg}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Hey there
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+and compared with \sphinxcode{\sphinxupquote{==}} or \sphinxcode{\sphinxupquote{!=}} for equality:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{a}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{check1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{b}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{check2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{b}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{check1}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{check2}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+0
+1
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxadmonition}{warning}{Warning:}
+\sphinxAtStartPar
+When combining or comparing strings there should \sphinxstylestrong{always} be variable on the left hand side
+\end{sphinxadmonition}
+
+\sphinxstepscope
+
+
+\chapter{Arrays}
+\label{\detokenize{text/progtut/arrays:arrays}}\label{\detokenize{text/progtut/arrays::doc}}
+\sphinxAtStartPar
+Array is a structured data type which is a collection of component variables of the \sphinxstylestrong{same type}. For a domain \(D\),  \(D^{N}\) is called data type of “\(D\) arrays of length N”. If \(x\in D^N\), then \(x\) is called a \(D\) array of length \(N\).
+
+\sphinxAtStartPar
+To declare a \(D\) array x of length \(N\) in C++ we type:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{D} \PYG{n}{x}\PYG{p}{[}\PYG{n}{N}\PYG{p}{]}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+N must be set explicitely in compile time, that is, the length of the array must be known at compile time.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+To declare a 10\sphinxhyphen{}dimensional \sphinxcode{\sphinxupquote{int}} array in C++
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-input}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{[}\PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+All elements are initialized to 0:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+0 0 0 0 0 0 0 0 0 0 
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+array components are accessed with the syntax \sphinxcode{\sphinxupquote{a{[}index{]}}}, where
+\begin{equation*}
+\begin{split}
+0 \leq index <N
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Thus
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{[}\PYG{l+m+mi}{9}\PYG{p}{]}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+0
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+But a{[}10{]} is access past the array bounds and
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{[}\PYG{l+m+mi}{10}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+outputs garbage.
+
+\sphinxAtStartPar
+We can update the components of the array:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+0 1 2 3 4 5 6 7 8 9 
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxstepscope
+
+
+\chapter{Input and Output}
+\label{\detokenize{text/progtut/io:input-and-output}}\label{\detokenize{text/progtut/io::doc}}
+\sphinxAtStartPar
+C++ uses streams for I/O, found in \sphinxcode{\sphinxupquote{<iostream>}}.
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_full-width}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{std::cout << variable;}} is used for output:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{var}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{var}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+10
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{std::cin >> variable}} for input:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cin}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{var}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\sphinxstepscope
+
+
+\chapter{Flow of Control}
+\label{\detokenize{text/progtut/controlflow:flow-of-control}}\label{\detokenize{text/progtut/controlflow::doc}}
+\sphinxAtStartPar
+Flow of control determines the order in which individual statetements, instructions or function calls of the program are executed.
+
+\sphinxAtStartPar
+The execution flow is controlled by \sphinxstylestrong{control flow statements} like
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+if statements
+
+\item {} 
+\sphinxAtStartPar
+for loops
+
+\item {} 
+\sphinxAtStartPar
+while loops
+
+\item {} 
+\sphinxAtStartPar
+break statements
+
+\end{itemize}
+
+\sphinxAtStartPar
+and so on.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+{\hyperref[\detokenize{text/progtut/if::doc}]{\sphinxcrossref{If\sphinxhyphen{}Statement}}}
+
+\item {} 
+\sphinxAtStartPar
+{\hyperref[\detokenize{text/progtut/while::doc}]{\sphinxcrossref{While Loops}}}
+
+\item {} 
+\sphinxAtStartPar
+{\hyperref[\detokenize{text/progtut/for::doc}]{\sphinxcrossref{For Loops}}}
+
+\item {} 
+\sphinxAtStartPar
+{\hyperref[\detokenize{text/progtut/pendulum::doc}]{\sphinxcrossref{Numerical Solution of the Pendulum Problem}}}
+
+\end{itemize}
+
+\sphinxstepscope
+
+
+\section{If\sphinxhyphen{}Statement}
+\label{\detokenize{text/progtut/if:if-statement}}\label{\detokenize{text/progtut/if::doc}}
+\sphinxAtStartPar
+execute a block of statements \sphinxstylestrong{if} a \sphinxstylestrong{condition} is satisfied. Syntax:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{condition}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{statement1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{statement2}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{statement3}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{statement4}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{x}\PYG{p}{(}\PYG{l+m+mf}{3.14}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{;}
+\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{;}
+\PYG{k}{else}\PYG{+w}{ }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+3.14 3.14
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{3.14}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{yes}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+yes
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxstepscope
+
+
+\section{While Loops}
+\label{\detokenize{text/progtut/while:while-loops}}\label{\detokenize{text/progtut/while::doc}}
+\sphinxAtStartPar
+Block of statements in the loop body are executed repetitevly as long as a certain condition on the state of the progarm is satisfied.
+
+\sphinxAtStartPar
+The number of loops can in general depend on the program state and not be predictable in advance.
+
+\sphinxAtStartPar
+Syntax:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{condition}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{statement1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{statement2}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{statement3}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Upon exiting the loop the nagation of the while condition holds.
+
+\sphinxAtStartPar
+Simple example:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{// condition i \PYGZgt{}= 10 holds}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+10
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+
+\subsection{A More Comprehensive Example: Pendulum}
+\label{\detokenize{text/progtut/while:a-more-comprehensive-example-pendulum}}\label{\detokenize{text/progtut/while:pendulum-example}}
+\sphinxAtStartPar
+Let’s consider a simple 2D pendulum:
+
+\begin{sphinxShadowBox}
+\sphinxstylesidebartitle{Simple Pendulum}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{pendulum.excalidraw}.png}
+\end{sphinxShadowBox}
+
+\sphinxAtStartPar
+The equations of motions for this ideal model can be easily shown to be:
+\begin{align*}
+&\ddot{\theta} = -\frac{g}{l}\sin(\theta) \quad 
+&&\text{(Mechanics of motion)} \\
+\Leftrightarrow \quad &\ddot{\theta} + \frac{g}{l}\sin(\theta) = 0 && \\
+\Leftrightarrow \quad &\ddot{\theta} + \frac{g}{l}\theta = 0 
+&& (\sin{\theta}\approx\theta \text{ for small } \theta)
+\end{align*}
+\sphinxAtStartPar
+Solving this differential equation with initial conditions \(\theta(0) = \theta_{0}\), and \(\dot{\theta}(0) = 0\) we arrive at the solution:
+\begin{equation*}
+\begin{split}
+\theta(t) = \theta_{0}\cos(\sqrt{\frac{g}{l}t})
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Following program computes this formula for each time value
+\begin{equation*}
+\begin{split}
+t_{i} = i\Delta t, \quad 0 \leq t_{i} \leq T, \quad i \in \mathbb{N_{0}}
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+and outputs \(t\) and corresponding \(\theta(t)\) values seperated by blankspace in a new line to the standard output.
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{l}\PYG{p}{(}\PYG{l+m+mf}{1.34}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Length of the pendulum chord in meters}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{phi0}\PYG{p}{(}\PYG{l+m+mf}{0.2}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Amplitude i.e. the initial angle in radians}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{dt}\PYG{p}{(}\PYG{l+m+mf}{0.05}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Time\PYGZhy{}step in seconds}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{T}\PYG{p}{(}\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//End\PYGZhy{}time in seconds}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{t}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Initial time value}
+
+\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{T}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{              }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{phi0}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{cos}\PYG{p}{(}\PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mf}{9.81}\PYG{o}{/}\PYG{n}{l}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}
+\PYG{+w}{              }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dt}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Full program text
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{l}\PYG{p}{(}\PYG{l+m+mf}{1.34}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Length of the pendulum chord in meters}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{phi0}\PYG{p}{(}\PYG{l+m+mf}{0.2}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Amplitude i.e. the initial angle in radians}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{dt}\PYG{p}{(}\PYG{l+m+mf}{0.05}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Time\PYGZhy{}step in seconds}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{T}\PYG{p}{(}\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//End\PYGZhy{}time in seconds}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{t}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//Initial time value}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{T}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{                }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{phi0}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{cos}\PYG{p}{(}\PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mf}{9.81}\PYG{o}{/}\PYG{n}{l}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}
+\PYG{+w}{                }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dt}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+We can put this program in a file \sphinxcode{\sphinxupquote{pendulum.cc}} and compile it the usual way.
+The program pendulum can be used to generate the plot of \(\theta\) vs \(t\) with \sphinxcode{\sphinxupquote{gnuplot}} using linux i/o redirection:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdl{}\PYG{+w}{ }./pendulum\PYG{+w}{ }\PYGZgt{}pend.dat
+\PYGZdl{}\PYG{+w}{ }gnuplot
+gnuplot\PYGZgt{}\PYG{+w}{ }plot\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}pend.dat\PYGZdq{}}with\PYG{+w}{ }lines\PYG{+w}{ }
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+We obtain the following plot for \sphinxcode{\sphinxupquote{T = 5.0}}:
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{pend.data}.png}
+
+\sphinxstepscope
+
+
+\section{For Loops}
+\label{\detokenize{text/progtut/for:for-loops}}\label{\detokenize{text/progtut/for:my-label}}\label{\detokenize{text/progtut/for::doc}}
+\sphinxAtStartPar
+Another way to achieve repetition.
+Syntax:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{for}\PYG{p}{(}\PYG{n}{start}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{condition}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{increment}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{command}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+in C \sphinxcode{\sphinxupquote{while}} and \sphinxcode{\sphinxupquote{for}} are equivalent.
+
+\sphinxAtStartPar
+Example;
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+
+\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+0 1 2 3 4 
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+The {\hyperref[\detokenize{text/progtut/while:pendulum-example}]{\sphinxcrossref{\DUrole{std,std-ref}{pendulum example}}}} from the previous section can be rewritten with a \sphinxstylestrong{for} loop:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{l}\PYG{p}{(}\PYG{l+m+mf}{1.34}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{phi0}\PYG{p}{(}\PYG{l+m+mf}{0.2}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{dt}\PYG{p}{(}\PYG{l+m+mf}{0.05}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{T}\PYG{p}{(}\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{T}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{t}\PYG{o}{+}\PYG{o}{=}\PYG{n}{dt}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{phi0}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{cos}\PYG{p}{(}\PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mf}{9.81}\PYG{o}{/}\PYG{n}{l}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{)}
+\PYG{+w}{                          }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+
+\subsection{For and While Equivalence}
+\label{\detokenize{text/progtut/for:for-and-while-equivalence}}
+\sphinxAtStartPar
+In C++ all for and while loops are equivalent and can be rewritten to one another.
+
+\begin{sphinxuseclass}{sd-container-fluid}
+\begin{sphinxuseclass}{sd-sphinx-override}
+\begin{sphinxuseclass}{sd-mb-4}
+\begin{sphinxuseclass}{sd-row}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\sphinxAtStartPar
+\sphinxstyleemphasis{\sphinxstylestrong{for\sphinxhyphen{}loop}}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{//S1;}
+\PYG{+w}{    }\PYG{c+c1}{//S1;}
+\PYG{+w}{    }\PYG{c+c1}{//...}
+\PYG{+w}{    }\PYG{c+c1}{//Sn;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\sphinxAtStartPar
+\sphinxstyleemphasis{\sphinxstylestrong{while\sphinxhyphen{}loop}}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{//S1;}
+\PYG{+w}{        }\PYG{c+c1}{//S2;}
+\PYG{+w}{        }\PYG{c+c1}{//...}
+\PYG{+w}{        }\PYG{c+c1}{//Sn;}
+\PYG{+w}{        }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxstepscope
+
+
+\section{Numerical Solution of the Pendulum Problem}
+\label{\detokenize{text/progtut/pendulum:numerical-solution-of-the-pendulum-problem}}\label{\detokenize{text/progtut/pendulum::doc}}
+\sphinxAtStartPar
+We can solve the differential equation numerically, without resorting
+to the \(\sin\theta \approx \theta\) approximation using the Euler method to rewrite the sytem as a first\sphinxhyphen{}order differential equation:
+\begin{align*}
+\dot{\phi} &= u \quad &&u(0) = u_{0} \\
+\dot{u} &= -\frac{g}{f}\sin{\phi} \quad 
+&&\phi(0) = \phi_{0} 
+\end{align*}
+\sphinxAtStartPar
+With the time step \(\Delta t\) we can express this differential equation as:
+\begin{align*}
+\phi_{n+1} &= \phi_{n} + \Delta t u_{n} \\
+u_{n+1} &= u_{n} - \Delta t(\frac{g}{l}\sin{\phi_{n}}) \\
+\end{align*}
+\sphinxAtStartPar
+Coding this difference scheme as a C++ we obtain:
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-output}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{l}\PYG{p}{(}\PYG{l+m+mf}{1.34}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{phi}\PYG{p}{(}\PYG{l+m+mf}{3.0}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//note that the initial phi can be large}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{u}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{dt}\PYG{p}{(}\PYG{l+m+mf}{1E\PYGZhy{}4}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{T}\PYG{p}{(}\PYG{l+m+mf}{0.003}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{t}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{T}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{phi}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{phiprev}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{phi}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dt}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{u}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{u}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dt}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{9.81}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{l}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{sin}\PYG{p}{(}\PYG{n}{phiprev}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dt}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Full program text with \sphinxcode{\sphinxupquote{T}} initialized with \sphinxcode{\sphinxupquote{10}} instead of small value as above:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{l}\PYG{p}{(}\PYG{l+m+mf}{1.34}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{phi}\PYG{p}{(}\PYG{l+m+mf}{3.0}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//note that the initial phi can be large}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{u}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{dt}\PYG{p}{(}\PYG{l+m+mf}{1E\PYGZhy{}4}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{T}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{t}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{    }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{T}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{phi}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{phiprev}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{phi}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dt}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{u}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{u}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dt}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mf}{9.81}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{l}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{sin}\PYG{p}{(}\PYG{n}{phiprev}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{t}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dt}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+we obtain following plot by plotting the data produced by this program:
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{pend2}.png}
+
+\sphinxstepscope
+
+
+\chapter{Functions}
+\label{\detokenize{text/progtut/functions:functions}}\label{\detokenize{text/progtut/functions::doc}}
+\sphinxAtStartPar
+In math we have the concept of a function; a mapping from one domain to another:
+\begin{equation*}
+\begin{split}
+f:U \rightarrow V
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Which defines an analogy between an object \(x\in U\), that can thought as an “input”, and an object \(f(x) \in V\), that can be ragerded as the output.
+
+\begin{sphinxShadowBox}
+\sphinxstylesidebartitle{}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{funct.excalidraw}.png}
+\end{sphinxShadowBox}
+
+\sphinxAtStartPar
+In programming this can be understood in terms of pre\sphinxhyphen{} and post\sphinxhyphen{}conditions.
+For the above function \(f\) the statement \sphinxcode{\sphinxupquote{x := f(x)}} has the \sphinxstylestrong{effect}:
+\begin{equation*}
+\begin{split}
+[\![U(x)]\!] \, x := f(x) \, [\![V(x)]\!]
+\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Where \(U(x)\) is the pre\sphinxhyphen{}condition of \(x\) belonging to the domain \(U(x)\) and \(V(x)\) is the post\sphinxhyphen{}condition of \(x\) belonging to the domain \(V(x)\)
+
+\sphinxAtStartPar
+For example let \(f:\mathbb{R}\rightarrow\mathbb{R}\), \(x:\mapsto x^2\); we define this in C++
+as:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{f}\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{//funtction head/signature}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{x}\PYG{o}{*}\PYG{n}{x}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//function body}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Then
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{x}\PYG{p}{(}\PYG{l+m+mf}{3.0}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{f}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+3
+9
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+In generel following holds for the function f :
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// \PYGZob{}x = X\PYGZcb{}}
+\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{f}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{;}
+\PYG{c+c1}{// \PYGZob{}x = X*X\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+given there are no overflows or other similar phenomena related to computer representation of real numbers that violate the usual axioms.
+
+\sphinxAtStartPar
+Function calls are implemented by the function call stack mechanism. New frame is allocated at the top of the stack when a function call is made, where parameters passed to the function are freshly allocated in the stack frame to be used within the body of the function.
+
+\sphinxAtStartPar
+Variables used within the function frame go away after the execution of the function ends and control returns to the calling function. Therefore they are inaccessible to the calling function.
+
+\sphinxAtStartPar
+Communication between the caller and the calee is realized by \sphinxcode{\sphinxupquote{return}} statements, and the values passed as parameters.
+
+\sphinxAtStartPar
+Following attempt to write a function that swaps variables doesn’t work:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{swap}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{temp}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{temp}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{temp}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{a}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{swap}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+3 5
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+because of the “call by value” mechanism explained above. The values of \sphinxcode{\sphinxupquote{a}} and \sphinxcode{\sphinxupquote{b}} are determined and passed to the function, which in turns uses those values to initialize new variables \sphinxcode{\sphinxupquote{a}} and \sphinxcode{\sphinxupquote{b}} local to its frame. Within this frame the values of \sphinxcode{\sphinxupquote{a}} and \sphinxcode{\sphinxupquote{b}} are swapped, but after function returns, and control is back at the caller they go away.
+
+
+\section{Recursion}
+\label{\detokenize{text/progtut/functions:recursion}}
+\sphinxAtStartPar
+The stack based function call mechanism enables to realization of recursively defined functions, almost verbatim. Consider for example the follownig function:
+\begin{align*}
+f&:\mathbb{N}\to\mathbb{N}\\
+&:0\mapsto 1 \\
+&:n\mapsto n \cdot f(n - 1)
+\end{align*}
+\sphinxAtStartPar
+This is the well\sphinxhyphen{}known factorial function.
+In C++ this is implemenetd directly as:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{f1}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{f}\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{f1}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+810
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+
+\section{Iteration}
+\label{\detokenize{text/progtut/functions:iteration}}
+\sphinxAtStartPar
+Same function can be realized iteratively with \sphinxstylestrong{while}
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{f2}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{g}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//g == i! \PYGZam{}\PYGZam{} i \PYGZlt{}= n;}
+\PYG{+w}{    }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{g}\PYG{+w}{ }\PYG{o}{*}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//g == (i + 1)!}
+\PYG{+w}{        }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//g == i!}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{c+c1}{//i == n}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{g}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{f2}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+3628800
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+\sphinxstylestrong{Recursion vs Iteration}
+
+\begin{sphinxuseclass}{sd-container-fluid}
+\begin{sphinxuseclass}{sd-sphinx-override}
+\begin{sphinxuseclass}{sd-mb-4}
+\begin{sphinxuseclass}{sd-row}
+\begin{sphinxuseclass}{sd-g-5}
+\begin{sphinxuseclass}{sd-g-xs-5}
+\begin{sphinxuseclass}{sd-g-sm-5}
+\begin{sphinxuseclass}{sd-g-md-5}
+\begin{sphinxuseclass}{sd-g-lg-5}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\sphinxAtStartPar
+\sphinxstyleemphasis{recursion}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{f}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{f}\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\sphinxAtStartPar
+\sphinxstyleemphasis{while\sphinxhyphen{}iteration}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{f}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{f}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//f == i!}
+\PYG{+w}{    }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{f}\PYG{+w}{ }\PYG{o}{*}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//f == (i + 1)!}
+\PYG{+w}{        }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//f == i!}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Note the pre\sphinxhyphen{} and post\sphinxhyphen{}conditions, and loop invariants, denoted as comments that guarantee the correctness of this program, as long as there is no overflow. The advandate of recursive implementation is that they follow the mathematical specification almost verbatim, and therefore there is no need to specify pre\sphinxhyphen{} and post\sphinxhyphen{}conditions or to prove the program correctness.
+
+\sphinxAtStartPar
+Equivalently \sphinxstylestrong{for} loops can be used:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{f3}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{res}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{res}\PYG{+w}{ }\PYG{o}{*}\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{res}\PYG{p}{;}
+
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{f3}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+3628800
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxstepscope
+
+\begin{sphinxuseclass}{cell}
+\begin{sphinxuseclass}{tag_hide-input}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+
+\chapter{Templates}
+\label{\detokenize{text/progtut/templates:templates}}\label{\detokenize{text/progtut/templates::doc}}
+\sphinxAtStartPar
+Consider following function defintions in C++:
+
+\begin{sphinxuseclass}{sd-container-fluid}
+\begin{sphinxuseclass}{sd-sphinx-override}
+\begin{sphinxuseclass}{sd-mb-4}
+\begin{sphinxuseclass}{sd-row}
+\begin{sphinxuseclass}{sd-g-2}
+\begin{sphinxuseclass}{sd-g-xs-2}
+\begin{sphinxuseclass}{sd-g-sm-2}
+\begin{sphinxuseclass}{sd-g-md-2}
+\begin{sphinxuseclass}{sd-g-lg-2}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\begin{sphinxuseclass}{sd-border-1}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{f}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{sd-col}
+\begin{sphinxuseclass}{sd-d-flex-column}
+\begin{sphinxuseclass}{sd-border-1}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n+nf}{f}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\sphinxAtStartPar
+These two definitions compute the same function, with the only difference being the signature type defintions. It is possible to avoid this redundancy by using the \sphinxstylestrong{templates} abstraction mechanism, that allows specifying generic types:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{template}\PYG{o}{\PYGZlt{}}\PYG{k}{typename}\PYG{+w}{ }\PYG{n+nc}{T}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T}\PYG{+w}{ }\PYG{n}{f}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{T}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n+nf}{y}\PYG{p}{(}\PYG{l+m+mf}{5.0}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n+nf}{z}\PYG{p}{(}\PYG{l+m+mf}{7.0}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{f}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{f}\PYG{p}{(}\PYG{n}{y}\PYG{o}{/}\PYG{n}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{f}\PYG{p}{(}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+9 2.77778 1.96
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\sphinxstepscope
+
+
+\chapter{Classes}
+\label{\detokenize{text/progtut/classes:classes}}\label{\detokenize{text/progtut/classes::doc}}
+\sphinxAtStartPar
+Roughly speaking a \sphinxstylestrong{class} is an \sphinxstylestrong{extensible} program\sphinxhyphen{}code\sphinxhyphen{}template
+for creating \sphinxstylestrong{objects}, providing initial values for for state \sphinxstylestrong{member variables} and implementations of behavior \sphinxstylestrong{member functions} or \sphinxstylestrong{methods}.
+
+\sphinxAtStartPar
+Class may refer to following distinct but closerly interrelated contructs that
+are usually conflated in practice:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{template}: the code text that defines the class
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{type}: the type of the object generated by instantiating an \sphinxstylestrong{instance} of the class
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{constructor}: the subroutine that creates objects belonging to the class
+
+\end{itemize}
+
+\sphinxAtStartPar
+consider a definition of a class in some pseudo\sphinxhyphen{}language:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Class} \PYG{n}{A}\PYG{p}{\PYGZob{}}
+    \PYG{n}{B} \PYG{n}{x}
+    \PYG{n}{C} \PYG{n}{y}
+
+    \PYG{n}{D} \PYG{n}{f}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+    \PYG{n}{E} \PYG{n}{g}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+The above code is the template.
+
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{A a = A(c, e)}}. The first \sphinxcode{\sphinxupquote{A}} is the \sphinxstylestrong{type} declaration that the variable \sphinxcode{\sphinxupquote{a}} is of type \sphinxcode{\sphinxupquote{A}}. Second \sphinxcode{\sphinxupquote{A}} is the \sphinxstylestrong{constructor} that initializes \sphinxcode{\sphinxupquote{a}} with the values \sphinxcode{\sphinxupquote{c}} and \sphinxcode{\sphinxupquote{e}}.
+
+\sphinxAtStartPar
+As an example for a class definition in C++ let’s define a simple vector class:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{Vector3d}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{private}\PYG{o}{:}
+\PYG{+w}{        }\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{z}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{public}\PYG{o}{:}\PYG{+w}{ }
+\PYG{+w}{        }\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{getX}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{getY}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{getZ}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{z}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{getNorm}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{z}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{z}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{dot}\PYG{p}{(}\PYG{n}{Vector3d}\PYG{+w}{ }\PYG{n}{u}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{u}\PYG{p}{.}\PYG{n}{getX}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{u}\PYG{p}{.}\PYG{n}{getX}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{z}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{u}\PYG{p}{.}\PYG{n}{getZ}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\sphinxAtStartPar
+Let’s initialize the class:
+
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}array\PYGZgt{}}
+
+\PYG{k}{auto}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{array}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{o}{\PYGZgt{}}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{v}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{*}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{accumulate}\PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{v}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{          }\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{endl}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+30
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{sum}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{sum}\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{sum}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+55
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimOutput}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{cell}\begin{sphinxVerbatimInput}
+
+\begin{sphinxuseclass}{cell_input}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{sum\PYGZus{}it}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{sum}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//sum == s(i)}
+\PYG{+w}{    }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{sum}\PYG{+w}{ }\PYG{o}{+}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{//sum == s(i + 1)}
+\PYG{+w}{        }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{+w}{ }\PYG{p}{;}\PYG{c+c1}{// sum == s(i)}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{c+c1}{// i == n, sum == s(n)}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{sum}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{check}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{sum}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sum\PYGZus{}it}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{check}\PYG{p}{;}
+\PYG{n}{sum}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sum\PYGZus{}it}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\end{sphinxuseclass}\end{sphinxVerbatimInput}
+\begin{sphinxVerbatimOutput}
+
+\begin{sphinxuseclass}{cell_output}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+true
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}

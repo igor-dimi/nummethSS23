@@ -49,3 +49,11 @@ $$
 
 
 For example let $f:\mathbb{R}\rightarrow\mathbb{R}$, $x:\mapsto x^2$
+
+$$
+\begin{align*}
+f&:\mathbb{N}\to\mathbb{N}\\
+&:0\mapsto 1 \\
+&:n\mapsto n \cdot f(n - 1)
+\end{align*}
+$$

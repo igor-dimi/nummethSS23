@@ -5,7 +5,19 @@ parts:
     numbered: True
     chapters:
       - file: text/progtut/intro 
+      - file: text/progtut/unix
+        sections:
+          - file: text/progtut/filesystem
+          - file: text/progtut/shell
+          - file: text/progtut/unixstreams
+      - file: text/progtut/versioncontrol
+        sections:
+          - file: text/progtut/gitstart
+          - file: text/progtut/gitbasic
       - file: text/progtut/hello
+        sections:
+          - file: text/progtut/clingconfig
+          - file: text/progtut/namespaces
       - file: text/progtut/variables
         sections:
           - file: text/progtut/datatypes
@@ -13,7 +25,7 @@ parts:
           - file: text/progtut/statements
           - file: text/progtut/blocks
           - file: text/progtut/arithmetic
-      - file: text/progtut/arrays
+      - file: text/progtut/arrays 
       - file: text/progtut/io
       - file: text/progtut/controlflow
         sections:
@@ -22,8 +34,8 @@ parts:
           - file: text/progtut/for
           - file: text/progtut/pendulum
       - file: text/progtut/functions
-        sections: 
-          - file: text/progtut/templates
+      - file: text/progtut/templates
+      - file: text/progtut/classes
   - caption: Numerical Methods
     numbered: True
     chapters:

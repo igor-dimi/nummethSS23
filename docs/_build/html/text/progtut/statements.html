@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.3. Statements and Expressions &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>5.3. Statements and Expressions &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -63,8 +63,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/statements';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.4. Blocks and Scope" href="blocks.html" />
-    <link rel="prev" title="3.2. Variable Declarations" href="declarations.html" />
+    <link rel="next" title="5.4. Blocks and Scope" href="blocks.html" />
+    <link rel="prev" title="5.2. Variable Declarations" href="declarations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -152,32 +152,46 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming Tutorial</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hello.html">2. Hello World</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="variables.html">3. Variables</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="datatypes.html">3.1. Basic Data Tytpes in C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="declarations.html">3.2. Variable Declarations</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Statements and Expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blocks.html">3.4. Blocks and Scope</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">3.5. Arithmetic Expressions and Operators</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="unix.html">2. Unix</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="filesystem.html">2.1. Filesystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html">2.2. Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unixstreams.html">2.3. I/O Streams</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="arrays.html">4. Arrays</a></li>
-<li class="toctree-l1"><a class="reference internal" href="io.html">5. Input and Output</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">6. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="if.html">6.1. If-Statement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="while.html">6.2. While Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="for.html">6.3. For Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pendulum.html">6.4. Numerical Solution of the Pendulum Problem</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="gitstart.html">3.1. Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitbasic.html">3.2. Fundamental Git Commands and Terms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="functions.html">7. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="templates.html">7.1. Templates</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hello.html">4. Hello World</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="clingconfig.html">4.1. Cing Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespaces.html">4.2. Name Collisions and Namespaces</a></li>
 </ul>
 </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="variables.html">5. Variables</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">5.1. Basic Data Tytpes in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="declarations.html">5.2. Variable Declarations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.3. Statements and Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blocks.html">5.4. Blocks and Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">5.5. Expressions and Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="arrays.html">6. Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">7. Input and Output</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">8. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="if.html">8.1. If-Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="while.html">8.2. While Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for.html">8.3. For Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum.html">8.4. Numerical Solution of the Pendulum Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">10. Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">11. Classes</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">8. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../num/intro.html">12. Introduction</a></li>
 </ul>
 
     </div>
@@ -324,10 +338,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statements">3.3.1. Statements</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expressions">3.3.2. Expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">3.3.3. Assignment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#side-effects">3.3.4. Side Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statements">5.3.1. Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expressions">5.3.2. Expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">5.3.3. Assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#side-effects">5.3.4. Side Effects</a></li>
 </ul>
             </nav>
         </div>
@@ -340,15 +354,15 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="statements-and-expressions">
-<h1><span class="section-number">3.3. </span>Statements and Expressions<a class="headerlink" href="#statements-and-expressions" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">5.3. </span>Statements and Expressions<a class="headerlink" href="#statements-and-expressions" title="Permalink to this headline">#</a></h1>
 <section id="statements">
-<h2><span class="section-number">3.3.1. </span>Statements<a class="headerlink" href="#statements" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.3.1. </span>Statements<a class="headerlink" href="#statements" title="Permalink to this headline">#</a></h2>
 <p>An object <a class="footnote-reference brackets" href="#id2" id="id1">1</a> of a certain type can take different values during its existense. This transformation of values is called <strong>change of state</strong> of the object.</p>
 <p>Computers can change the sate of an object residing in memory. This is called an <strong>action</strong>. The <strong>instructions</strong> to peform actions in a given programming language are called <strong>statements</strong>.</p>
 <p>The change of a variable’s state as specified by a statement is said to be the <strong>effect</strong> of the statement.</p>
 </section>
 <section id="expressions">
-<h2><span class="section-number">3.3.2. </span>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.3.2. </span>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">#</a></h2>
 <p><strong>Expressions</strong> on the other hand,  do <strong>not</strong> transform the state of the variables, but merely denote <strong>values</strong>.</p>
 <p>Expressions are formed according to the rules of some formal notation (like the language of arithemtic)</p>
 <p>Some expressions: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">(3</span> <span class="pre">/</span> <span class="pre">6)</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">(y</span> <span class="pre">%</span> <span class="pre">10)</span></code></p>
@@ -366,7 +380,7 @@ document.write(`
 </div>
 </section>
 <section id="assignment">
-<h2><span class="section-number">3.3.3. </span>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.3.3. </span>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">#</a></h2>
 <p>The most basic statement is the <strong>assignment</strong>. Its has the basic form:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">;</span>
 </pre></div>
@@ -405,7 +419,7 @@ document.write(`
 </div>
 </section>
 <section id="side-effects">
-<h2><span class="section-number">3.3.4. </span>Side Effects<a class="headerlink" href="#side-effects" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.3.4. </span>Side Effects<a class="headerlink" href="#side-effects" title="Permalink to this headline">#</a></h2>
 <p>In some programming languages like Pascal the world of statements and the world of expressions are completely distinct. A given syntactical entity is either a statement or an expression.</p>
 <p>But in C/C++ a syntactical entity can be both a statement (have an effect) and an expression (denote a value).
 The action that such an expression performs is called the <strong>side effect</strong> of the expression.</p>
@@ -431,9 +445,7 @@ The action that such an expression performs is called the <strong>side effect</s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+9
 </pre></div>
 </div>
 </div>
@@ -500,7 +512,7 @@ The action that such an expression performs is called the <strong>side effect</s
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.2. </span>Variable Declarations</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Variable Declarations</p>
       </div>
     </a>
     <a class="right-next"
@@ -508,7 +520,7 @@ The action that such an expression performs is called the <strong>side effect</s
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.4. </span>Blocks and Scope</p>
+        <p class="prev-next-title"><span class="section-number">5.4. </span>Blocks and Scope</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -530,10 +542,10 @@ The action that such an expression performs is called the <strong>side effect</s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statements">3.3.1. Statements</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expressions">3.3.2. Expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">3.3.3. Assignment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#side-effects">3.3.4. Side Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statements">5.3.1. Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expressions">5.3.2. Expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">5.3.3. Assignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#side-effects">5.3.4. Side Effects</a></li>
 </ul>
   </nav></div>
 

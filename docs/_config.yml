@@ -15,11 +15,15 @@ sphinx:
     bibtex_reference_style: author_year
     latex_elements:
       papersize: 'a4paper'
+    nb_merge_streams: True
+    nb_execution_allow_errors: True
 
 only_build_toc_files: true
 exclude_patterns: [
   text/progtut/hello.pdf,
-  text/draft.qmd
+  text/draft.qmd,
+  text/progtut/testdir/*,
+  text/progtut/testgit/*
 ]
 
 parse:
