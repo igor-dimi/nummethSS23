@@ -57,3 +57,5 @@ f&:\mathbb{N}\to\mathbb{N}\\
 &:n\mapsto n \cdot f(n - 1)
 \end{align*}
 $$
+
+$\sqcup $

@@ -14,6 +14,9 @@ parts:
         sections:
           - file: text/progtut/gitstart
           - file: text/progtut/gitbasic
+          - file: text/progtut/gitignore
+          - file: text/progtut/gitview
+          - file: text/progtut/gitcommit
       - file: text/progtut/hello
         sections:
           - file: text/progtut/clingconfig
