@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2.3. I/O Streams &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>3.3. Ignoring Files &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -60,11 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/unixstreams';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/gitignore';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3. Version Control with Git" href="versioncontrol.html" />
-    <link rel="prev" title="2.2. Shell" href="shell.html" />
+    <link rel="next" title="3.4. Viewing Your Changes" href="gitview.html" />
+    <link rel="prev" title="3.2. Fundamental Git Terms and Basic Commands" href="gitbasic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -152,16 +152,16 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming Tutorial</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="unix.html">2. Unix</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="unix.html">2. Unix</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="filesystem.html">2.1. Filesystem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html">2.2. Shell</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. I/O Streams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unixstreams.html">2.3. I/O Streams</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="gitstart.html">3.1. Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitbasic.html">3.2. Fundamental Git Terms and Basic Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitignore.html">3.3. Ignoring Files</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Ignoring Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitview.html">3.4. Viewing Your Changes</a></li>
 </ul>
 </li>
@@ -248,7 +248,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/text/progtut/unixstreams.ipynb" target="_blank"
+      <li><a href="../../_sources/text/progtut/gitignore.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -317,9 +317,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -330,19 +328,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>I/O Streams</h1>
+    <h1>Ignoring Files</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redirection-of-i-o-streams">2.3.1. Redirection of I/O Streams</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -352,153 +342,276 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="i-o-streams">
-<h1><span class="section-number">2.3. </span>I/O Streams<a class="headerlink" href="#i-o-streams" title="Permalink to this headline">#</a></h1>
-<p>Unix programs commpunicate with the system with <strong>I/O Streams</strong>. Streams are unidirectional, they can be either written to, or they can be read from.</p>
-<p>Every program has three open streams when its starts executing:</p>
-<ul class="simple">
-<li><p><strong>stdin</strong>: The standard input reads user input from the console and is connected to the <strong>file descriptor 0</strong></p></li>
-<li><p><strong>stdout</strong>: Normal results of a program are outputed to the standard output. Standard output is connected to the <strong>file descriptor 1</strong></p></li>
-<li><p><strong>stderr</strong>: Diagnostic messages and errors are output to the standard error, which is connected to the <strong>file descriptor 2</strong>.</p></li>
-</ul>
-<section id="redirection-of-i-o-streams">
-<h2><span class="section-number">2.3.1. </span>Redirection of I/O Streams<a class="headerlink" href="#redirection-of-i-o-streams" title="Permalink to this headline">#</a></h2>
-<p>Redireaction of I/O streams is one of the most powerful  concepts in Unix.
-Be default the standard streams are connected to the terminal but sometimes it is sensible to redirect the stream to files:</p>
-<div class="cell tag_hide-input docutils container">
+  <div class="cell tag_hide-output tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
 <span class="expanded">Hide code cell source</span>
 </summary>
-<div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testdir
-mkdir<span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testdir
-<span class="nb">cd</span><span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testdir
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the directory from last section from scracth and reproduce its state:</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit
+mkdir<span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit
+<span class="nb">cd</span><span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit
+
+git<span class="w"> </span>init
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am A&quot;</span><span class="w"> </span>&gt;A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am B&quot;</span><span class="w"> </span>&gt;B
+git<span class="w"> </span>add<span class="w"> </span>A<span class="w"> </span>B
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;first commit&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;adding new lines to A&quot;</span><span class="w"> </span>&gt;&gt;A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;adding a new line to B&quot;</span><span class="w"> </span>&gt;&gt;B
+git<span class="w"> </span>add<span class="w"> </span>B
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;changing B&quot;</span>
+git<span class="w"> </span>add<span class="w"> </span>A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying A again&quot;</span><span class="w"> </span>&gt;&gt;A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am C&quot;</span><span class="w"> </span>&gt;&gt;C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am D&quot;</span><span class="w"> </span>&gt;&gt;D
+git<span class="w"> </span>add<span class="w"> </span>C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am E&quot;</span><span class="w"> </span>&gt;&gt;E
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am F&quot;</span><span class="w"> </span>&gt;&gt;F
+git<span class="w"> </span>add<span class="w"> </span>E<span class="w"> </span>F
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying E&quot;</span><span class="w"> </span>&gt;&gt;E
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying F&quot;</span><span class="w"> </span>&gt;&gt;F
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;new commit&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying C&quot;</span><span class="w"> </span>&gt;&gt;C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying E&quot;</span><span class="w"> </span>&gt;&gt;E
+git<span class="w"> </span>add<span class="w"> </span>A<span class="w"> </span>F<span class="w"> </span>E<span class="w"> </span>C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying A again&quot;</span><span class="w"> </span>&gt;&gt;A
+
+git<span class="w"> </span>add<span class="w"> </span>E
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">hint: Using &#39;master&#39; as the name for the initial branch. This default branch name</span>
+<span class=" -Color -Color-Yellow">hint: is subject to change. To configure the initial branch name to use in all</span>
+<span class=" -Color -Color-Yellow">hint: of your new repositories, which will suppress this warning, call:</span>
+<span class=" -Color -Color-Yellow">hint: </span>
+<span class=" -Color -Color-Yellow">hint: 	git config --global init.defaultBranch &lt;name&gt;</span>
+<span class=" -Color -Color-Yellow">hint: </span>
+<span class=" -Color -Color-Yellow">hint: Names commonly chosen instead of &#39;master&#39; are &#39;main&#39;, &#39;trunk&#39; and</span>
+<span class=" -Color -Color-Yellow">hint: &#39;development&#39;. The just-created branch can be renamed via this command:</span>
+<span class=" -Color -Color-Yellow">hint: </span>
+<span class=" -Color -Color-Yellow">hint: 	git branch -m &lt;name&gt;</span>
+Initialized empty Git repository in /home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit/.git/
+[master (root-commit) 30f73f8] first commit
+ 2 files changed, 2 insertions(+)
+ create mode 100644 A
+ create mode 100644 B
+[master 5555ac0] changing B
+ 1 file changed, 1 insertion(+)
+[master fb33450] new commit
+ 4 files changed, 4 insertions(+)
+ create mode 100644 C
+ create mode 100644 E
+ create mode 100644 F
 </pre></div>
 </div>
 </div>
 </details>
 </div>
-<p>Let’s create a file “A” with the content “hey”</p>
+<section class="tex2jax_ignore mathjax_ignore" id="ignoring-files">
+<h1><span class="section-number">3.3. </span>Ignoring Files<a class="headerlink" href="#ignoring-files" title="Permalink to this headline">#</a></h1>
+<p>We might want some files to be completely ignored by git. Such files won’t even show up us untracked.
+This is achieved by specifying files names (or patterns) in a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file.</p>
+<p>Usually build, archive and log files are set to be ignored in projects. Because the idea of open source is to provide the source-code that will be built by individuals on their machines. There is no need to provide the built files or object files resulting from compiler output in the git repository.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>hey<span class="w"> </span>&gt;A
-cat<span class="w"> </span>A
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hey
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Green">M</span>  C
+<span class=" -Color -Color-Green">M</span>  E
+<span class=" -Color -Color-Green">M</span>  F
+<span class=" -Color -Color-Red">??</span> D
 </pre></div>
 </div>
 </div>
 </div>
-<p>The direcctory now contains a single file “A”</p>
+<p>Let’s add another file <code class="docutils literal notranslate"><span class="pre">G</span></code> that we would like to completely ignore:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;let&#39;s ignore this file&quot;</span><span class="w"> </span>&gt;&gt;G
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;G&quot;</span><span class="w"> </span>&gt;&gt;.gitignore
+git<span class="w"> </span>status<span class="w"> </span>-s
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Green">M</span>  C
+<span class=" -Color -Color-Green">M</span>  E
+<span class=" -Color -Color-Green">M</span>  F
+<span class=" -Color -Color-Red">??</span> .gitignore
+<span class=" -Color -Color-Red">??</span> D
 </pre></div>
 </div>
 </div>
 </div>
-<p>we can redirect the output of <code class="docutils literal notranslate"><span class="pre">ls</span></code> to another file called ‘B’</p>
+<p><code class="docutils literal notranslate"><span class="pre">G</span></code> doesn’t show up in the status output, not even as an untracked file, just as expected. Note on the other hand that <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> itself is an untracked file. We would like to add this file to the version control (since it makes sense to provide it as a part of the open source files).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>&gt;B
-</pre></div>
-</div>
-</div>
-</div>
-<p>let’s see the contents of the folder now;</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.gitignore
+git<span class="w"> </span>status<span class="w"> </span>-s
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A  B
-</pre></div>
-</div>
-</div>
-</div>
-<p>and the contents of the file B:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>B
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A
-B
-</pre></div>
-</div>
-</div>
-</div>
-<p>maybe somewhat unexpectedly for the novice, the file B contains its own name. The reason is that during the rediraction step we typed the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>&gt;B
-</pre></div>
-</div>
-<p>Before <code class="docutils literal notranslate"><span class="pre">ls</span></code> is executed by the shell, the shell processes the whole line, and therefore creates the file B due to the <code class="docutils literal notranslate"><span class="pre">&gt;B</span></code> part of the command. Thus before <code class="docutils literal notranslate"><span class="pre">ls</span></code> is executed B is already contained in the directory, therefore its own name along with A is written to it.</p>
-<p>Redirecting <strong>stdin</strong> is achieved with <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>. Thus redirecting input to come from the file “B”, effectively reading it is done the following way:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>&lt;B
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A
-B
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>stderr</strong> is redirected via <code class="docutils literal notranslate"><span class="pre">2&gt;</span></code>. To output the standard error message to a file named “C” we do:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>nonexistent<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>C
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">A</span>  .gitignore
+<span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Green">M</span>  C
+<span class=" -Color -Color-Green">M</span>  E
+<span class=" -Color -Color-Green">M</span>  F
+<span class=" -Color -Color-Red">??</span> D
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;adding gitignore and some changes to files&quot;</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A  B  C
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 6c9c832] adding gitignore and some changes to files
+ 5 files changed, 6 insertions(+)
+ create mode 100644 .gitignore
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>C
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ls: cannot access &#39;nonexistent&#39;: No such file or directory
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> <span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Red">??</span> D
 </pre></div>
 </div>
 </div>
 </div>
-</section>
+<p>As mentioned above, it makes sense to ignore multiple files, e.g. object files resulting from builds etc. This can be achieved at once by <strong>glob patterns</strong>.</p>
+<p>First let’s add some files with the extensions <code class="docutils literal notranslate"><span class="pre">.o</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch<span class="w"> </span><span class="o">{</span>a,b,c<span class="o">}</span>.o
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> <span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Red">??</span> D
+<span class=" -Color -Color-Red">??</span> a.o
+<span class=" -Color -Color-Red">??</span> b.o
+<span class=" -Color -Color-Red">??</span> c.o
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s ignore these files by listing the appropriate pattern in the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;.gitignore<span class="w"> </span>cat<span class="w"> </span>&lt;&lt;!
+*.o
+!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> <span class=" -Color -Color-Red">M</span> .gitignore
+ <span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Red">??</span> D
+</pre></div>
+</div>
+</div>
+</div>
+<p>The files with the extension <code class="docutils literal notranslate"><span class="pre">.o</span></code> (that would correspond e.g. to object file) are  now indeed ignored by git.</p>
+<p>Let’s add and also commit the modified gitignore:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.gitignore<span class="w"> </span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;changing git ignore&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 70f5ac7] changing git ignore
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> <span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Red">??</span> D
+</pre></div>
+</div>
+</div>
+</div>
+<p>Further gitignore rules are listed as follows:</p>
+<ul class="simple">
+<li><p>Blank lines or lines starting with <code class="docutils literal notranslate"><span class="pre">#</span></code> are ignored</p></li>
+<li><p>standard glob patterns as they are used in the shell work and they will be applied <strong>recursively</strong> throught the <strong>entire working tree</strong>.</p></li>
+<li><p>staring patterns with <code class="docutils literal notranslate"><span class="pre">/</span></code> avoids recursivity</p></li>
+<li><p>ending patterns with <code class="docutils literal notranslate"><span class="pre">/</span></code> specifies a directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!</span></code> negates a pattern</p></li>
+<li><p>two asterisks match nested directories: <code class="docutils literal notranslate"><span class="pre">a/**/z</span></code>, would match</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">a/z</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a/b/z</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a/b/c/z</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Example gitignore file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># ignore all .a files
+*.a 
+
+# but do track one file called lib.a
+!lib.a
+
+# only ignore the TODO.txt in the **current** directory, but in the sub-directories:
+/TODO.txt
+
+# ignore all files in **any** directory named build
+build/
+
+# ignore txt files immediately in any doc directory, but in its sub-directories
+doc/*.txt
+
+# ingore all .pdf files in any doc directory and all of its subdirectories
+doc/**/*.pdf
+</pre></div>
+</div>
+<p>It is possible to have additional <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> files in subdirectories. Such <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> files only apply to the subdirectory in which they are located and <strong>overwrite</strong> the rules specified by higher-level gitignore files.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -533,20 +646,20 @@ B
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="shell.html"
+       href="gitbasic.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.2. </span>Shell</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Fundamental Git Terms and Basic Commands</p>
       </div>
     </a>
     <a class="right-next"
-       href="versioncontrol.html"
+       href="gitview.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Version Control with Git</p>
+        <p class="prev-next-title"><span class="section-number">3.4. </span>Viewing Your Changes</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -559,20 +672,6 @@ B
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redirection-of-i-o-streams">2.3.1. Redirection of I/O Streams</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

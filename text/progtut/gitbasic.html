@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.2. Fundamental Git Commands and Terms &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>3.2. Fundamental Git Terms and Basic Commands &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/gitbasic';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4. Hello World" href="hello.html" />
+    <link rel="next" title="3.3. Ignoring Files" href="gitignore.html" />
     <link rel="prev" title="3.1. Getting Started" href="gitstart.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -160,7 +160,9 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="gitstart.html">3.1. Getting Started</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.2. Fundamental Git Commands and Terms</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.2. Fundamental Git Terms and Basic Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitignore.html">3.3. Ignoring Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitview.html">3.4. Viewing Your Changes</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="hello.html">4. Hello World</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -315,9 +317,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -328,20 +328,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Fundamental Git Commands and Terms</h1>
+    <h1>Fundamental Git Terms and Basic Commands</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tracke">3.2.1. Tracke</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-main-states">3.2.2. The Three main States</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -368,24 +359,34 @@ mkdir<span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text
 </div>
 </details>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="fundamental-git-commands-and-terms">
-<h1><span class="section-number">3.2. </span>Fundamental Git Commands and Terms<a class="headerlink" href="#fundamental-git-commands-and-terms" title="Permalink to this headline">#</a></h1>
-<p>One of the most fundamental notions to any VCS, and not just git, is the <strong>working directory/tree</strong>. It is the collection of concrete version of folders and files that are currently checked out and are being edited.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="fundamental-git-terms-and-basic-commands">
+<h1><span class="section-number">3.2. </span>Fundamental Git Terms and Basic Commands<a class="headerlink" href="#fundamental-git-terms-and-basic-commands" title="Permalink to this headline">#</a></h1>
 <dl class="simple myst">
-<dt>Working Directory</dt><dd><p>The collection of files and folders, that are at a specific version, that are currently checked-out and being editted/processed by the user.</p>
+<dt>Working Directory / Working Tree</dt><dd><p>The collection of specific versions of files, as currently seen in the file system.</p>
+</dd>
+<dt>Check-out</dt><dd><p>the act of populating the working tree with spedific versions of the files.</p>
+</dd>
+<dt>Version control database</dt><dd><p>The data storage where versions of files are stored. The VCS uses the database to generate various versions of the files.</p>
+</dd>
+<dt>Commit</dt><dd><p>permanent storage of a specific set of files in the database, corresponding to a version.</p>
 </dd>
 </dl>
-<p>Another component of the VCS’s is the <strong>database</strong>. After files and folders have been eddited and modified, and the programmer wants to save that as a new <strong>version</strong>, the programmer <strong>commits</strong> this current version to the VCS database. Different VCS have different approaches in storing these changes, e.g. deltas, snaphots.</p>
-<p>The VCS uses the databases to create versions of the folders and files that were commited by the programmer. Populating the working directory with a certain version is called <strong>checking out</strong> that version.</p>
-<p>Thus basically in usual VSC there are two “areas”, the working directory and the database.</p>
-<p>But git adds a <strong>third area</strong> called the <strong>staging area</strong> or <strong>index</strong>. After programmer edits and modifies files, the programmer must add files explicitely to the index, in order that these files get commited in the next commit. The <strong>unstaged</strong> files, even if modified will <strong>not</strong> be commited.</p>
+<p>Different VCS have different approaches in storing these changes, e.g. as deltas or as complete snaphots.</p>
+<p>Thus, most VCS have two components/areas:</p>
+<ol class="arabic simple">
+<li><p>working directory</p></li>
+<li><p>database</p></li>
+</ol>
+<p>But git has a <strong>third area</strong> called the <strong>staging area</strong> or <strong>index</strong>.
+Modified files must be explicitly added to the staging area, in order to be commited in the next commit.
+The <strong>unstaged</strong> files, even if modified will <strong>not</strong> be commited.</p>
 <dl class="simple myst">
 <dt>Index / Staging Area</dt><dd><p>The collection of files that are marked to be <strong>committed</strong> in the next commit</p>
 </dd>
 <dt>Unstaged / Modified files</dt><dd><p>Files that are modified but are not explicitely added to the index.</p>
 </dd>
 </dl>
-<p>The ability to explicitly decide what will be committed in the next commit gives the programmer more flexibility, e.g. some modified files might be ommitted from the current commit, and be commited on some other commit.</p>
+<p>The ability to explicitly decide what will be committed in the next commit gives more flexibility, e.g. some modified files might be ommitted from the current commit, and be commited on some later commit.</p>
 <p>Let’s demonstrate these concepts, by first initialize a repository with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
@@ -509,7 +510,7 @@ Changes to be committed:
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master (root-commit) a0c01c2] first commit
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master (root-commit) 4af9531] first commit
  2 files changed, 2 insertions(+)
  create mode 100644 A
  create mode 100644 B
@@ -615,7 +616,7 @@ Changes not staged for commit:
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 5fac1b6] changing B
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master a5a8eb2] changing B
  1 file changed, 1 insertion(+)
 </pre></div>
 </div>
@@ -660,16 +661,160 @@ no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&q
 </div>
 </div>
 </div>
-<section id="tracke">
-<h2><span class="section-number">3.2.1. </span>Tracke<a class="headerlink" href="#tracke" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="the-three-main-states">
-<h2><span class="section-number">3.2.2. </span>The Three main States<a class="headerlink" href="#the-three-main-states" title="Permalink to this headline">#</a></h2>
-<p>One of the most fundamental concepts to understand git is the three main states that a tracked file can be in:</p>
-<ol class="arabic simple">
-<li><p>**Mo</p></li>
-</ol>
-</section>
+<p>The letter <code class="docutils literal notranslate"><span class="pre">M</span></code> in the above output next to file <code class="docutils literal notranslate"><span class="pre">A</span></code> signifies that file has been modified. Actually it is a <strong>two-column</strong> output;
+The left-hand column signifies the state of the staging area and the right hand colunm that of the working-tree. Thus <code class="docutils literal notranslate"><span class="pre">M</span></code> in the above output signifies the working-tree and it is in the right-hand column. If we add the file to the staging area the letter will be shifted to the left-hand column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>A
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span>  A
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course both columns can be demonstrated simulatenously. If we modify the file again, but not add the new changes to the staging area, there will be changes <strong>both</strong> in the staging area that will go in the next commit, but also in the working-tree that will not:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying A again&quot;</span><span class="w"> </span>&gt;&gt;A
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>left-hand column</strong>: status of the staging area</p></li>
+<li><p><strong>right-hand column</strong>: status of the working-tree</p></li>
+</ul>
+</div>
+<p>Further symbols that are displayed by the short status message <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span> <span class="pre">-s</span></code> are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code>: newly added files. Remember files added for the first time go directly to the staging area, therefore <code class="docutils literal notranslate"><span class="pre">A</span></code> will always be displayed on the <strong>left-hand</strong> column.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">??</span></code>: untracked files. Note that it makes sense that both columns have a question mark <code class="docutils literal notranslate"><span class="pre">?</span></code> signifying that both staging area and working tree status of an untracked file is unknown</p></li>
+</ul>
+<p>Let’s demonstrate these:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am C&quot;</span><span class="w"> </span>&gt;&gt;C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am D&quot;</span><span class="w"> </span>&gt;&gt;D
+git<span class="w"> </span>add<span class="w"> </span>C
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Green">A</span>  C
+<span class=" -Color -Color-Red">??</span> D
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, for completeness’ sake let’s add files <code class="docutils literal notranslate"><span class="pre">E</span></code> and <code class="docutils literal notranslate"><span class="pre">F</span></code>, modify E and add it to the staging area, modify F without adding it to the staging area and demonstrate the short status with further letter combinations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am E&quot;</span><span class="w"> </span>&gt;&gt;E
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am F&quot;</span><span class="w"> </span>&gt;&gt;F
+
+git<span class="w"> </span>add<span class="w"> </span>E<span class="w"> </span>F
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying E&quot;</span><span class="w"> </span>&gt;&gt;E
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying F&quot;</span><span class="w"> </span>&gt;&gt;F
+
+git<span class="w"> </span>add<span class="w"> </span>E
+
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Green">A</span>  C
+<span class=" -Color -Color-Green">A</span>  E
+<span class=" -Color -Color-Green">A</span><span class=" -Color -Color-Red">M</span> F
+<span class=" -Color -Color-Red">??</span> D
+</pre></div>
+</div>
+</div>
+</div>
+<p>now let’s commit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;new commit&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 21dc57e] new commit
+ 4 files changed, 5 insertions(+)
+ create mode 100644 C
+ create mode 100644 E
+ create mode 100644 F
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> <span class=" -Color -Color-Red">M</span> A
+ <span class=" -Color -Color-Red">M</span> F
+<span class=" -Color -Color-Red">??</span> D
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying C&quot;</span><span class="w"> </span>&gt;&gt;C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying E&quot;</span><span class="w"> </span>&gt;&gt;E
+git<span class="w"> </span>add<span class="w"> </span>A<span class="w"> </span>F<span class="w"> </span>E<span class="w"> </span>C
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span>  A
+<span class=" -Color -Color-Green">M</span>  C
+<span class=" -Color -Color-Green">M</span>  E
+<span class=" -Color -Color-Green">M</span>  F
+<span class=" -Color -Color-Red">??</span> D
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying A again&quot;</span><span class="w"> </span>&gt;&gt;A
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Green">M</span>  C
+<span class=" -Color -Color-Green">M</span>  E
+<span class=" -Color -Color-Green">M</span>  F
+<span class=" -Color -Color-Red">??</span> D
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the next section we will discuss completely ignoring some files.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -713,11 +858,11 @@ no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&q
       </div>
     </a>
     <a class="right-next"
-       href="hello.html"
+       href="gitignore.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Hello World</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>Ignoring Files</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -730,21 +875,6 @@ no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&q
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tracke">3.2.1. Tracke</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-main-states">3.2.2. The Three main States</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

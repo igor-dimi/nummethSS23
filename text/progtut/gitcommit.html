@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>8.3. For Loops &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>3.5. Committing Your Changes &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -60,11 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/for';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/gitcommit';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="8.4. Numerical Solution of the Pendulum Problem" href="pendulum.html" />
-    <link rel="prev" title="8.2. While Loops" href="while.html" />
+    <link rel="next" title="4. Hello World" href="hello.html" />
+    <link rel="prev" title="3.4. Viewing Your Changes" href="gitview.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -158,11 +158,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="unixstreams.html">2.3. I/O Streams</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="versioncontrol.html">3. Version Control with Git</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="gitstart.html">3.1. Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitbasic.html">3.2. Fundamental Git Terms and Basic Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitignore.html">3.3. Ignoring Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitview.html">3.4. Viewing Your Changes</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.5. Committing Your Changes</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="hello.html">4. Hello World</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -180,10 +181,10 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="arrays.html">6. Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="io.html">7. Input and Output</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="controlflow.html">8. Flow of Control</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="controlflow.html">8. Flow of Control</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="if.html">8.1. If-Statement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="while.html">8.2. While Loops</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">8.3. For Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="for.html">8.3. For Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pendulum.html">8.4. Numerical Solution of the Pendulum Problem</a></li>
 </ul>
 </li>
@@ -248,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/text/progtut/for.ipynb" target="_blank"
+      <li><a href="../../_sources/text/progtut/gitcommit.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -330,7 +331,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>For Loops</h1>
+    <h1>Committing Your Changes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -340,7 +341,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-and-while-equivalence">8.3.1. For and While Equivalence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-the-staging-area">3.5.1. Skipping the Staging Area</a></li>
 </ul>
             </nav>
         </div>
@@ -352,111 +353,196 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="for-loops">
-<span id="my-label"></span><h1><span class="section-number">8.3. </span>For Loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">#</a></h1>
-<p>Another way to achieve repetition.
-Syntax:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">start</span><span class="p">;</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span><span class="w"> </span><span class="n">increment</span><span class="p">){</span>
-<span class="w">    </span><span class="n">command</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>in C <code class="docutils literal notranslate"><span class="pre">while</span></code> and <code class="docutils literal notranslate"><span class="pre">for</span></code> are equivalent.</p>
-<p>Example;</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 2 3 4 
-</pre></div>
-</div>
-</div>
-</div>
-<p>The <a class="reference internal" href="while.html#pendulum-example"><span class="std std-ref">pendulum example</span></a> from the previous section can be rewritten with a <strong>for</strong> loop:</p>
-<div class="cell tag_hide-output docutils container">
+  <div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the directory from last section from scracth and reproduce its state:</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit
+mkdir<span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit
+<span class="nb">cd</span><span class="w"> </span>/home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit
 
-<span class="kt">double</span><span class="w"> </span><span class="nf">l</span><span class="p">(</span><span class="mf">1.34</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">phi0</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">dt</span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">T</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">T</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="o">+=</span><span class="n">dt</span><span class="p">)</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">9.81</span><span class="o">/</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="w">                          </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+git<span class="w"> </span>init
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am A&quot;</span><span class="w"> </span>&gt;A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am B&quot;</span><span class="w"> </span>&gt;B
+git<span class="w"> </span>add<span class="w"> </span>A<span class="w"> </span>B
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;first commit&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;adding new lines to A&quot;</span><span class="w"> </span>&gt;&gt;A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;adding a new line to B&quot;</span><span class="w"> </span>&gt;&gt;B
+git<span class="w"> </span>add<span class="w"> </span>B
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;changing B&quot;</span>
+git<span class="w"> </span>add<span class="w"> </span>A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying A again&quot;</span><span class="w"> </span>&gt;&gt;A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am C&quot;</span><span class="w"> </span>&gt;&gt;C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am D&quot;</span><span class="w"> </span>&gt;&gt;D
+git<span class="w"> </span>add<span class="w"> </span>C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am E&quot;</span><span class="w"> </span>&gt;&gt;E
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;I am F&quot;</span><span class="w"> </span>&gt;&gt;F
+git<span class="w"> </span>add<span class="w"> </span>E<span class="w"> </span>F
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying E&quot;</span><span class="w"> </span>&gt;&gt;E
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying F&quot;</span><span class="w"> </span>&gt;&gt;F
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;new commit&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying C&quot;</span><span class="w"> </span>&gt;&gt;C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying E&quot;</span><span class="w"> </span>&gt;&gt;E
+git<span class="w"> </span>add<span class="w"> </span>A<span class="w"> </span>F<span class="w"> </span>E<span class="w"> </span>C
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;modifying A again&quot;</span><span class="w"> </span>&gt;&gt;A
+
+git<span class="w"> </span>add<span class="w"> </span>E
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;let&#39;s ignore this file&quot;</span><span class="w"> </span>&gt;&gt;G
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;G&quot;</span><span class="w"> </span>&gt;&gt;.gitignore
+
+git<span class="w"> </span>add<span class="w"> </span>.gitignore
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;adding gitignore and some changes to files&quot;</span><span class="w"> </span>
+touch<span class="w"> </span><span class="o">{</span>a,b,c<span class="o">}</span>.o
+git<span class="w"> </span>status<span class="w"> </span>-s
+
+&gt;&gt;.gitignore<span class="w"> </span>cat<span class="w"> </span>&lt;&lt;!
+*.o
+!
+
+git<span class="w"> </span>add<span class="w"> </span>.gitignore<span class="w"> </span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;changing git ignore&#39;</span>
+git<span class="w"> </span>add<span class="w"> </span>A
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;adding another line to A&quot;</span><span class="w"> </span>&gt;&gt;A
 </pre></div>
 </div>
 </div>
+</details>
 <details class="hide below-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell output</span>
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0.2
-0.05 0.198173
-0.1 0.192724
-0.15 0.183753
-0.2 0.171424
-0.25 0.155963
-0.3 0.137651
-0.35 0.116824
-0.4 0.0938622
-0.45 0.069185
-0.5 0.0432435
-0.55 0.0165118
-0.6 -0.0105217
-0.65 -0.0373629
-0.7 -0.0635213
-0.75 -0.0885189
-0.8 -0.111899
-0.85 -0.133234
-0.9 -0.152134
-0.95 -0.168255
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">hint: Using &#39;master&#39; as the name for the initial branch. This default branch name</span>
+<span class=" -Color -Color-Yellow">hint: is subject to change. To configure the initial branch name to use in all</span>
+<span class=" -Color -Color-Yellow">hint: of your new repositories, which will suppress this warning, call:</span>
+<span class=" -Color -Color-Yellow">hint: </span>
+<span class=" -Color -Color-Yellow">hint: 	git config --global init.defaultBranch &lt;name&gt;</span>
+<span class=" -Color -Color-Yellow">hint: </span>
+<span class=" -Color -Color-Yellow">hint: Names commonly chosen instead of &#39;master&#39; are &#39;main&#39;, &#39;trunk&#39; and</span>
+<span class=" -Color -Color-Yellow">hint: &#39;development&#39;. The just-created branch can be renamed via this command:</span>
+<span class=" -Color -Color-Yellow">hint: </span>
+<span class=" -Color -Color-Yellow">hint: 	git branch -m &lt;name&gt;</span>
+Initialized empty Git repository in /home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit/.git/
+[master (root-commit) 01c6318] first commit
+ 2 files changed, 2 insertions(+)
+ create mode 100644 A
+ create mode 100644 B
+[master 9183b79] changing B
+ 1 file changed, 1 insertion(+)
+[master 6dc7ddd] new commit
+ 4 files changed, 4 insertions(+)
+ create mode 100644 C
+ create mode 100644 E
+ create mode 100644 F
+[master c14749e] adding gitignore and some changes to files
+ 5 files changed, 6 insertions(+)
+ create mode 100644 .gitignore
+ <span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Red">??</span> D
+<span class=" -Color -Color-Red">??</span> a.o
+<span class=" -Color -Color-Red">??</span> b.o
+<span class=" -Color -Color-Red">??</span> c.o
+[master 64372eb] changing git ignore
+ 1 file changed, 1 insertion(+)
 </pre></div>
 </div>
 </div>
 </details>
 </div>
-<section id="for-and-while-equivalence">
-<h2><span class="section-number">8.3.1. </span>For and While Equivalence<a class="headerlink" href="#for-and-while-equivalence" title="Permalink to this headline">#</a></h2>
-<p>In C++ all for and while loops are equivalent and can be rewritten to one another.</p>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
-<div class="sd-row docutils">
-<div class="sd-col sd-d-flex-column docutils">
-<p><em><strong>for-loop</strong></em></p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">    </span><span class="c1">//S1;</span>
-<span class="w">    </span><span class="c1">//S1;</span>
-<span class="w">    </span><span class="c1">//...</span>
-<span class="w">    </span><span class="c1">//Sn;</span>
-<span class="p">}</span>
+<section class="tex2jax_ignore mathjax_ignore" id="committing-your-changes">
+<h1><span class="section-number">3.5. </span>Committing Your Changes<a class="headerlink" href="#committing-your-changes" title="Permalink to this headline">#</a></h1>
+<p>Let’s check the status of our repository again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s
+git<span class="w"> </span>add
 </pre></div>
 </div>
 </div>
-<div class="sd-col sd-d-flex-column docutils">
-<p><em><strong>while-loop</strong></em></p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
-<span class="w">        </span><span class="c1">//S1;</span>
-<span class="w">        </span><span class="c1">//S2;</span>
-<span class="w">        </span><span class="c1">//...</span>
-<span class="w">        </span><span class="c1">//Sn;</span>
-<span class="w">        </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
+<span class=" -Color -Color-Red">??</span> D
+Nothing specified, nothing added.
+<span class=" -Color -Color-Yellow">hint: Maybe you wanted to say &#39;git add .&#39;?</span>
+<span class=" -Color -Color-Yellow">hint: Turn this message off by running</span>
+<span class=" -Color -Color-Yellow">hint: &quot;git config advice.addEmptyPathspec false&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We have added all changes to A and we would like to commit them with the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">[-m]</span></code> The <code class="docutils literal notranslate"><span class="pre">-m</span></code> option allows us to provide the commit message directly in the command line. Otherwise the default editor is opened with a default blueprint message:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please enter the commit message for your changes. Lines starting</span>
+<span class="c1"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
+<span class="c1">#</span>
+<span class="c1"># On branch master</span>
+<span class="c1"># Changes to be committed:</span>
+<span class="c1">#	modified:   A</span>
+<span class="c1">#</span>
+<span class="c1"># Untracked files:</span>
+<span class="c1">#	D</span>
+<span class="c1">#</span>
+</pre></div>
 </div>
+<p>that contains the latest output of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> command as comments by default. Thes lines can be uncommented if necessary as reminders on what was committed. Even more infomration can be included in the default message by default with the <code class="docutils literal notranslate"><span class="pre">-v</span></code> option. This option shows the staged diffs that are going to be committed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please enter the commit message for your changes. Lines starting</span>
+<span class="c1"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
+<span class="c1">#</span>
+<span class="c1"># On branch master</span>
+<span class="c1"># Changes to be committed:</span>
+<span class="c1">#	modified:   A</span>
+<span class="c1">#</span>
+<span class="c1"># Untracked files:</span>
+<span class="c1">#	D</span>
+<span class="c1">#</span>
+<span class="c1"># ------------------------ &gt;8 ------------------------</span>
+<span class="c1"># Do not modify or remove the line above.</span>
+<span class="c1"># Everything below it will be ignored.</span>
+diff<span class="w"> </span>--git<span class="w"> </span>a/A<span class="w"> </span>b/A
+index<span class="w"> </span>ac76b22..2de6976<span class="w"> </span><span class="m">100644</span>
+---<span class="w"> </span>a/A
++++<span class="w"> </span>b/A
+@@<span class="w"> </span>-1,3<span class="w"> </span>+1,5<span class="w"> </span>@@
+<span class="w"> </span>I<span class="w"> </span>am<span class="w"> </span>A
+<span class="w"> </span>adding<span class="w"> </span>new<span class="w"> </span>lines<span class="w"> </span>to<span class="w"> </span>A
+<span class="w"> </span>modifying<span class="w"> </span>A<span class="w"> </span>again
++modifying<span class="w"> </span>A<span class="w"> </span>again
++adding<span class="w"> </span>another<span class="w"> </span>line<span class="w"> </span>to<span class="w"> </span>A
+</pre></div>
+</div>
+<p>The diff part helps you see what changes are going to be commited, but this portion of the message will not be included in the commit message, as explained in the message. Doing otherwise would be reduntant, as diffs can always be enquired directly by git commands any time.</p>
+<p>Let’s perform the commit with the shorter inline vesion:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;changes to A&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master f044161] changes to A
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the commit command outputs some information about the commit like:</p>
+<ul class="simple">
+<li><p>on which branch was the commit committed? [<code class="docutils literal notranslate"><span class="pre">master</span></code>]</p></li>
+<li><p>what is the SHA-1 checksum of the commit? <code class="docutils literal notranslate"><span class="pre">3bc6c89</span></code></p></li>
+<li><p>how many files were changed, and what are some some additional statistics about the chnages? <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">file</span> <span class="pre">changed,</span> <span class="pre">2</span> <span class="pre">insertions(+)</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>remember that the commit records the snapshot as it has been set up in the staging area. The unstaged changes in the working directory will not go in the commit, but can be added and commited on a later commit. Every commit is a snapshot of the project that can be reverted and reviewed back. It is the essential command of <strong>version control</strong>.</p>
+</div>
+<section id="skipping-the-staging-area">
+<h2><span class="section-number">3.5.1. </span>Skipping the Staging Area<a class="headerlink" href="#skipping-the-staging-area" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
@@ -469,16 +555,16 @@ Syntax:</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "xcpp17"
+            mode: "bash"
         },
         kernelOptions: {
-            name: "xcpp17",
+            name: "bash",
             path: "./text/progtut"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'xcpp17'</script>
+    <script>kernelName = 'bash'</script>
 
                 </article>
               
@@ -492,20 +578,20 @@ Syntax:</p>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="while.html"
+       href="gitview.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">8.2. </span>While Loops</p>
+        <p class="prev-next-title"><span class="section-number">3.4. </span>Viewing Your Changes</p>
       </div>
     </a>
     <a class="right-next"
-       href="pendulum.html"
+       href="hello.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8.4. </span>Numerical Solution of the Pendulum Problem</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Hello World</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -527,7 +613,7 @@ Syntax:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-and-while-equivalence">8.3.1. For and While Equivalence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-the-staging-area">3.5.1. Skipping the Staging Area</a></li>
 </ul>
   </nav></div>
 
