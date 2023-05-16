@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.5. Committing Your Changes &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
+    <title>3.6. Removing and Moving Files &#8212; Introduction to Numerical Methods SS 23 Lecture Notes</title>
   
   
   
@@ -60,11 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/gitcommit';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'text/progtut/gitremove';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.6. Removing and Moving Files" href="gitremove.html" />
-    <link rel="prev" title="3.4. Viewing Your Changes" href="gitview.html" />
+    <link rel="next" title="4. Hello World" href="hello.html" />
+    <link rel="prev" title="3.5. Committing Your Changes" href="gitcommit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -163,8 +163,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="gitbasic.html">3.2. Fundamental Git Terms and Basic Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitignore.html">3.3. Ignoring Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitview.html">3.4. Viewing Your Changes</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.5. Committing Your Changes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitremove.html">3.6. Removing and Moving Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitcommit.html">3.5. Committing Your Changes</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.6. Removing and Moving Files</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="hello.html">4. Hello World</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -250,7 +250,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/text/progtut/gitcommit.ipynb" target="_blank"
+      <li><a href="../../_sources/text/progtut/gitremove.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +332,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Committing Your Changes</h1>
+    <h1>Removing and Moving Files</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -342,7 +342,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-the-staging-area">3.5.1. Skipping the Staging Area</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing">3.6.1. Removing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving">3.6.2. Moving</a></li>
 </ul>
             </nav>
         </div>
@@ -410,6 +411,9 @@ git<span class="w"> </span>add<span class="w"> </span>.gitignore<span class="w">
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;changing git ignore&#39;</span>
 git<span class="w"> </span>add<span class="w"> </span>A
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;adding another line to A&quot;</span><span class="w"> </span>&gt;&gt;A
+
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;changes to A&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;new changes to A&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -431,18 +435,18 @@ git<span class="w"> </span>add<span class="w"> </span>A
 <span class=" -Color -Color-Yellow">hint: </span>
 <span class=" -Color -Color-Yellow">hint: 	git branch -m &lt;name&gt;</span>
 Initialized empty Git repository in /home/igor/Documents/uni/ss23/nummethSS23/docs/text/progtut/testgit/.git/
-[master (root-commit) eda4076] first commit
+[master (root-commit) 300fe25] first commit
  2 files changed, 2 insertions(+)
  create mode 100644 A
  create mode 100644 B
-[master 7c24d96] changing B
+[master 48894ce] changing B
  1 file changed, 1 insertion(+)
-[master 9c9c702] new commit
+[master ccd0ab1] new commit
  4 files changed, 4 insertions(+)
  create mode 100644 C
  create mode 100644 E
  create mode 100644 F
-[master c813e7a] adding gitignore and some changes to files
+[master 16b167f] adding gitignore and some changes to files
  5 files changed, 6 insertions(+)
  create mode 100644 .gitignore
  <span class=" -Color -Color-Red">M</span> A
@@ -450,96 +454,24 @@ Initialized empty Git repository in /home/igor/Documents/uni/ss23/nummethSS23/do
 <span class=" -Color -Color-Red">??</span> a.o
 <span class=" -Color -Color-Red">??</span> b.o
 <span class=" -Color -Color-Red">??</span> c.o
-[master 3089d3b] changing git ignore
+[master c6ff46f] changing git ignore
+ 1 file changed, 1 insertion(+)
+[master 41e12ff] changes to A
+ 1 file changed, 1 insertion(+)
+[master 45107cb] new changes to A
  1 file changed, 1 insertion(+)
 </pre></div>
 </div>
 </div>
 </details>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="committing-your-changes">
-<h1><span class="section-number">3.5. </span>Committing Your Changes<a class="headerlink" href="#committing-your-changes" title="Permalink to this headline">#</a></h1>
-<p>Let’s check the status of our repository again:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">M</span><span class=" -Color -Color-Red">M</span> A
-<span class=" -Color -Color-Red">??</span> D
-</pre></div>
-</div>
-</div>
-</div>
-<p>We have added all changes to A and we would like to commit them with the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">[-m]</span></code> The <code class="docutils literal notranslate"><span class="pre">-m</span></code> option allows us to provide the commit message directly in the command line. Otherwise the default editor is opened with a default blueprint message:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please enter the commit message for your changes. Lines starting</span>
-<span class="c1"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
-<span class="c1">#</span>
-<span class="c1"># On branch master</span>
-<span class="c1"># Changes to be committed:</span>
-<span class="c1">#	modified:   A</span>
-<span class="c1">#</span>
-<span class="c1"># Untracked files:</span>
-<span class="c1">#	D</span>
-<span class="c1">#</span>
-</pre></div>
-</div>
-<p>that contains the latest output of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> command as comments by default. Thes lines can be uncommented if necessary as reminders on what was committed. Even more infomration can be included in the default message by default with the <code class="docutils literal notranslate"><span class="pre">-v</span></code> option. This option shows the staged diffs that are going to be committed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please enter the commit message for your changes. Lines starting</span>
-<span class="c1"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
-<span class="c1">#</span>
-<span class="c1"># On branch master</span>
-<span class="c1"># Changes to be committed:</span>
-<span class="c1">#	modified:   A</span>
-<span class="c1">#</span>
-<span class="c1"># Untracked files:</span>
-<span class="c1">#	D</span>
-<span class="c1">#</span>
-<span class="c1"># ------------------------ &gt;8 ------------------------</span>
-<span class="c1"># Do not modify or remove the line above.</span>
-<span class="c1"># Everything below it will be ignored.</span>
-diff<span class="w"> </span>--git<span class="w"> </span>a/A<span class="w"> </span>b/A
-index<span class="w"> </span>ac76b22..2de6976<span class="w"> </span><span class="m">100644</span>
----<span class="w"> </span>a/A
-+++<span class="w"> </span>b/A
-@@<span class="w"> </span>-1,3<span class="w"> </span>+1,5<span class="w"> </span>@@
-<span class="w"> </span>I<span class="w"> </span>am<span class="w"> </span>A
-<span class="w"> </span>adding<span class="w"> </span>new<span class="w"> </span>lines<span class="w"> </span>to<span class="w"> </span>A
-<span class="w"> </span>modifying<span class="w"> </span>A<span class="w"> </span>again
-+modifying<span class="w"> </span>A<span class="w"> </span>again
-+adding<span class="w"> </span>another<span class="w"> </span>line<span class="w"> </span>to<span class="w"> </span>A
-</pre></div>
-</div>
-<p>The diff part helps you see what changes are going to be commited, but this portion of the message will not be included in the commit message, as explained in the message. Doing otherwise would be reduntant, as diffs can always be enquired directly by git commands any time.</p>
-<p>Let’s perform the commit with the shorter inline vesion:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;changes to A&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 74d7c36] changes to A
- 1 file changed, 1 insertion(+)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that the commit command outputs some information about the commit like:</p>
-<ul class="simple">
-<li><p>on which branch was the commit committed? [<code class="docutils literal notranslate"><span class="pre">master</span></code>]</p></li>
-<li><p>what is the SHA-1 checksum of the commit? <code class="docutils literal notranslate"><span class="pre">3bc6c89</span></code></p></li>
-<li><p>how many files were changed, and what are some some additional statistics about the chnages? <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">file</span> <span class="pre">changed,</span> <span class="pre">2</span> <span class="pre">insertions(+)</span></code></p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>remember that the commit records the snapshot as it has been set up in the staging area. The unstaged changes in the working directory will not go in the commit, but can be added and commited on a later commit. Every commit is a snapshot of the project that can be reverted and reviewed back. It is the essential command of <strong>version control</strong>.</p>
-</div>
-<section id="skipping-the-staging-area">
-<h2><span class="section-number">3.5.1. </span>Skipping the Staging Area<a class="headerlink" href="#skipping-the-staging-area" title="Permalink to this headline">#</a></h2>
-<p>As discussed in previous sections <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> allows fine control on what will be commited on the next commit, by allowing the user to specifically add file to the staging area. Nevertheless it is possible to skip this step and direct git to automatically add all tracked files and commit them by a single command:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="removing-and-moving-files">
+<h1><span class="section-number">3.6. </span>Removing and Moving Files<a class="headerlink" href="#removing-and-moving-files" title="Permalink to this headline">#</a></h1>
+<section id="removing">
+<h2><span class="section-number">3.6.1. </span>Removing<a class="headerlink" href="#removing" title="Permalink to this headline">#</a></h2>
+<p>As with other modifications, removing a file from the working directory must be added to the staging area and committed, otherwise it will show as an unstaged change.
+But in git there is the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span></code> convenience command that removes the file from the working directory and stages the change.</p>
+<p>First let’s check the status of repository:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span>
@@ -547,23 +479,240 @@ index<span class="w"> </span>ac76b22..2de6976<span class="w"> </span><span class
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> <span class=" -Color -Color-Red">M</span> A
-<span class=" -Color -Color-Red">??</span> D
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">??</span> D
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is an untracked file D. Since it is untracked (not yet staged) simply removing it from the working tree is ok:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>D
+ls
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A  a.o  B  b.o  C  c.o  E  F  G
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span> <span class="pre">-s</span></code> doesn’t output any unstaged changes and <code class="docutils literal notranslate"><span class="pre">D</span></code> was simply removed.</p>
+<p>Similarly an ignored file like <code class="docutils literal notranslate"><span class="pre">a.o</span></code> can be simply removed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>a.o
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+</div>
+<p>But for a tracked file like <code class="docutils literal notranslate"><span class="pre">A</span></code> simply removing it from the working tree will result in an unstaged modification:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>A
+git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> <span class=" -Color -Color-Red">D</span> A
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can add this change (the delition of A) to the staging area:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>A
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;adding the file A&quot;</span>
-git<span class="w"> </span>status<span class="w"> </span>-s<span class="w">  </span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 7439d5f] adding the file A
- 1 file changed, 1 insertion(+)
-<span class=" -Color -Color-Red">??</span> D
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">D</span>  A
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now status shows that <code class="docutils literal notranslate"><span class="pre">A</span></code> was deleted and this changed was staged. We can therefore commit this change:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;deleted A&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 81cda31] deleted A
+ 1 file changed, 5 deletions(-)
+ delete mode 100644 A
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the status output is clean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The steps of deleting and adding the change to staging area can be combined with the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span></code> command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rm<span class="w"> </span>B
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rm &#39;B&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">D</span>  B
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;removing B&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master a874959] removing B
+ 1 file changed, 2 deletions(-)
+ delete mode 100644 B
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b.o  C  c.o  E  F  G
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="moving">
+<h2><span class="section-number">3.6.2. </span>Moving<a class="headerlink" href="#moving" title="Permalink to this headline">#</a></h2>
+<p>If we rename a tracked file, the newly named file will show up as an untracked file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>C<span class="w"> </span>C.new
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> <span class=" -Color -Color-Red">D</span> C
+<span class=" -Color -Color-Red">??</span> C.new
+</pre></div>
+</div>
+</div>
+</div>
+<p>But if we stage this change git is smart enough to deduce that the change we’ve added was a renaming operation and this will be accordingly shown in the status output:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>C<span class="w"> </span>C.new
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">R</span>  C -&gt; C.new
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s commit this change:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;renamed C to C.new&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 775e3c9] renamed C to C.new
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename C =&gt; C.new (100%)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similary to removing, git provided a convenience function that combines the steps of renameing a file and adding it to the staging area:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>mv<span class="w"> </span>E<span class="w"> </span>E.new
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">R</span>  E -&gt; E.new
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;renaming E&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[master 2bfe544] renaming E
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename E =&gt; E.new (100%)
 </pre></div>
 </div>
 </div>
@@ -603,20 +752,20 @@ git<span class="w"> </span>status<span class="w"> </span>-s<span class="w">  </s
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="gitview.html"
+       href="gitcommit.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.4. </span>Viewing Your Changes</p>
+        <p class="prev-next-title"><span class="section-number">3.5. </span>Committing Your Changes</p>
       </div>
     </a>
     <a class="right-next"
-       href="gitremove.html"
+       href="hello.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.6. </span>Removing and Moving Files</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Hello World</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -638,7 +787,8 @@ git<span class="w"> </span>status<span class="w"> </span>-s<span class="w">  </s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-the-staging-area">3.5.1. Skipping the Staging Area</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing">3.6.1. Removing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving">3.6.2. Moving</a></li>
 </ul>
   </nav></div>
 

@@ -17,6 +17,7 @@ parts:
           - file: text/progtut/gitignore
           - file: text/progtut/gitview
           - file: text/progtut/gitcommit
+          - file: text/progtut/gitremove
       - file: text/progtut/hello
         sections:
           - file: text/progtut/clingconfig
